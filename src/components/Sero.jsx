@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Converted from "./converted";
+import Converted from "./Converted";
 
 export default function Sero() {
   const [str, setStr] = useState([]);
