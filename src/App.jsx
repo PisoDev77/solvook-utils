@@ -3,6 +3,7 @@ import "./App.css";
 import QueType from "./components/QueType";
 import Garo from "./components/Garo";
 import Sero from "./components/Sero";
+import ABC from "./components/ABC";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <QueType />
       <Garo />
       <Sero />
+      <ABC />
     </>
   );
 }
