@@ -1,0 +1,24 @@
+table {
+  border-collapse: collapse;
+  display: table;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+/* 선택한 요소의 내용을 속성값으로 만들어 클립보드에 복사 */
+.copy-table::before {
+  content: "";
+  display: table;
+}
+
+.copy-table tbody tr::before {
+  content: attr(data-content);
+  display: table-cell;
+}
