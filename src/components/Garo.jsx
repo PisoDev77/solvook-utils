@@ -21,14 +21,23 @@ const TR = {
 
 export default function Garo() {
   const arr = ["① a", "② b", "③ c", "④ d", "⑤ e"];
+  const arr2 = ["1. ①", "2. ②", "3. ③", "4. ④", "5. ⑤"];
 
   return (
     <>
+      <hr></hr>
       <h1>가로 선택형</h1>
       <table>
         <tbody>
           <tr style={TR}>
             {arr.map((num) => (
+              <td data-answer data-q-number={num} style={STYLE} key={num}>
+                {num}
+              </td>
+            ))}
+          </tr>
+          <tr style={TR}>
+            {arr2.map((num) => (
               <td data-answer data-q-number={num} style={STYLE} key={num}>
                 {num}
               </td>
