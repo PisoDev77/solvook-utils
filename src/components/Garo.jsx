@@ -27,7 +27,7 @@ export default function Garo() {
     <>
       <hr></hr>
       <h1>가로 선택형</h1>
-      <table>
+      <table border={1}>
         <tbody>
           <tr style={TR}>
             {arr.map((num) => (

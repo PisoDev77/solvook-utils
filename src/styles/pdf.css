@@ -1,0 +1,16 @@
+.pdf-to-answer {
+  background-color: white;
+  color: black;
+  text-align: left;
+  max-width: 500px;
+
+  display: flex;
+  justify-content: space-between;
+}
+.pdf-to-answer > div {
+  padding: 8px;
+  flex: 9;
+}
+.pdf-to-answer > button {
+  flex: 1;
+}

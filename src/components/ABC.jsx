@@ -5,6 +5,19 @@ export default function ABC() {
 
   const handleConvert = (event) => {
     const { value } = event.target;
+
+    if (value[0] === '"' && value[value.length - 1])
+      console.log(value.substring(1, value.length - 1));
+
+    const arr = (
+      value[0] === '"' && value[value.length - 1]
+        ? value.substring(1, value.length - 1)
+        : value
+    )
+      .split(/\n/)
+      .map((item) => item.replace(/^./, "").trim());
+
+    console.log(arr.map((i) => i.split(" ")));
   };
   return (
     <>
