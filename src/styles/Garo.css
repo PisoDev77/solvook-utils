@@ -4,4 +4,24 @@
   padding: 1rem;
   background-color: var(--main-bgcolor);
   color: var(--main-color);
+
+  display: grid;
+  grid-template:
+    "a a a"
+    "b b c";
+}
+
+.garo > h2 {
+  grid-area: a;
+}
+
+.garo > table {
+  grid-area: b;
+}
+
+.garo > .btns {
+  grid-area: c;
+}
+.garo > .btns > button {
+  display: block;
 }

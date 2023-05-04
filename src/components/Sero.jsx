@@ -1,33 +1,33 @@
 import { useState } from "react";
+import { copyTargetDom } from "../lib/copy";
+
+import "../styles/Sero.css";
 
 import Converted from "./Converted";
 
 export default function Sero() {
-  const [str, setStr] = useState([]);
+  const [optionsStr, setOptionsStr] = useState("");
 
   const handleConvert = (event) => {
-    const { value } = event.target;
+    const { value: optionsStr } = event.target;
+    setOptionsStr(optionsStr);
+  };
 
-    if (value[0] === '"' && value[value.length - 1])
-      console.log(value.substring(1, value.length - 1));
-
-    setStr(
-      (value[0] === '"' && value[value.length - 1]
-        ? value.substring(1, value.length - 1)
-        : value
-      )
-        .split(/\n/)
-        .map((item) => item.replace(/^./, "").trim())
-    );
+  const handleCopySero = () => {
+    copyTargetDom(document.querySelector(".copy-table"));
   };
 
   return (
-    <>
-      <h1>세로 선택형</h1>
-      <textarea value={str} onChange={handleConvert} cols="50" rows="20">
-        {str}
-      </textarea>
-      <Converted str={str} />
-    </>
+    <section className="sero-container">
+      <h2>세로 선택형</h2>
+      <button onClick={handleCopySero}>세로 선지 결과 복사하기</button>
+      <textarea
+        className={"sero"}
+        value={optionsStr}
+        onChange={handleConvert}
+        rows="10"
+      ></textarea>
+      <Converted optionsStr={optionsStr} />
+    </section>
   );
 }

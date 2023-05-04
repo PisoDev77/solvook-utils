@@ -1,3 +1,5 @@
+import { copyTargetDom } from "../lib/copy";
+
 import "../styles/Garo.css";
 
 const STYLE = {
@@ -21,31 +23,45 @@ const TR = {
   wordWrap: "break-word",
 };
 
+const garos = [
+  ["① a", "② b", "③ c", "④ d", "⑤ e"],
+  ["1. ①", "2. ②", "3. ③", "4. ④", "5. ⑤"],
+];
+
 export default function Garo() {
-  const arr = ["① a", "② b", "③ c", "④ d", "⑤ e"];
-  const arr2 = ["1. ①", "2. ②", "3. ③", "4. ④", "5. ⑤"];
+  const handleCopyGaro = (event) => {
+    const { garoidx } = event.target.dataset;
+
+    copyTargetDom(document.querySelector(`table > tbody`).children[+garoidx]);
+  };
 
   return (
     <section className={"garo regular-box"}>
       <h2>가로 선택형</h2>
       <table border={1}>
         <tbody>
-          <tr style={TR}>
-            {arr.map((num) => (
-              <td data-answer data-q-number={num} style={STYLE} key={num}>
-                {num}
-              </td>
-            ))}
-          </tr>
-          <tr style={TR}>
-            {arr2.map((num) => (
-              <td data-answer data-q-number={num} style={STYLE} key={num}>
-                {num}
-              </td>
-            ))}
-          </tr>
+          {garos.map((garo, idx) => (
+            <tr key={`garoIdx${idx}`} style={TR}>
+              {garo.map((num) => (
+                <td data-answer data-q-number={num} style={STYLE} key={num}>
+                  {num}
+                </td>
+              ))}
+            </tr>
+          ))}
         </tbody>
       </table>
+      <div className={"btns"}>
+        {garos.map((_, idx) => (
+          <button
+            key={`btn-${idx}`}
+            onClick={handleCopyGaro}
+            data-garoidx={idx}
+          >
+            copy
+          </button>
+        ))}
+      </div>
     </section>
   );
 }

@@ -1,30 +1,74 @@
 import { useState } from "react";
 
+import { getOptions } from "../lib/sero";
+import { getConnectiveOptions, getOneSpaceOptions } from "../lib/abc";
+import { copyTargetDom } from "../lib/copy";
+
+const abcTypes = ["연결어", "공백 한 단어"];
+
 export default function ABC() {
-  const [str, setStr] = useState([]);
+  const [opstionsStr, setOpstionsStr] = useState();
+  const [abcType, setAbcType] = useState(0);
+  const [arr, setArr] = useState([]);
+
+  const sortABC = (options) => {
+    // 연결어인 경우
+    if (abcType === 0) setArr(getConnectiveOptions(options));
+    if (abcType === 1) setArr(getOneSpaceOptions(options));
+  };
+
+  const handleCopyABC = (event) => {
+    copyTargetDom(document.querySelector(".copy-abc"));
+  };
 
   const handleConvert = (event) => {
-    const { value } = event.target;
+    const { value: opstionsStr } = event.target;
 
-    if (value[0] === '"' && value[value.length - 1])
-      console.log(value.substring(1, value.length - 1));
+    const options = getOptions(opstionsStr);
 
-    const arr = (
-      value[0] === '"' && value[value.length - 1]
-        ? value.substring(1, value.length - 1)
-        : value
-    )
-      .split(/\n/)
-      .map((item) => item.replace(/^./, "").trim());
+    sortABC(options);
 
-    console.log(arr.map((i) => i.split(" ")));
+    setOpstionsStr(opstionsStr);
+  };
+
+  const handleAbcType = (event) => {
+    const { abctype } = event.target.dataset;
+    setAbcType(+abctype);
   };
   return (
-    <>
-      <h1>객관식 A,B,C</h1>
-      <textarea value={str} onChange={handleConvert} cols="50" rows="20">
-        {str}
-      </textarea>
-    </>
+    <section className={"sero-container"}>
+      <h2>객관식 A,B,C</h2>
+      <div className={"mid-div"}>
+        {abcTypes.map((type, idx) => (
+          <span key={`abcType${idx}`}>
+            <input
+              type={"radio"}
+              value={type}
+              name={"abcType"}
+              onChange={handleAbcType}
+              data-abctype={idx}
+            />
+            <label>{type}</label>
+          </span>
+        ))}
+      </div>
+      <textarea
+        value={opstionsStr}
+        rows="10"
+        onChange={handleConvert}
+      ></textarea>
+      <table className={"copy-abc"} border={1}>
+        <tbody>
+          {arr.map((i, idx) => (
+            <tr key={`ABCIdx${idx}`}>
+              {i.map((tmp) => (
+                <td>{tmp}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <button onClick={handleCopyABC}>ABC 결과 복사하기</button>
+    </section>
   );
 }

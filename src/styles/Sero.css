@@ -1,0 +1,26 @@
+.sero-container {
+  display: grid;
+  grid-template:
+    "a a a"
+    "e e e"
+    "b c d";
+  max-width: 600px;
+  gap: 8px;
+}
+
+.sero-container > h2 {
+  grid-area: a;
+}
+.sero-container > textarea {
+  grid-area: b;
+}
+.sero-container > table {
+  grid-area: c;
+}
+.sero-container > button {
+  grid-area: d;
+}
+
+.sero-container > .mid-div {
+  grid-area: e;
+}
