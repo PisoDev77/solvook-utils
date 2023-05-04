@@ -1,41 +1,18 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import QueType from "./components/QueType";
-import Garo from "./components/Garo";
-import Sero from "./components/Sero";
-import ABC from "./components/ABC";
+import RoutesNav from "./components/Routes";
+
 import Answer from "./components/Answer";
 import Temp from "./components/temp";
+
+import Parsing from "./pages/parsing";
 
 function App() {
   return (
     <BrowserRouter>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">파싱</Link>
-          </li>
-          <li>
-            <Link to="/answer-to-pdf">정답 PDF 만들기</Link>
-          </li>
-          <li>
-            <Link to="/temp">임시</Link>
-          </li>
-        </ul>
-      </nav>
+      <RoutesNav />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <QueType />
-              <Garo />
-              <Sero />
-              <ABC />
-            </>
-          }
-        />
+        <Route path="/solvook-utils" element={<Parsing />} />
         <Route path="/answer-to-pdf" element={<Answer />} />
         <Route path="/temp" element={<Temp />} />
       </Routes>

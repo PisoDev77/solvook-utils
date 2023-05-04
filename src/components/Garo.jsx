@@ -1,3 +1,5 @@
+import "../styles/Garo.css";
+
 const STYLE = {
   border: "0 !important",
   height: "20.8px",
@@ -24,9 +26,8 @@ export default function Garo() {
   const arr2 = ["1. ①", "2. ②", "3. ③", "4. ④", "5. ⑤"];
 
   return (
-    <>
-      <hr></hr>
-      <h1>가로 선택형</h1>
+    <section className={"garo regular-box"}>
+      <h2>가로 선택형</h2>
       <table border={1}>
         <tbody>
           <tr style={TR}>
@@ -45,7 +46,6 @@ export default function Garo() {
           </tr>
         </tbody>
       </table>
-      <hr></hr>
-    </>
+    </section>
   );
 }

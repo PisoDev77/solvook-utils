@@ -1,0 +1,34 @@
+textarea {
+  resize: none;
+}
+
+.question-type {
+  display: grid;
+  grid-template:
+    "a a"
+    "b c";
+}
+.question-type > h2 {
+  grid-area: a;
+  vertical-align: middle;
+}
+
+.textarea-with-explanation {
+  display: grid;
+  grid-template:
+    "a a"
+    "b c";
+}
+.textarea-with-explanation > h3 {
+  grid-area: a;
+  width: 100%;
+}
+
+.question-types-result {
+  position: fixed;
+  /* top: 1rem; */
+  right: 1rem;
+  padding: 1rem;
+  background-color: var(--main-bgcolor);
+  color: var(--main-color);
+}

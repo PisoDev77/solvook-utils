@@ -1,0 +1,7 @@
+.garo {
+  position: fixed;
+  right: 1rem;
+  padding: 1rem;
+  background-color: var(--main-bgcolor);
+  color: var(--main-color);
+}
