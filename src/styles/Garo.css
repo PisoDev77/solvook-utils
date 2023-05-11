@@ -4,21 +4,39 @@
   padding: 1rem;
   background-color: var(--main-bgcolor);
   color: var(--main-color);
+  transform: translateY(-5rem);
 
   display: grid;
   grid-template:
     "a a a"
+    "k k k"
     "b b c";
 }
-
 .garo > h2 {
   grid-area: a;
 }
-
-.garo > table {
-  grid-area: b;
+.garo {
+  z-index: 10000;
 }
 
+.garo > .tmp {
+  grid-area: k;
+  display: flex;
+  gap: 8px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+.garo > .tmp > button:hover {
+  transform: scale(1.2);
+}
+
+.garo > .tables {
+  grid-area: b;
+}
+.tables > table {
+  border-radius: 4px;
+  padding: 2px;
+}
 .garo > .btns {
   grid-area: c;
 }

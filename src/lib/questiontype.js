@@ -11,7 +11,7 @@
  * getSingluar('1\t2\n3\t4');
  * // => ['1번,2', '3번,4']
  */
-const getSingular = (questionsStr) => {
+const getSingular = (questionsStr, minus = 0) => {
   /**
    * 1. 숫자로 시작하고
    * 2. 탭을 포함하며
@@ -21,16 +21,16 @@ const getSingular = (questionsStr) => {
   return (
     questionsStr.match(/^(\d+)\t(\d+)$/gm)?.map((match) => {
       const [num1, num2] = match.split("\t");
-      return `${parseInt(num1)}번,${parseInt(num2)}`;
+      return `${parseInt(num1) - minus}번,${parseInt(num2)}`;
     }) || []
   );
 };
 
-const getPlural = (questionsStr) => {
+const getPlural = (questionsStr, minus = 0) => {
   const regex = /^(\d+)\t(\d+)$/gm;
   const matches = [...questionsStr.matchAll(regex)];
   const questionTypes = matches.map((match) => match[2]);
-  const questionNumbers = matches.map((match) => `${match[1]}번`);
+  const questionNumbers = matches.map((match) => `${match[1] - minus}번`);
   return [`${questionNumbers},${questionTypes}`];
 };
 export { getSingular, getPlural };

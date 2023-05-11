@@ -23,34 +23,49 @@ const TR = {
   wordWrap: "break-word",
 };
 
+const selects = ["①", "②", "③", "④", "⑤"];
 const garos = [
-  ["① a", "② b", "③ c", "④ d", "⑤ e"],
   ["1. ①", "2. ②", "3. ③", "4. ④", "5. ⑤"],
+  ["① a", "② b", "③ c", "④ d", "⑤ e"],
+  ["① ❶", "② ❷", "③ ❸", "④ ❹", "⑤ ❺"],
+  ["① 1개", "② 2개", "③ 3개", "④ 4개", "⑤ 5개"],
 ];
 
 export default function Garo() {
   const handleCopyGaro = (event) => {
     const { garoidx } = event.target.dataset;
-
-    copyTargetDom(document.querySelector(`table > tbody`).children[+garoidx]);
+    const $table = document.querySelector(`.tables`).children[garoidx];
+    copyTargetDom($table.firstChild);
   };
 
   return (
     <section className={"garo regular-box"}>
-      <h2>가로 선택형</h2>
-      <table border={1}>
-        <tbody>
-          {garos.map((garo, idx) => (
-            <tr key={`garoIdx${idx}`} style={TR}>
-              {garo.map((num) => (
-                <td data-answer data-q-number={num} style={STYLE} key={num}>
-                  {num}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <h2>가로 선택형 →</h2>
+      <div className={"tmp"}>
+        {selects.map((select, idx) => (
+          <button
+            key={`SELECT${idx}`}
+            onClick={(event) => copyTargetDom(event.target.firstChild)}
+          >
+            {select}
+          </button>
+        ))}
+      </div>
+      <div className={"tables"}>
+        {garos.map((garo, idx) => (
+          <table key={`garoIdx${idx}`} className={`${idx} regular-box`}>
+            <tbody>
+              <tr style={TR}>
+                {garo.map((num) => (
+                  <td data-answer data-q-number={num} style={STYLE} key={num}>
+                    {num}
+                  </td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        ))}
+      </div>
       <div className={"btns"}>
         {garos.map((_, idx) => (
           <button

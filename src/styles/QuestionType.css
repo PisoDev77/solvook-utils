@@ -6,11 +6,17 @@ textarea {
   display: grid;
   grid-template:
     "a a"
+    "k k"
     "b c";
 }
 .question-type > h2 {
   grid-area: a;
   vertical-align: middle;
+}
+.question-type > .minus {
+  grid-area: k;
+  width: fit-content;
+  text-align: center;
 }
 
 .textarea-with-explanation {
@@ -31,4 +37,9 @@ textarea {
   padding: 1rem;
   background-color: var(--main-bgcolor);
   color: var(--main-color);
+}
+
+.question-types-result > div {
+  display: flex;
+  flex-direction: column;
 }

@@ -4,16 +4,19 @@ import "../styles/QuestionType.css";
 
 import { getPlural, getSingular } from "../lib/questiontype";
 import HelpBtn from "./common/HelpBtn";
+import { copyTargetDom } from "../lib/copy";
 
 export default function QuestionType() {
   const [singular, setSingular] = useState("");
   const [plural, setPlural] = useState();
 
+  const [minus, setMinus] = useState(0);
+
   const [questionTypes, setQuestionTypes] = useState([]);
 
   const handleSingluar = (event) => {
     const { value: questionStr } = event.target;
-    setQuestionTypes(getSingular(questionStr));
+    setQuestionTypes(getSingular(questionStr, minus));
     setSingular(questionStr);
   };
 
@@ -26,6 +29,14 @@ export default function QuestionType() {
   return (
     <section className="question-type">
       <h2>문제 유형 - 우측에 결과 있음</h2>
+      <input
+        value={minus}
+        onChange={(event) => {
+          setMinus(event.target.value);
+        }}
+        className={"minus"}
+        type={"number"}
+      />
       <div className="textarea-with-explanation">
         <h3>
           단일 문제 유형 <HelpBtn idx={"단일 문제 도움말"} />
@@ -56,7 +67,14 @@ export default function QuestionType() {
         {questionTypes.length > 0 ? (
           <div>
             {questionTypes.map((i) => (
-              <p key={i}>{i}</p>
+              <button
+                onClick={(event) => {
+                  copyTargetDom(event.target);
+                }}
+                key={i}
+              >
+                {i}
+              </button>
             ))}
           </div>
         ) : (
