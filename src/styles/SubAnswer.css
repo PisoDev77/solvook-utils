@@ -1,0 +1,18 @@
+.sub-answer {
+  display: grid;
+  grid-template:
+    "a a a"
+    "b c c";
+  max-width: 600px;
+  gap: 8px;
+}
+
+.sub-answer > h2 {
+  grid-area: a;
+}
+.sub-answer > textarea {
+  grid-area: b;
+}
+.sub-answer > .result {
+  grid-area: c;
+}

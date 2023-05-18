@@ -1,0 +1,7 @@
+.parsing-result-container {
+  display: flex;
+  gap: 8px;
+}
+.parsing-result-container > .result {
+  border: solid 1px var(--main-color);
+}

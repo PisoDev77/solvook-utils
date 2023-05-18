@@ -6,7 +6,7 @@ textarea {
   display: grid;
   grid-template:
     "a a"
-    "k k"
+    "k1 k2"
     "b c";
 }
 .question-type > h2 {
@@ -14,7 +14,12 @@ textarea {
   vertical-align: middle;
 }
 .question-type > .minus {
-  grid-area: k;
+  grid-area: k1;
+  width: fit-content;
+  text-align: center;
+}
+.question-type > .set {
+  grid-area: k2;
   width: fit-content;
   text-align: center;
 }

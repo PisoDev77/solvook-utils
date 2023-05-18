@@ -1,0 +1,13 @@
+.text-container {
+  display: grid;
+  grid-template:
+    "a"
+    "b";
+}
+
+.text-container-title {
+  grid-area: a;
+}
+.text-container-text {
+  grid-area: b;
+}

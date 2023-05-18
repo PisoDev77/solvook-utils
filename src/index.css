@@ -127,3 +127,13 @@ button:hover {
   border-color: var(--main-color);
   border-radius: 1rem;
 }
+
+.res {
+  max-width: 550px;
+}
+
+.temp-ss {
+  padding-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}

@@ -8,35 +8,52 @@ import { copyTargetDom } from "../lib/copy";
 
 export default function QuestionType() {
   const [singular, setSingular] = useState("");
-  const [plural, setPlural] = useState();
+  const [plural, setPlural] = useState("");
 
   const [minus, setMinus] = useState(0);
+  const [set, setSet] = useState(1);
+
+  const [bool, setBool] = useState(false);
 
   const [questionTypes, setQuestionTypes] = useState([]);
 
   const handleSingluar = (event) => {
     const { value: questionStr } = event.target;
-    setQuestionTypes(getSingular(questionStr, minus));
+    setQuestionTypes(getSingular(questionStr, minus, set));
     setSingular(questionStr);
+    setBool(true);
   };
 
   const handlePlural = (event) => {
     const { value: questionStr } = event.target;
-    setQuestionTypes(getPlural(questionStr));
+    setQuestionTypes(getPlural(questionStr, minus, set));
     setPlural(questionStr);
   };
 
   return (
     <section className="question-type">
       <h2>문제 유형 - 우측에 결과 있음</h2>
-      <input
-        value={minus}
-        onChange={(event) => {
-          setMinus(event.target.value);
-        }}
-        className={"minus"}
-        type={"number"}
-      />
+      <div className={"minus"}>
+        <label htmlFor="">가감</label>
+        <input
+          value={minus}
+          onChange={(event) => {
+            setMinus(event.target.value);
+          }}
+          type={"number"}
+        />
+      </div>
+      <div className={"set"}>
+        <label htmlFor="">세트</label>
+        <input
+          value={set}
+          onChange={(event) => {
+            setSet(event.target.value);
+          }}
+          type={"number"}
+        />
+      </div>
+
       <div className="textarea-with-explanation">
         <h3>
           단일 문제 유형 <HelpBtn idx={"단일 문제 도움말"} />
