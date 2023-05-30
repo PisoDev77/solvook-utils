@@ -6,13 +6,13 @@ export default {
 };
 
 export const Content = {
-  args: { level: "h3", label: "본문" },
+  args: { level: "h3", label: "본문", name: "content" },
 };
 
 export const Contents = {
-  args: { level: "h3", label: "본문", amounts: 2 },
+  args: { level: "h3", label: "본문", amounts: 2, name: "content" },
 };
 
 export const SeroForm = {
-  args: { level: "h3", label: "객관식 세로" },
+  args: { level: "h3", label: "객관식 세로", name: "seroform" },
 };

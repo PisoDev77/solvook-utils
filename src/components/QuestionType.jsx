@@ -68,7 +68,7 @@ export default function QuestionType() {
 
       <div className="textarea-with-explanation">
         <h3>
-          통합 문제 유형 ( ※ ) <HelpBtn idx={"통합 문제 도움말"} />
+          통합 문제 유형 ( ※ · →ㅌ ) <HelpBtn idx={"통합 문제 도움말"} />
         </h3>
 
         <textarea

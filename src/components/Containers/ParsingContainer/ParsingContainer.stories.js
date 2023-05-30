@@ -18,9 +18,9 @@ export const OrderParsing = {
 };
 
 export const ShortFormParsing = {
-  args: { headingTitle: "순서 유형", isShorForm: true },
+  args: { headingTitle: "순서 유형", isShortForm: true },
 };
 
 export const PutParsing = {
-  args: { headingTitle: "주어진 문장 넣기 유형" },
+  args: { headingTitle: "주어진 문장 넣기 유형", contents: true },
 };

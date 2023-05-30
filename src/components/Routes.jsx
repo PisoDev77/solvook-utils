@@ -7,6 +7,8 @@ export default function RoutesNav() {
     { pathname: "/solvook-utils", caption: "파싱" },
     { pathname: "/answer-to-pdf", caption: "정답 PDF" },
     { pathname: "/temp", caption: "임시" },
+    { pathname: "/tmp", caption: "TMP" },
+    { pathname: "/tips", caption: "Tips" },
   ];
 
   return (

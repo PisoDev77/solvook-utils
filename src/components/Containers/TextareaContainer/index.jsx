@@ -4,7 +4,7 @@ import { Heading } from "../../Titles";
 import { Textarea } from "../../Inputs";
 
 export default function TextareaContainer(props) {
-  const { level, label, amounts = 1 } = props;
+  const { level, label, amounts = 1, name } = props;
 
   const arr = new Array(amounts).fill(0);
 
@@ -14,7 +14,7 @@ export default function TextareaContainer(props) {
         {label}
       </Heading>
       {arr.map((i) => (
-        <Textarea />
+        <Textarea name={name} />
       ))}
     </div>
   );

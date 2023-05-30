@@ -16,25 +16,36 @@ import {
 import { TextareaContainer } from "..";
 
 export default function ParsingContainer(props) {
-  const { headingTitle, contents = false, isShortForm = false } = props;
+  const {
+    headingTitle,
+    contents = false,
+    isShortForm = false,
+    onChange,
+  } = props;
 
   return (
-    <section className={"parsing-container"}>
+    <form
+      className={"parsing-container"}
+      onChange={onChange}
+      onSubmit={(event) => {
+        event.preventDefault();
+      }}
+    >
       <Heading level={"h2"}>{headingTitle}</Heading>
       <TextContainer {...Question.args} />
+      <TextareaContainer level="h3" label="본문 a" name="contenta" />
       {contents ? (
         <TextareaContainer {...Contents.args} />
       ) : (
         <TextareaContainer {...Content.args} />
       )}
-
-      {isShortForm ? (
+      {/* {isShortForm ? (
         <TextContainer {...ShortForm.args} />
       ) : (
         <TextareaContainer {...SeroForm.args} />
-      )}
+      )} */}
 
       <TextContainer {...AnswerForm.args} />
-    </section>
+    </form>
   );
 }

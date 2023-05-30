@@ -6,7 +6,7 @@ export default {
 };
 
 export const Question = {
-  args: { level: "h3", label: "질문" },
+  args: { level: "h3", label: "질문", name: "question" },
 };
 
 export const ShortForm = {
@@ -14,5 +14,5 @@ export const ShortForm = {
 };
 
 export const AnswerForm = {
-  args: { level: "h3", label: "답" },
+  args: { level: "h3", label: "답", name: "answer" },
 };

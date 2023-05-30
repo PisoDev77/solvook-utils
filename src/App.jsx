@@ -6,6 +6,8 @@ import Answer from "./components/Answer";
 
 import Parsing from "./pages/parsing";
 import TemplateP from "./pages/template";
+import Tmp from "./pages/tmp";
+import Tips from "./pages/tips";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/solvook-utils" element={<Parsing />} />
         <Route path="/answer-to-pdf" element={<Answer />} />
         <Route path="/temp" element={<TemplateP />} />
+        <Route path="/tmp" element={<Tmp />} />
+        <Route path="/tips" element={<Tips />} />
       </Routes>
     </BrowserRouter>
   );
