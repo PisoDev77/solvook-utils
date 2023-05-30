@@ -33,7 +33,7 @@ export default function ParsingContainer(props) {
     >
       <Heading level={"h2"}>{headingTitle}</Heading>
       <TextContainer {...Question.args} />
-      <TextareaContainer level="h3" label="본문 a" name="contenta" />
+      {/* <TextareaContainer level="h3" label="본문 a" name="contenta" /> */}
       {contents ? (
         <TextareaContainer {...Contents.args} />
       ) : (

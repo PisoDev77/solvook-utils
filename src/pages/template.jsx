@@ -21,16 +21,15 @@ export default function TemplateP() {
             <ol className="question-box">
               <li>{datas.question}</li>
             </ol>
-            <p className="passage-box">{datas.contenta}</p>
+            {/* <p className="passage-box">{datas.contenta}</p> */}
             <p className="passage-box">{datas.content}</p>
-            <table className="choice-box number-choice mce-item-table">
+            {/* <table className="choice-box number-choice mce-item-table">
               <colgroup>
                 <col style={{ width: "21px" }} data-mce-style="width: 21px;" />
                 <col />
               </colgroup>
               <tbody>{datas.seroform}</tbody>
-            </table>
-
+            </table> */}
             <div className="answer-box">답 : {datas.answer}</div>
           </div>
         </>

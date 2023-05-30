@@ -12,20 +12,20 @@ export default function Tmp() {
     // const n = val.split(/\n/g);
     // const n2 = n.map((i) => i.split(/\d+\)/g));
     // const n3 = n2.map((i) => i[1]);
-    const t = val.split(/\d+\)/g);
+    const t = val.split(/\d+\./g);
     // const t = val.split(/\n/g);
-    const l = t.map((i) => {
-      if (i.trim() === "") return;
-      const pattern = /^([\s\S]*?[.?!])\s*([\s\S]*)$/;
-      const result = i.match(pattern);
-      const firstSentence = result[1];
-      const remainingSentences = result[2];
+    // const l = t.map((i) => {
+    //   if (i.trim() === "") return;
+    //   const pattern = /^([\s\S]*?[.?!])\s*([\s\S]*)$/;
+    //   const result = i.match(pattern);
+    //   const firstSentence = result[1];
+    //   const remainingSentences = result[2];
 
-      return [firstSentence, remainingSentences];
-    });
+    //   return firstSentence;
+    // });
 
-    // setRes(t);
-    setRes(l);
+    setRes(t);
+    // setRes(l);
   };
   const getN = (num) => {
     if (num === "➄" || num === "⓹") return "⑤";
@@ -154,23 +154,6 @@ export default function Tmp() {
     );
   };
 
-  const type4 = () => {
-    return (
-      <table>
-        <tbody>
-          {res?.map((i) =>
-            i !== undefined ? (
-              <tr>
-                <td>{i[0]}</td>
-                <td>{i[1]}</td>
-              </tr>
-            ) : (
-              ""
-            )
-          )}
-        </tbody>
-      </table>
-    );
-  };
+  const type4 = () => {};
   return type1();
 }
