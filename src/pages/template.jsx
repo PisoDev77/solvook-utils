@@ -21,7 +21,7 @@ export default function TemplateP() {
             <ol className="question-box">
               <li>{datas.question}</li>
             </ol>
-            <p className="passage-box">{datas.contenta}</p>
+            {/* <p className="passage-box">{datas.contenta}</p> */}
             <p className="passage-box">{datas.content}</p>
             <table className="choice-box number-choice mce-item-table">
               <colgroup>
@@ -47,17 +47,17 @@ export default function TemplateP() {
     const tmp = Object.fromEntries(new FormData(event.currentTarget));
 
     const bogis = ["①", "②", "③", "④", "⑤"];
-    // const seroform = getOptions(tmp.seroform).map((item, idx) => (
-    //   <>
-    //     <tr data-answer="" data-q-number={idx + 1}>
-    //       <td>{bogis[idx]}</td>
-    //       <td>{item}</td>
-    //     </tr>
-    //   </>
-    // ));
+    const seroform = getOptions(tmp.seroform).map((item, idx) => (
+      <>
+        <tr data-answer="" data-q-number={idx + 1}>
+          <td>{bogis[idx]}</td>
+          <td>{item}</td>
+        </tr>
+      </>
+    ));
 
-    // setDatas({ ...tmp, seroform });
-    setDatas({ ...tmp });
+    setDatas({ ...tmp, seroform });
+    // setDatas({ ...tmp });
   };
 
   const handlePut = (event) => {};

@@ -3,6 +3,7 @@ import { copyTargetDom } from "../lib/copy";
 
 export default function Tmp() {
   const [str, setStr] = useState("");
+  const [str2, setStr2] = useState("");
   const [res, setRes] = useState([]);
 
   const handleTmp = (e) => {
@@ -12,20 +13,20 @@ export default function Tmp() {
     // const n = val.split(/\n/g);
     // const n2 = n.map((i) => i.split(/\d+\)/g));
     // const n3 = n2.map((i) => i[1]);
-    const t = val.split(/\d+\)/g);
+    const t = val.split(/\d+\./g);
     // const t = val.split(/\n/g);
-    const l = t.map((i) => {
-      if (i.trim() === "") return;
-      const pattern = /^([\s\S]*?[.?!])\s*([\s\S]*)$/;
-      const result = i.match(pattern);
-      const firstSentence = result[1];
-      const remainingSentences = result[2];
+    // const l = t.map((i) => {
+    //   if (i.trim() === "") return;
+    //   const pattern = /^([\s\S]*?[.?!])\s*([\s\S]*)$/;
+    //   const result = i.match(pattern);
+    //   const firstSentence = result[1];
+    //   const remainingSentences = result[2];
 
-      return [firstSentence, remainingSentences];
-    });
+    //   return [firstSentence, remainingSentences];
+    // });
 
-    // setRes(t);
-    setRes(l);
+    setRes(t);
+    // setRes(l);
   };
   const getN = (num) => {
     if (num === "➄" || num === "⓹") return "⑤";
@@ -42,11 +43,26 @@ export default function Tmp() {
         <ol class="question-box">
           <li>{/* <h3>※ 다음을 읽고, 물음에 답하시오.</h3> */}</li>
         </ol>
+        <label>. 으로</label>
         <textarea
-          onChange={handleTmp}
+          onChange={(e) => {
+            setStr(e.target.value);
+            setRes(e.target.value.split(/\d+\./g));
+          }}
           value={str}
           style={{ resize: "both" }}
         ></textarea>
+        <hr />
+        <label>) 으로</label>
+        <textarea
+          onChange={(e) => {
+            setStr2(e.target.value);
+            setRes(e.target.value.split(/\d+\)/g));
+          }}
+          value={str2}
+          style={{ resize: "both" }}
+        ></textarea>
+        <hr />
         {res.map((i, idx) => (
           <>
             <div>{i}</div>
