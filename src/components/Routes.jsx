@@ -9,6 +9,7 @@ export default function RoutesNav() {
     { pathname: "/temp", caption: "임시" },
     { pathname: "/tmp", caption: "TMP" },
     { pathname: "/tips", caption: "Tips" },
+    { pathname: "/parsingbyone", caption: "파싱 하나" },
   ];
 
   return (

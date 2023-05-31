@@ -39,11 +39,11 @@ export default function ParsingContainer(props) {
       ) : (
         <TextareaContainer {...Content.args} />
       )}
-      {/* {isShortForm ? (
+      {isShortForm ? (
         <TextContainer {...ShortForm.args} />
       ) : (
         <TextareaContainer {...SeroForm.args} />
-      )} */}
+      )}
 
       <TextContainer {...AnswerForm.args} />
     </form>

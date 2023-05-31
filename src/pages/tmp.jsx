@@ -3,6 +3,7 @@ import { copyTargetDom } from "../lib/copy";
 
 export default function Tmp() {
   const [str, setStr] = useState("");
+  const [str2, setStr2] = useState("");
   const [res, setRes] = useState([]);
 
   const handleTmp = (e) => {
@@ -42,11 +43,26 @@ export default function Tmp() {
         <ol class="question-box">
           <li>{/* <h3>※ 다음을 읽고, 물음에 답하시오.</h3> */}</li>
         </ol>
+        <label>. 으로</label>
         <textarea
-          onChange={handleTmp}
+          onChange={(e) => {
+            setStr(e.target.value);
+            setRes(e.target.value.split(/\d+\./g));
+          }}
           value={str}
           style={{ resize: "both" }}
         ></textarea>
+        <hr />
+        <label>) 으로</label>
+        <textarea
+          onChange={(e) => {
+            setStr2(e.target.value);
+            setRes(e.target.value.split(/\d+\)/g));
+          }}
+          value={str2}
+          style={{ resize: "both" }}
+        ></textarea>
+        <hr />
         {res.map((i, idx) => (
           <>
             <div>{i}</div>

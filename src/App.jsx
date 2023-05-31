@@ -8,6 +8,7 @@ import Parsing from "./pages/parsing";
 import TemplateP from "./pages/template";
 import Tmp from "./pages/tmp";
 import Tips from "./pages/tips";
+import ParsingByOneP from "./pages/parsingbyone";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/temp" element={<TemplateP />} />
         <Route path="/tmp" element={<Tmp />} />
         <Route path="/tips" element={<Tips />} />
+        <Route path="/parsingbyone" element={<ParsingByOneP />} />
       </Routes>
     </BrowserRouter>
   );
