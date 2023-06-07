@@ -20,10 +20,10 @@ export default {
 
 export const Garos = {
   args: {
-    title: "Garos",
+    title: "가로형 선택지 유형들",
     items: [
       <details className={"garos"}>
-        <summary>가로 선택지들</summary>
+        <summary>펼치기</summary>
         <ul>
           {garos.map((garo) => (
             <li>
