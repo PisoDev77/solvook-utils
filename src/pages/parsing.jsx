@@ -1,3 +1,5 @@
+import "./page.css";
+
 import QuestionType from "../components/QuestionType";
 import Garo from "../components/Garo";
 import Sero from "../components/Sero";
@@ -6,6 +8,8 @@ import OrderABC from "../components/OrderABC";
 import SubAnswer from "../components/SubAnswer";
 import TemplateP from "../components/template";
 
+import Helper from "../components/Containers/Helper";
+import { Garos } from "../components/Containers/Helper/Helper.stories";
 /**
  * # Paring 페이지
  * ## 구성
@@ -20,13 +24,18 @@ import TemplateP from "../components/template";
 export default function Parsing() {
   return (
     <article className={"parsing"}>
-      <QuestionType />
-      <Garo />
-      <TemplateP />
-      <Sero />
-      <ABC />
-      <OrderABC />
-      <SubAnswer />
+      <section className={"helpers"}>
+        <Helper {...Garos.args} />
+      </section>
+      <section className={"contents"}>
+        <QuestionType />
+        <Garo />
+        <TemplateP />
+        <Sero />
+        <ABC />
+        <OrderABC />
+        <SubAnswer />
+      </section>
     </article>
   );
 }

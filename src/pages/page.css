@@ -1,0 +1,12 @@
+.parsing {
+  display: grid;
+  grid-template: "contents helpers";
+}
+
+.parsing > .helpers {
+  grid-area: helpers;
+}
+
+.parsing > .contents {
+  grid-area: contents;
+}
