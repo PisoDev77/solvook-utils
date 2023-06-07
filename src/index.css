@@ -135,3 +135,19 @@ table {
 col:first-child {
   width: 21px;
 }
+
+.temp {
+  display: flex;
+  gap: 8px;
+  padding: 16px;
+}
+
+.essay-box > p {
+  white-space: pre-line;
+}
+.answer-box {
+  white-space: pre-line;
+}
+.ssss {
+  display: none;
+}
