@@ -1,0 +1,9 @@
+.option {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid;
+  border-color: var(--main-color);
+}
+.option > table {
+  flex-grow: 1;
+}
