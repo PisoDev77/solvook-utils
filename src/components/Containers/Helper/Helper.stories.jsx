@@ -1,7 +1,9 @@
 import Helper from ".";
+import { copyTargetDom } from "../../../lib/copy";
 
 import Options from "../../Options";
 
+const individuals = ["①", "②", "③", "④", "⑤"];
 const garos = [
   ["①", "②", "③", "④", "⑤", "⑥", "⑦"],
   ["①", "②", "③", "④", "⑤", "⑥"],
@@ -23,7 +25,13 @@ export const Garos = {
     title: "가로형 선택지 유형들",
     items: [
       <details className={"garos"}>
-        <summary>펼치기</summary>
+        <summary>
+          {individuals.map((individual) => (
+            <button onClick={(e) => copyTargetDom(e.target)}>
+              {individual}
+            </button>
+          ))}
+        </summary>
         <ul>
           {garos.map((garo) => (
             <li>
