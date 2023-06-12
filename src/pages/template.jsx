@@ -101,6 +101,28 @@ export default function TemplateP() {
 
     return result;
   }
+  function extracTags(str) {
+    const regex = /(<strong>[^<]*<\/strong>)|([^<]+)/g;
+    const matches = str.match(regex);
+    const result = [];
+
+    for (let i = 0; i < matches.length; i++) {
+      if (matches[i].startsWith("<strong>")) {
+        let tmp = matches[i].replace("<strong>", "");
+        tmp = tmp.replace("</strong>", "");
+        result.push(
+          <>
+            {" "}
+            <strong>{tmp}</strong>
+          </>
+        );
+      } else {
+        result.push(matches[i].trim());
+      }
+    }
+
+    return result;
+  }
   const handleSero = (event) => {
     const tmp = Object.fromEntries(new FormData(event.currentTarget));
     let content = tmp.content
@@ -122,7 +144,12 @@ export default function TemplateP() {
       const replacedText1 = content.replace(
         /\[(\[[^\]]*\]|[^\[\]]*)\]/g,
         (match, group) => {
-          return `<strong>${match.replace(" /", "/")}</strong>`;
+          return `<strong>${match
+            .replace(" /", "/")
+            .replace("[", "[ ")
+            .replace("]", " ]")
+            .replace(" /", "/")
+            .replace("/ ", "/")}</strong>`;
         }
       );
 
@@ -133,7 +160,12 @@ export default function TemplateP() {
       const replacedText1 = contenta.replace(
         /\[(\[[^\]]*\]|[^\[\]]*)\]/g,
         (match, group) => {
-          return `<strong>${match.replace(" /", "/")}</strong>`;
+          return `<strong>${match
+            .replace(" /", "/")
+            .replace("[", "[ ")
+            .replace("]", " ]")
+            .replace(" /", "/")
+            .replace("/ ", "/")}</strong>`;
         }
       );
 
@@ -148,12 +180,14 @@ export default function TemplateP() {
           console.log(match);
           return `${cnt++}) <strong>${match
             .replace(" /", "/")
-            .replace("/ ", "/")
-            .replace("/ ", " / ")}</strong>`;
+            .replace("[", "[ ")
+            .replace("]", " ]")
+            .replace(" /", "/")
+            .replace("/ ", "/")}</strong>`;
         }
       );
 
-      content = extractStringAndStrongTags(replacedText1);
+      content = extracTags(replacedText1);
     }
     if (+toggle === 1 && tmp.contenta !== "") {
       let cnt = 1;
@@ -163,12 +197,14 @@ export default function TemplateP() {
         (match, group) => {
           console.log(match);
           return `${cnt++}) <strong>${match
-            .replace("]", "")
-            .replace("[", "")
-            .replace(" /", "/")}</strong>`;
+            .replace("[", "[ ")
+            .replace("]", " ]")
+            .replace(" /", "/")
+            .replace("/ ", "/")
+            .replace("/", " / ")}</strong>`;
         }
       );
-      contenta = extractStringAndStrongTags(replacedText2);
+      contenta = extracTags(replacedText2);
     }
 
     if (+toggle === 2 && tmp.content !== "") {
