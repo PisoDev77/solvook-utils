@@ -151,10 +151,20 @@ export default function Tmp() {
 
     const a = paragraphA.value.split(/\.|\!|\?/g);
     const b = paragraphB.value.split(/(\([^)]+\))/g);
-
-    a.forEach((i, idx) => {
-      console.log(a[idx], b[idx * 2]);
-    });
+    const arr = a.map((i, idx) => (
+      <>
+        <ol className="question-box">
+          <li>{idx + 28}. 아래 글을 보고 문장을 재배열 하시오.</li>
+        </ol>
+        <p className="passage-box">{b[idx * 2 + 1]}</p>
+        <p className="passage-box">{b[idx * 2]}</p>
+        <div class="essay-box">
+          <p>→</p>
+        </div>
+        <div className="answer-box">답 : {i}</div>
+      </>
+    ));
+    setRes(arr);
 
     // 다른 단어 찾기 2
 
