@@ -147,9 +147,9 @@ export default function TemplateP() {
         (match, group) => {
           console.log(match);
           return `${cnt++}) <strong>${match
-            .replace("]", "")
-            .replace("[", "")
-            .replace(" /", "/")}</strong>`;
+            .replace(" /", "/")
+            .replace("/ ", "/")
+            .replace("/ ", " / ")}</strong>`;
         }
       );
 

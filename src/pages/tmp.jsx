@@ -151,7 +151,10 @@ export default function Tmp() {
 
     const a = paragraphA.value.split(/\.|\!|\?/g);
     const b = paragraphB.value.split(/(\([^)]+\))/g);
-    console.log(b);
+
+    a.forEach((i, idx) => {
+      console.log(a[idx], b[idx * 2]);
+    });
 
     // 다른 단어 찾기 2
 
