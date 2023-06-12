@@ -7,6 +7,8 @@
    마지막으로 execCommand('copy') 메소드를 사용하여 선택한 내용을 클립보드에 복사합니다.
    */
 const copyTargetDom = ($dom) => {
+  const brElements = $dom.querySelectorAll("br");
+  console.log(brElements);
   const range = document.createRange();
   range.selectNode($dom);
   const selection = window.getSelection();

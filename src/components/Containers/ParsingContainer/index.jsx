@@ -25,15 +25,15 @@ export default function ParsingContainer(props) {
 
   return (
     <form
-      className={"parsing-container"}
+      className={"parsing-container1"}
       onChange={onChange}
       onSubmit={(event) => {
         event.preventDefault();
       }}
     >
-      <Heading level={"h2"}>{headingTitle}</Heading>
+      {/* <Heading level={"h2"}>{headingTitle}</Heading> */}
       <TextContainer {...Question.args} />
-      {/* <TextareaContainer level="h3" label="본문 a" name="contenta" /> */}
+      <TextareaContainer level="h3" label="본문 a" name="contenta" />
       {contents ? (
         <TextareaContainer {...Contents.args} />
       ) : (
@@ -45,6 +45,7 @@ export default function ParsingContainer(props) {
         <TextareaContainer {...SeroForm.args} />
       )}
 
+      <TextContainer level="h3" label="서술형" name="essay" />
       <TextContainer {...AnswerForm.args} />
     </form>
   );

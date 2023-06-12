@@ -24,17 +24,17 @@ import { Garos } from "../components/Containers/Helper/Helper.stories";
 export default function Parsing() {
   return (
     <article className={"parsing"}>
-      <section className={"helpers"}>
-        <Helper {...Garos.args} />
-      </section>
       <section className={"contents"}>
         <QuestionType />
-        <Garo />
+        {/* <Garo /> */}
         <TemplateP />
         <Sero />
         <ABC />
         <OrderABC />
         <SubAnswer />
+      </section>
+      <section className={"helpers"}>
+        <Helper {...Garos.args} />
       </section>
     </article>
   );

@@ -1,25 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
 
-export default function RoutesNav() {
+export default function RoutesNav({ routes }) {
   const location = useLocation();
-
-  const routes = [
-    { pathname: "/solvook-utils", caption: "파싱" },
-    { pathname: "/answer-to-pdf", caption: "정답 PDF" },
-    { pathname: "/temp", caption: "임시" },
-    { pathname: "/tmp", caption: "TMP" },
-    { pathname: "/tips", caption: "Tips" },
-    { pathname: "/parsingbyone", caption: "파싱 하나" },
-  ];
 
   return (
     <nav>
       <ul>
-        {routes.map(({ pathname, caption }) => (
-          <li key={pathname}>
+        {routes.map(({ path, caption }) => (
+          <li key={path}>
             <Link
-              className={pathname === location.pathname ? "current" : ""}
-              to={pathname}
+              className={path === location.pathname ? "current" : ""}
+              to={path}
             >
               {caption}
             </Link>

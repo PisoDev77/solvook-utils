@@ -1,12 +1,15 @@
 .parsing {
   display: grid;
-  grid-template: "contents helpers";
+  grid-template-columns: 8fr 2fr;
 }
 
 .parsing > .helpers {
-  grid-area: helpers;
+  width: 100%;
 }
 
 .parsing > .contents {
-  grid-area: contents;
+  width: 100%;
 }
+
+/* .parse {
+} */

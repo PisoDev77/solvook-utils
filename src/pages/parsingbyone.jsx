@@ -5,11 +5,13 @@ import {
   NormalOption,
   Order,
   PutSentence,
+  OneContent,
+  Sub,
 } from "../components/Containers/ParsingByOne/ParsingByOne.stories";
 
 export default function ParsingByOneP() {
   const [type, setType] = useState("normal_option");
-  const [data, setData] = useState("normal_option");
+  const [data, setData] = useState({});
 
   const handleChange = (event) => {
     const datas = Object.fromEntries(new FormData(event.currentTarget));
@@ -23,7 +25,9 @@ export default function ParsingByOneP() {
     put_sentence: (
       <ParsingByOne {...PutSentence.args} onChange={handleChange} />
     ),
+    one_content: <ParsingByOne {...OneContent.args} onChange={handleChange} />,
     order: <ParsingByOne {...Order.args} onChange={handleChange} />,
+    sub: <ParsingByOne {...Sub.args} onChange={handleChange} />,
   };
 
   return (
@@ -32,6 +36,7 @@ export default function ParsingByOneP() {
       <nav
         onChange={(event) => {
           const selectedType = event.target.value;
+          setData({});
           setType(selectedType);
         }}
       >
@@ -46,13 +51,32 @@ export default function ParsingByOneP() {
         <label>서술형</label>
         <input type="radio" name="type" value="sub" />
       </nav>
-      <section>
-        <div>{rendered[type]}</div>
-        <div>{data.question}</div>
-        <div>{data.content}</div>
-        <div>{data.seroform}</div>
-        <div>{data.answer}</div>
-        <div>{data.none ? "있어" : "없어"}</div>
+      <section className={"temp"}>
+        <section className={"temp-form"}>{rendered[type]}</section>
+        <section className={"temp-res"}>
+          <h2>템플릿 결과</h2>
+          <button>복사하기</button>
+          <div>
+            <div className={"질문"}>{data.question}</div>
+            {data.requirement ? (
+              <div className={"조건"}>{data.requirement}</div>
+            ) : (
+              ""
+            )}
+            <div className={"본문"}>{data.content}</div>
+            {data.seroform ? (
+              <div className={"객관식"}>{data.seroform}</div>
+            ) : (
+              ""
+            )}
+            {data.shortform ? (
+              <div className={"주관식"}>{data.shortform}</div>
+            ) : (
+              ""
+            )}
+            <div className={"답안"}>{data.answer}</div>
+          </div>
+        </section>
       </section>
     </>
   );

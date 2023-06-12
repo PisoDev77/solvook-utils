@@ -10,7 +10,7 @@ export const Question = {
 };
 
 export const ShortForm = {
-  args: { level: "h3", label: "주관식 지문" },
+  args: { level: "h3", label: "주관식 지문", name: "shortform" },
 };
 
 export const AnswerForm = {

@@ -2,25 +2,32 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import RoutesNav from "./components/Routes";
 
-import Answer from "./components/Answer";
+import * as Pages from "./pages";
 
-import Parsing from "./pages/parsing";
-import TemplateP from "./pages/template";
-import Tmp from "./pages/tmp";
-import Tips from "./pages/tips";
-import ParsingByOneP from "./pages/parsingbyone";
+const routes = [
+  { path: "/solvook-utils", elementName: "Parsing", caption: "파싱" },
+  {
+    path: "/solvook-utils/template",
+    elementName: "TemplateP",
+    caption: "템플릿",
+  },
+  // { path: "/solvook-utils/tmp", elementName: "Tmp", caption: "TMP" },
+  // { path: "/solvook-utils/feat", elementName: "Feat", caption: "특성" },
+  // { path: "/solvook-utils/parse", elementName: "Parse", caption: "1 단위" },
+  { path: "/solvook-utils/split", elementName: "Split", caption: "나누기" },
+  // { path: "/solvook-utils/helpers", elementName: "Helper", caption: "헬퍼" },
+  // { path: "/solvook-utils/configuration", elementName: "Feat", caption: "설정" },
+];
 
 function App() {
   return (
     <BrowserRouter>
-      <RoutesNav />
+      <RoutesNav routes={routes} />
       <Routes>
-        <Route path="/solvook-utils" element={<Parsing />} />
-        <Route path="/answer-to-pdf" element={<Answer />} />
-        <Route path="/temp" element={<TemplateP />} />
-        <Route path="/tmp" element={<Tmp />} />
-        <Route path="/tips" element={<Tips />} />
-        <Route path="/parsingbyone" element={<ParsingByOneP />} />
+        {routes.map(({ path, elementName }) => {
+          const $Element = Pages[elementName];
+          return <Route path={path} element={<$Element />} />;
+        })}
       </Routes>
     </BrowserRouter>
   );

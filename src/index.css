@@ -16,13 +16,21 @@
   --main-color: rgba(255, 255, 255, 0.87);
   --main-bgcolor: #242424;
 }
+@media (max-width: 512px) {
+  body {
+    font-size: 12px;
+  }
+}
 
 body {
   margin: 0;
   display: flex;
   justify-content: center;
-  min-width: 320px;
   min-height: 100vh;
+}
+
+#root {
+  width: 100%;
 }
 
 h1 {
@@ -90,27 +98,11 @@ button:hover {
   filter: invert(1);
 }
 
-.parsing {
-  padding: 1rem 2rem;
-
-  border-style: solid;
-  border-width: 2px;
-  border-color: var(--main-color);
-  border-radius: 1rem;
-
-  max-width: 1000px;
-}
-
 .regular-box {
   border-style: solid;
   border-width: 2px;
   border-color: var(--main-color);
   border-radius: 1rem;
-}
-
-.res {
-  max-width: 550px;
-  min-width: 300px;
 }
 
 .temp-ss {

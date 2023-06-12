@@ -42,7 +42,15 @@ export default function Sero() {
         />
         {numbering
           .split("\n")
-          .map((i, idx) => `${idx + startNum}) ${i}`)
+          .map((i, idx) => {
+            const k = idx + startNum;
+            // if (k === 1) return `①: ${i}`;
+            // if (k === 2) return `②: ${i}`;
+            // if (k === 3) return `③: ${i}`;
+            // if (k === 4) return `④: ${i}`;
+            // if (k === 5) return `⑤: ${i}`;
+            return `${idx + startNum}) ${i}`;
+          })
           .join("  ")}
       </div>
 

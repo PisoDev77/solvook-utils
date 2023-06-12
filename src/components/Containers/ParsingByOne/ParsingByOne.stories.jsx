@@ -8,7 +8,9 @@ import { TextareaContainer } from "..";
 import {
   Content,
   SeroForm,
+  Requirement,
 } from "../TextareaContainer/TextareaContainer.stories";
+import { ShortForm } from "../TextContainer/TextContainer.stories";
 
 export default {
   title: "Containers/ParsingByOne",
@@ -34,7 +36,7 @@ export const PutSentence = {
     items: [
       <TextContainer {...Question.args} />,
       <TextareaContainer {...Content.args} />,
-      <TextareaContainer {...Content.args} />,
+      <TextareaContainer {...Requirement.args} />,
     ],
   },
 };
@@ -43,7 +45,10 @@ export const OneContent = {
   args: {
     title: "본문 하나",
     description: "설명",
-    items: [<TextContainer {...Question.args} />],
+    items: [
+      <TextContainer {...Question.args} />,
+      <TextareaContainer {...Content.args} />,
+    ],
   },
 };
 
@@ -54,7 +59,7 @@ export const Order = {
     items: [
       <TextContainer {...Question.args} />,
       <TextareaContainer {...Content.args} />,
-      <TextareaContainer {...Content.args} />,
+      <TextareaContainer {...Requirement.args} />,
       <TextareaContainer {...SeroForm.args} />,
     ],
   },
@@ -64,6 +69,10 @@ export const Sub = {
   args: {
     title: "서술형",
     description: "설명",
-    items: [<TextContainer {...Question.args} />],
+    items: [
+      <TextContainer {...Question.args} />,
+      <TextareaContainer {...Content.args} />,
+      <TextContainer {...ShortForm.args} />,
+    ],
   },
 };

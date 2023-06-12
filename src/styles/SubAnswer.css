@@ -3,7 +3,6 @@
   grid-template:
     "a a a"
     "b c c";
-  max-width: 600px;
   gap: 8px;
 }
 
