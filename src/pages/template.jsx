@@ -145,15 +145,15 @@ export default function TemplateP() {
         /\[(\[[^\]]*\]|[^\[\]]*)\]/g,
         (match, group) => {
           return `<strong>${match
-            .replace(" /", "/")
             .replace("[", "[ ")
             .replace("]", " ]")
             .replace(" /", "/")
-            .replace("/ ", "/")}</strong>`;
+            .replace("/ ", "/")
+            .replace("/", " / ")}</strong>`;
         }
       );
 
-      content = extractStringAndStrongTags(replacedText1);
+      content = extracTags(replacedText1);
     }
     if (+toggle === 0 && tmp.contenta !== "") {
       let cnt = 1;
@@ -161,15 +161,15 @@ export default function TemplateP() {
         /\[(\[[^\]]*\]|[^\[\]]*)\]/g,
         (match, group) => {
           return `<strong>${match
-            .replace(" /", "/")
             .replace("[", "[ ")
             .replace("]", " ]")
             .replace(" /", "/")
-            .replace("/ ", "/")}</strong>`;
+            .replace("/ ", "/")
+            .replace("/", " / ")}</strong>`;
         }
       );
 
-      contenta = extractStringAndStrongTags(replacedText1);
+      contenta = extracTags(replacedText1);
     }
 
     if (+toggle === 1 && tmp.content !== "") {
@@ -179,11 +179,11 @@ export default function TemplateP() {
         (match, group) => {
           console.log(match);
           return `${cnt++}) <strong>${match
-            .replace(" /", "/")
             .replace("[", "[ ")
             .replace("]", " ]")
             .replace(" /", "/")
-            .replace("/ ", "/")}</strong>`;
+            .replace("/ ", "/")
+            .replace("/", " / ")}</strong>`;
         }
       );
 
