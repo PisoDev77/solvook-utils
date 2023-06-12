@@ -113,7 +113,7 @@ export default function TemplateP() {
         result.push(
           <>
             {" "}
-            <strong>{tmp}</strong>
+            <strong>{tmp}</strong>{" "}
           </>
         );
       } else {
