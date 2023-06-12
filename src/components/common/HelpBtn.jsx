@@ -23,7 +23,7 @@ const data = {
     title: "1 단위 도움말",
     contents: ["할 수 있습니다."],
   },
-  가로세트: {
+  가로모음: {
     title: "가로 모음",
     contents: [<Helper {...Garos.args} />],
   },
@@ -66,7 +66,7 @@ const data = {
       </Link>,
     ],
   },
-  질문세트: {
+  질문모음: {
     title: "질문 세트",
     contents: [
       <button onClick={(e) => copyTargetDom(e.target)}>
