@@ -7,6 +7,7 @@ import Helper from "../../components/Containers/Helper";
 import { Garos } from "../../components/Containers/Helper/Helper.stories";
 
 import { copyTargetDom } from "../../lib/copy";
+import { Link } from "react-router-dom";
 
 const data = {
   "단일 문제 도움말": { title: "단일 문제 도움말", contents: [] },
@@ -23,8 +24,47 @@ const data = {
     contents: ["할 수 있습니다."],
   },
   가로세트: {
-    title: "가로 세트",
+    title: "가로 모음",
     contents: [<Helper {...Garos.args} />],
+  },
+  링크모음: {
+    title: "링크 모음",
+    contents: [
+      <Link
+        to={
+          "https://docs.google.com/spreadsheets/d/11u1FyF5qZn7Np-feeeahfBDAoGDithuckzOxwe9fNtk/edit#gid=0"
+        }
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        파싱완료 리스트
+      </Link>,
+      <Link
+        to={"https://studio.staging.solvook.com/tester"}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        파싱 사이트
+      </Link>,
+      <Link
+        to={
+          "https://docs.google.com/presentation/d/1Af1BEUOlbu5Y9mUMas3j6QYmBavJlVgJzfAe1gMN4Eo/edit#slide=id.g24a8e322ad7_0_10"
+        }
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        수정 가이드라인
+      </Link>,
+      <Link
+        to={
+          " https://docs.google.com/spreadsheets/d/1SNBnqGNHuVqHwulNLFtNoDmfDPSVWShTotNWo8OSwoE/edit#gid=1158280856"
+        }
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        파싱 오류 리스트
+      </Link>,
+    ],
   },
   질문세트: {
     title: "질문 세트",

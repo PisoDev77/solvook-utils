@@ -211,8 +211,9 @@ export default function TemplateP() {
   const [toggle, setToggle] = useState(0);
   return (
     <>
-      <HelpBtn idx={"질문세트"} caption="질문 세트" />
-      <HelpBtn idx={"가로세트"} caption="가로 세트" />
+      <HelpBtn idx={"질문모음"} caption="질문 모음" />
+      <HelpBtn idx={"가로모음"} caption="가로 모음" />
+      <HelpBtn idx={"링크모음"} caption="링크 모음" />
       <hr />
       <label htmlFor="">기본</label>
       <input
