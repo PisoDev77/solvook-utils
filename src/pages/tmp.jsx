@@ -149,46 +149,42 @@ export default function Tmp() {
 
     const { paragraphA, paragraphB } = e.currentTarget;
 
-    const a = paragraphA.value.split(/\.|\!|\?/g);
-    const b = paragraphB.value.split(/(\([^)]+\))/g);
-    const arr = a.map((i, idx) => (
-      <>
-        <ol className="question-box">
-          <li>{idx + 75}. 아래 글을 보고 문장을 재배열 하시오.</li>
-        </ol>
-        <p className="passage-box">
-          {b[idx * 2 + 1]?.replace("(", "( ").replace(")", " )")}
-        </p>
-        <p className="passage-box">{b[idx * 2]}</p>
-        <div class="essay-box">
-          <p>→</p>
-        </div>
-        <div className="answer-box">답 : {i}</div>
-      </>
-    ));
-    setRes(arr);
+    // const a = paragraphA.value.split(/\.|\!|\?/g);
+    // const b = paragraphB.value.split(/(\([^)]+\))/g);
+    // const arr = a.map((i, idx) => (
+    //   <>
+    //     <ol className="question-box">
+    //       <li>{idx + 75}. 아래 글을 보고 문장을 재배열 하시오.</li>
+    //     </ol>
+    //     <p className="passage-box">
+    //       {b[idx * 2 + 1]?.replace("(", "( ").replace(")", " )")}
+    //     </p>
+    //     <p className="passage-box">{b[idx * 2]}</p>
+    //     <div class="essay-box">
+    //       <p>→</p>
+    //     </div>
+    //     <div className="answer-box">답 : {i}</div>
+    //   </>
+    // ));
+    // setRes(arr);
 
     // 다른 단어 찾기 2
 
-    // let cnt = 1;
-    // const a = paragraphA.value.replace(/____________/g, (match, group) => {
-    //   return `${cnt++}) ${match}_______`;
-    // });
+    let cnt = 1;
+    const a = paragraphA.value.replace(/___________/g, (match, group) => {
+      return `${cnt++}) ${match}_________`;
+    });
 
-    // const b = findMissingWords(paragraphA.value, paragraphB.value).map(
-    //   (i, idx) => ` ${idx + 1}) ${i} `
-    // );
-    // const words1 = paragraphA.value.split(" ");
-    // const words2 = paragraphB.value.split(" ");
+    const b = findMissingWords(paragraphA.value, paragraphB.value).map(
+      (i, idx) => ` ${idx + 1}) ${i}   `
+    );
 
-    // setRes([...words1, <hr />, ...words2]);
-    // setRes([
-    //   a,
-    //   <hr></hr>,
-    //   b,
-    //   <hr />,
-    //   b.map((_, idx) => ` ( ${idx + 1} ) ___________________ `),
-    // ]);
+    setRes([
+      a,
+      <hr></hr>,
+      <pre>{b}</pre>,
+      // b.map((_, idx) => ` ( ${idx + 1} ) ___________________ `),
+    ]);
 
     // 두 글에서 다른 점 찾기
     // const compared = highlightDifferentWords(

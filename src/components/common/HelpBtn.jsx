@@ -57,7 +57,7 @@ const data = {
       </Link>,
       <Link
         to={
-          " https://docs.google.com/spreadsheets/d/1SNBnqGNHuVqHwulNLFtNoDmfDPSVWShTotNWo8OSwoE/edit#gid=1158280856"
+          "https://docs.google.com/spreadsheets/d/1SNBnqGNHuVqHwulNLFtNoDmfDPSVWShTotNWo8OSwoE/edit#gid=1158280856"
         }
         target="_blank"
         rel="noopener noreferrer"

@@ -40,18 +40,33 @@ export default function Sero() {
           value={startNum}
           onChange={(event) => setStartNum(+event.target.value)}
         />
-        {numbering
-          .split("\n")
-          .map((i, idx) => {
-            const k = idx + startNum;
-            // if (k === 1) return `①: ${i}`;
-            // if (k === 2) return `②: ${i}`;
-            // if (k === 3) return `③: ${i}`;
-            // if (k === 4) return `④: ${i}`;
-            // if (k === 5) return `⑤: ${i}`;
-            return `${idx + startNum}) ${i}`;
-          })
-          .join("  ")}
+        <h4 className="warns">꼭 서식 없이 붙여넣기 하세요</h4>
+        <h5>
+          <kbd>
+            windows | <kbd className="key">ctrl</kbd> +{" "}
+            <kbd className="key">shfit</kbd> + <kbd>v</kbd>
+          </kbd>
+          <br />
+          <kbd>
+            mac | <kbd className="key">command</kbd> +{" "}
+            <kbd className="key">shfit</kbd> + <kbd>v</kbd>
+          </kbd>
+        </h5>
+        <hr />
+        <pre onClick={(e) => copyTargetDom(e.target)}>
+          {numbering
+            .split("\n")
+            .map((i, idx) => {
+              const k = idx + startNum;
+              // if (k === 1) return `①: ${i}`;
+              // if (k === 2) return `②: ${i}`;
+              // if (k === 3) return `③: ${i}`;
+              // if (k === 4) return `④: ${i}`;
+              // if (k === 5) return `⑤: ${i}`;
+              return `${idx + startNum}) ${i}`;
+            })
+            .join("   ")}
+        </pre>
       </div>
 
       <button onClick={handleCopySero}>세로 선지 결과 복사하기</button>

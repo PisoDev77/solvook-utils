@@ -96,7 +96,7 @@ nav > ul {
   display: flex;
   gap: 16px;
 }
-h2.warns {
+.warns {
   color: rgb(168, 0, 0);
   text-shadow: -0.5px 0 var(--main-color), 0 0.5px var(--main-color),
     0.5px 0 var(--main-color), 0 -0.5px var(--main-color);
