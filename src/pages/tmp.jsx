@@ -154,7 +154,7 @@ export default function Tmp() {
     const arr = a.map((i, idx) => (
       <>
         <ol className="question-box">
-          <li>{idx + 35}. 아래 글을 보고 문장을 재배열 하시오.</li>
+          <li>{idx + 75}. 아래 글을 보고 문장을 재배열 하시오.</li>
         </ol>
         <p className="passage-box">
           {b[idx * 2 + 1]?.replace("(", "( ").replace(")", " )")}

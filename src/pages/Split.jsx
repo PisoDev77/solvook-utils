@@ -26,7 +26,9 @@ export default function Split() {
         style={{ resize: "both", height: "20vh" }}
       ></textarea>
       <br />
-      {res}
+      {res.map((i) => (
+        <div>{i}</div>
+      ))}
     </form>
   );
 }
