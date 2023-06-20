@@ -6,10 +6,9 @@ export default function Modal({ setModal, data }) {
   return (
     <article
       className="modal-container"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        console.log(e.key);
-        // if (e.key === "Escape") setModal(false);
+      data-close={true}
+      onClick={(e) => {
+        if (e.target.dataset.close) setModal(false);
       }}
     >
       <section className="modal">

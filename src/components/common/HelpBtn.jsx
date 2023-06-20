@@ -30,7 +30,7 @@ const data = {
   링크모음: {
     title: "링크 모음",
     contents: [
-      <div>
+      <div className="links">
         <Link
           to={"https://studio.staging.solvook.com/tester"}
           target="_blank"
@@ -40,7 +40,7 @@ const data = {
         </Link>
         <span> 파싱 작업을 할 수 있는 페이지입니다.</span>
       </div>,
-      <div>
+      <div className="links">
         <Link
           to={
             "https://docs.google.com/spreadsheets/d/11u1FyF5qZn7Np-feeeahfBDAoGDithuckzOxwe9fNtk/edit#gid=0"
@@ -55,7 +55,7 @@ const data = {
           파싱 작업목록을 확인하거나 완료를 작성하는 구글 스프레드 시트입니다.
         </span>
       </div>,
-      <div>
+      <div className="links">
         <Link
           to={
             "https://docs.google.com/spreadsheets/d/1SNBnqGNHuVqHwulNLFtNoDmfDPSVWShTotNWo8OSwoE/edit#gid=1158280856"
@@ -71,7 +71,7 @@ const data = {
           시트입니다.
         </span>
       </div>,
-      <div>
+      <div className="links">
         <Link
           to={
             "https://docs.google.com/presentation/d/1Af1BEUOlbu5Y9mUMas3j6QYmBavJlVgJzfAe1gMN4Eo/edit#slide=id.g24a8e322ad7_0_10"
@@ -87,7 +87,7 @@ const data = {
           프레젠테이션입니다.
         </span>
       </div>,
-      <div>
+      <div className="links">
         <Link
           to={
             "https://docs.google.com/presentation/d/1fI9PsKXQmD-Fr1ZxD7Tdgy8Hsuf3ZMACGOEKDre2xdo/edit#slide=id.g2516b6519cb_17_5"

@@ -9,3 +9,18 @@
 .help-icon:hover {
   filter: invert(1);
 }
+
+.links {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.links > div {
+  flex: 1;
+}
+
+.links > span {
+  flex: 4;
+}
