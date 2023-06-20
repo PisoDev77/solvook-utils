@@ -1,3 +1,5 @@
+import "./page.css";
+
 import { useState } from "react";
 
 import { getOptions } from "../lib/sero";
@@ -23,12 +25,12 @@ export default function TemplateP() {
               <li>{datas.question}</li>
             </ol>
             {datas.contenta ? (
-              <p className="passage-box">{datas.contenta}</p>
+              <p className="passage-box">&nbsp;{datas.contenta}</p>
             ) : (
               ""
             )}
             {datas.content ? (
-              <p className="passage-box">{datas.content}</p>
+              <p className="passage-box">&nbsp;{datas.content}</p>
             ) : (
               ""
             )}
@@ -70,7 +72,7 @@ export default function TemplateP() {
   };
 
   function wrapNextWordWithStrongTag(string) {
-    const regex = /([①-⑮])\s*(\b\w+\b)/g;
+    const regex = /([①-⑮ⓐ-ⓩ])\s*(\b\w+\b)/g;
     const modifiedString = string.replace(regex, `$1 <strong>$2</strong>`);
     return modifiedString;
   }
@@ -216,6 +218,16 @@ export default function TemplateP() {
       );
     }
 
+    if (+toggle === 3 && tmp.content !== "") {
+      const arr = content.match(/^[①-⑮ⓐ-ⓩ].*$[\.\?\!]/g);
+      console.log(arr);
+    }
+    if (+toggle === 3 && tmp.contenta !== "") {
+      contenta = extractStringAndStrongTags(
+        wrapNextWordWithStrongTag(contenta)
+      );
+    }
+
     const bogis = ["①", "②", "③", "④", "⑤"];
     const seroform =
       tmp.seroform === ""
@@ -251,6 +263,7 @@ export default function TemplateP() {
       <HelpBtn idx={"가로모음"} caption="가로 모음" />
       <HelpBtn idx={"링크모음"} caption="링크 모음" />
       <hr />
+      <h4>본문 출력 유형</h4>
       <label htmlFor="">기본</label>
       <input
         type="radio"
@@ -285,6 +298,16 @@ export default function TemplateP() {
           setToggle(e.target.value);
         }}
       />
+      <label htmlFor="">한줄</label>
+      <input
+        type="radio"
+        name="toggle"
+        value={3}
+        onChange={(e) => {
+          setToggle(e.target.value);
+        }}
+      />
+      <hr />
       <article className={"normal-parsing"}>
         {/* <nav>
         <label>객관식 5지선다</label>

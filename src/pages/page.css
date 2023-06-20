@@ -13,3 +13,16 @@
 
 /* .parse {
 } */
+
+.normal-parsing {
+  display: flex;
+  align-items: start;
+}
+
+.normal-parsing > .parsing-container1 {
+  min-width: 400px;
+  flex: 6;
+}
+.normal-parsing div {
+  flex: 4;
+}
