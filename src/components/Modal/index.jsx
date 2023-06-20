@@ -17,7 +17,10 @@ export default function Modal({ title, contentList = [] }) {
         // prettier-ignore
         modal 
         ? 
-        (<section className="modal2">
+        (<section 
+          className="modal2" 
+          data-modal={false} 
+          onClick={(e)=>{ if(!!e.target.dataset?.modal) setModal(false); }}>
           <ul className="modal-contents">
             <h3>{title}</h3>
             {contentList.map(({ content, description }) => (
