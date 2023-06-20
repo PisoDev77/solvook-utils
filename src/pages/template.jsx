@@ -258,7 +258,7 @@ export default function TemplateP() {
 
   const [toggle, setToggle] = useState(0);
   return (
-    <>
+    <article className="template">
       <HelpBtn idx={"질문모음"} caption="질문 모음" />
       <HelpBtn idx={"가로모음"} caption="가로 모음" />
       <HelpBtn idx={"링크모음"} caption="링크 모음" />
@@ -330,6 +330,6 @@ export default function TemplateP() {
         {forms[radio](datas)}
         {/* <ParsingContainer {...Tmpk.args} /> */}
       </article>
-    </>
+    </article>
   );
 }
