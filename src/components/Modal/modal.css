@@ -1,0 +1,30 @@
+.modal2 {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+}
+
+.modal-contents {
+  list-style-type: none;
+  position: absolute;
+  left: 50%;
+  background-color: var(--main-bgcolor);
+  transform: translate(-50%, 20%);
+  width: 60%;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.modal-contents > .close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  transform: translateY(10%);
+  cursor: pointer;
+}

@@ -31,12 +31,23 @@ body {
 
 #root {
   width: 100%;
-  padding: 1rem;
+  /* padding: 1rem; */
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+.main-nav {
+  position: sticky;
+  background-color: var(--main-bgcolor);
+  padding: 1rem;
+  top: 0;
+  z-index: 90000;
+
+  display: flex;
+  justify-content: space-between;
 }
 
 a,

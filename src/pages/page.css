@@ -1,8 +1,11 @@
 .parsing {
   display: grid;
   grid-template-columns: 8fr 2fr;
+  padding: 1rem;
 }
-
+.template {
+  padding: 1rem;
+}
 .parsing > .helpers {
   width: 100%;
 }
