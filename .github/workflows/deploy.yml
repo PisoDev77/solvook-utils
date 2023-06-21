@@ -11,6 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Doc
+        uses: andstor/jsdoc-action@v1
+        with:
+          source_dir: ./src/lib/
+          recurse: true
+          output_dir: ./docs
+
       - name: Checkout repo
         uses: actions/checkout@v2
 
