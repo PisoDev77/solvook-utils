@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: StrongUnderline.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: StrongUnderline.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @author Piso
+ * @file StrongUnderline.jsx
+ * @description 문자열을 볼드나 밑줄 처리하여 JSX 포맷으로 ReactElement를 반환하는 클래스
+ */
+
+/**
+ * @class StrongUnderline
+ * @description 복사한 텍스트 내용을 표준화된 형식으로 변환하는 데 도움을 주는 클래스입니다.
+ */
+export default class StrongUnderline {
+  constructor(str) {
+    this.str = str;
+    this.#replaceNumbers();
+  }
+  /**
+   * @property {string} str - 현재 문자열
+   * @description Getter and setter for the 'str' property.
+   * @returns {string} - The current string value.
+   */
+  get str() {
+    return this._str;
+  }
+
+  /**
+   * @property {string} str - The new string value to set.
+   * @description Setter for the 'str' property.
+   * @param {string} inputStr - The new string value to set.
+   */
+  set str(inputStr) {
+    this._str = inputStr;
+  }
+
+  /**
+   * @private
+   * @method #replaceNumbers
+   * @description 숫자기호를 쏠북 파싱 규격에 맞는 유니코드로 치환합니다.
+   * @returns {void}
+   */
+  #replaceNumbers() {
+    this.str
+      .replace(/➀|❶/g, "①")
+      .replace(/➁|❷/g, "②")
+      .replace(/➂|❸/g, "③")
+      .replace(/➃|❹/g, "④")
+      .replace(/➄|❺/g, "⑤");
+  }
+
+  /**
+   * @method #wrapStrong
+   * @description 원 숫자 또는 원 소문자 다음 텍스트에 볼드체와 밑줄을 적용하여 반환합니다.
+   * @returns {string} 변환된 텍스트
+   * @private
+   */
+  #wrapNextWordWithBold() {
+    return this.str.replace(
+      /([①-⑮ⓐ-ⓩ])\s*(\b\w+\b)/g,
+      `$1 &lt;strong>$2&lt;/strong>`
+    );
+  }
+
+  /**
+   * @method #wrapStrong
+   * @description 대괄호로 둘러싸인 텍스트에 볼드체를 적용하여 반환합니다.
+   * @returns {string} 변환된 텍스트
+   * @private
+   */
+  #wrapStrong() {
+    return this._str.replace(
+      /\[(\[[^\]]*\]|[^\[\]]*)\]/g,
+      (match) =>
+        `&lt;strong>${match
+          .replace("[", "[ ")
+          .replace("]", " ]")
+          .replace(/\/ | \//g, "/")
+          .replace("/", " / ")}&lt;/strong>`
+    );
+  }
+
+  /**
+   * @method #wrapStrongWithNumber
+   * @description 대괄호로 둘러싸인 텍스트에 볼드체와 번호를 적용하여 반환합니다.
+   * @returns {string} 변환된 텍스트
+   * @private
+   */
+  #wrapStrongWithNumber() {
+    let cnt = 1;
+    return this._str.replace(
+      /\[(\[[^\]]*\]|[^\[\]]*)\]/g,
+      (match) =>
+        `${cnt++}) &lt;strong>${match
+          .replace("[", "[ ")
+          .replace("]", " ]")
+          .replace(/\/ | \//g, "/")
+          .replace("/", " / ")}&lt;/strong>`
+    );
+  }
+
+  /**
+   * @method extractByStrong
+   * @description Extracts text wrapped in &lt;strong> tags or non-tagged text from the given string.
+   * @param {string} str - The input string to extract from.
+   * @returns {Array} - An array containing the extracted text with &lt;strong> tags and trimmed non-tagged text.
+   */
+  #extractByStrong(str) {
+    const matches = str.match(/(&lt;strong>[^&lt;]*&lt;\/strong>)|([^&lt;]+)/g) ?? [];
+
+    return matches.map((match) =>
+      match.startsWith("&lt;strong>") ? (
+        &lt;>
+          &amp;nbsp;&lt;strong>{match.replace(/[&lt;strong>|&lt;/strong>]/g, "")}&lt;/strong>
+        &lt;/>
+      ) : (
+        match.trim()
+      )
+    );
+  }
+
+  /**
+   * @method extractLineBoldByStrong
+   * @description Extracts text wrapped in &lt;strong> tags or non-tagged text from the given string and applies underline style.
+   * @param {string} str - The input string to extract from.
+   * @returns {Array} - An array containing the extracted text with &lt;strong> tags, wrapped in &lt;span> with underline style, and trimmed non-tagged text.
+   */
+  #extractLineBoldByStrong(str) {
+    const matches = str.match(/(&lt;strong>[^&lt;]*&lt;\/strong>)|([^&lt;]+)/g) ?? [];
+
+    return matches.map((match) =>
+      match.startsWith("&lt;strong>") ? (
+        &lt;>
+          &amp;nbsp;
+          &lt;span
+            style={{ textDecoration: "underline" }}
+            data-mce-style="text-decoration: underline;"
+          >
+            &lt;strong>{match.replace(/[&lt;strong>|&lt;/strong>]/g, "")}&lt;/strong>
+          &lt;/span>
+          &amp;nbsp;
+        &lt;/>
+      ) : (
+        match.trim()
+      )
+    );
+  }
+
+  /**
+   * @method boldSqure
+   * @description 대괄호 안에 포함된 텍스트에 볼드체 서식을 적용합니다.
+   */
+  get boldSqure() {
+    return this.#extractByStrong(this.#wrapStrong());
+  }
+
+  /**
+   * @method boldSqureWithNumber
+   * @description 대괄호 안에 포함된 텍스트에 볼드체 서식과 번호를 적용합니다.
+   */
+  get boldSqureWithNumber() {
+    return this.#extractByStrong(this.#wrapStrongWithNumber());
+  }
+
+  /**
+   * @method boldWithLine
+   * @description 텍스트에 볼드체와 밑줄을 적용합니다.
+   */
+  get boldWithLine() {
+    return this.#extractLineBoldByStrong(this.#wrapNextWordWithBold());
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="StrongUnderline.html">StrongUnderline</a></li></ul><h3>Global</h3><ul><li><a href="global.html#boldSqure">boldSqure</a></li><li><a href="global.html#boldSqureWithNumber">boldSqureWithNumber</a></li><li><a href="global.html#boldWithLine">boldWithLine</a></li><li><a href="global.html#extractByStrong">extractByStrong</a></li><li><a href="global.html#extractLineBoldByStrong">extractLineBoldByStrong</a></li><li><a href="global.html#str">str</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Jun 21 2023 21:05:51 GMT+0900 (대한민국 표준시)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
