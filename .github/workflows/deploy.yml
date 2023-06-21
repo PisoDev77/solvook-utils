@@ -11,13 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Doc
-        uses: andstor/jsdoc-action@v1
-        with:
-          source_dir: ./src
-          recurse: true
-          output_dir: ./out
-
       - name: Checkout repo
         uses: actions/checkout@v2
 
@@ -28,6 +21,9 @@ jobs:
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
+
+      - name: Generate JSDoc
+        run: npx jsdoc ./src/lib
 
       - name: Build project
         run: npm run build
