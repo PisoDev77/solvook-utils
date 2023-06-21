@@ -6,7 +6,7 @@
 import ClipboardJS from "clipboard";
 
 /**
- * @class StrongUnderline
+ * @class Copys
  * @description 텍스트나 DOM을 클립보드에 복사하는 클래스
  */
 export default class Copy {
