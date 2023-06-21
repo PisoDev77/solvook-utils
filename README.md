@@ -1,5 +1,7 @@
 # Helper Static Web Site For Part-Timer
 
+> [class methods documentations](https://pisodev77.github.io/solvook-utils/jsdocs/)
+
 ## Purpose
 
 The purpose of this project is to provide assistance to part-timers in parsing components.

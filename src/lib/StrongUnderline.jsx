@@ -9,6 +9,11 @@
  * @description 복사한 텍스트 내용을 표준화된 형식으로 변환하는 데 도움을 주는 클래스입니다.
  */
 export default class StrongUnderline {
+  /**
+   * Create a Copy instance.
+   * @constructor
+   * @param {string} str - 원본 PDF로부터 복사해온 본문의 문자열 또는 텍스트
+   */
   constructor(str) {
     this.str = str;
     this.#replaceNumbers();
