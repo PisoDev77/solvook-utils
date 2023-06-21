@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: jsdoc-files
-          path: ./dist/jsdocs
+          path: ./jsdocs
 
   build:
     name: Build
