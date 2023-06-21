@@ -35,7 +35,17 @@ const collections = {
   },
   standardQuestions: {
     name: "질문 모음",
-    contentsList: [{ content: "ss", description: "" }],
+    contentsList: [
+      { content: ". 적절한 어휘/어법을 고르시오.", description: "" },
+      { content: "※ 다음 글을 읽고 물음에 답하시오.", description: "" },
+      { content: ". 빈칸에 들어갈 적절한 단어를 쓰시오.", description: "" },
+      { content: ". 다음 각 문장을 해석하시오.", description: "" },
+      {
+        content: ". 문맥 상 주어진 문장 다음에 이어질 글의 순서를 쓰시오.",
+        description: "",
+      },
+      { content: ". 아래 글을 보고 문장을 재배열 하시오.", description: "" },
+    ],
   },
 };
 
