@@ -10,9 +10,13 @@ button.modal-button {
 }
 
 button.copy-text-button {
-  border-style: solid;
-  border-top: 4px;
   border-left: 4px;
+  border-right: 4px;
+  border-radius: 0;
+}
+
+button.copy-text-button:hover::after {
+  content: " ( 복사할까요? )";
 }
 
 a.custom-link {

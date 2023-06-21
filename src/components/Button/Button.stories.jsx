@@ -1,4 +1,5 @@
 import Button from ".";
+import Copy from "../../lib/Copys";
 
 export default {
   title: "Common/Button",
@@ -23,5 +24,8 @@ export const CopytextButton = {
   args: {
     type: "copy-text-button",
     children: "텍스트 복사 버튼",
+    onClick: (e) => {
+      new Copy(e.target.textContent).copyText();
+    },
   },
 };
