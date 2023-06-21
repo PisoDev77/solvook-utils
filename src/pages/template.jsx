@@ -17,25 +17,15 @@ import HelpBtn from "../components/common/HelpBtn";
 // prettier-ignore
 const contentTypes = [
   { label: "기본" },
-  { 
-    label: 
-      (<>
-        00)&nbsp;
-        <strong>[ wordA / wordB ]</strong>&nbsp;
-      </>),
-  },
-  {
-    label: 
-      (<>
-        ① <strong style={{ textDecoration: "underline" }}>wordA</strong>
-      </>),
-  },
- 
+  { label: (<> 00)&nbsp;<strong>[ wordA / wordB ]</strong>&nbsp;</>) },
+  { label: (<> ① <strong style={{ textDecoration: "underline" }}>wordA</strong> </>)} 
 ];
 
 export default function TemplateP() {
   const [datas, setDatas] = useState({});
   const [radio, setRadio] = useState("seroform");
+  const [toggle, setToggle] = useState(0);
+
   const forms = {
     seroform: (datas) => {
       return (
@@ -139,12 +129,9 @@ export default function TemplateP() {
     });
   };
 
-  const [toggle, setToggle] = useState(0);
   return (
     <article className="template">
-      <HelpBtn idx={"질문모음"} caption="질문 모음" />
       <HelpBtn idx={"가로모음"} caption="가로 모음" />
-      <HelpBtn idx={"링크모음"} caption="링크 모음" />
       <hr />
       <h4>본문 출력 유형</h4>
 
@@ -152,10 +139,9 @@ export default function TemplateP() {
         // prettier-ignore
         <>
           <label htmlFor="default-radio">{label}</label>
-          <input type="radio" name="toggle" value={idx}
-            onChange={(e) => {
-              setToggle(e.target.value);
-            }}/>
+          <input 
+            type="radio" name="toggle" value={idx}
+            onChange={(e) => { setToggle(e.target.value); }}/>
         </>
       )}
 
