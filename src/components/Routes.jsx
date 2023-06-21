@@ -2,6 +2,8 @@ import { Link, useLocation } from "react-router-dom";
 
 import { collections } from "../constant/informations";
 import Modal from "./Modal";
+import Button from "./Button";
+import { CopytextButton } from "./Button/Button.stories";
 
 export default function RoutesNav({ routes }) {
   const location = useLocation();
@@ -30,7 +32,8 @@ export default function RoutesNav({ routes }) {
         <Modal 
         title={standardQuestionsName}
         contentList={standardQuestionList.map(({content,description})=> ({ 
-          content, description,}))}
+          content:<Button {...CopytextButton.args}>{content}</Button>, 
+          description,}))}
           />
         <Modal
         title={linksName}
