@@ -73,3 +73,9 @@ jobs:
         with:
           name: jsdoc-files
           path: ./jsdocs
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
