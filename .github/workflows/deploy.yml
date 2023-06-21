@@ -22,7 +22,13 @@ jobs:
         run: npm ci
 
       - name: Build JSDoc
-        run: npx jsdoc ./src -r -d ./docs
+        run: npx jsdoc ./src -r -d ./jsdocs
+
+      - name: Upload JSDoc Files
+        uses: actions/upload-artifact@v2
+        with:
+          name: jsdoc-files
+          path: ./jsdocs
 
   build:
     name: Build
@@ -56,14 +62,14 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
-      - name: Download Artifact
+      - name: Download Production Files
         uses: actions/download-artifact@v2
         with:
           name: production-files
           path: ./dist
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Download JSDoc Files
+        uses: actions/download-artifact@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          name: jsdoc-files
+          path: ./jsdocs
