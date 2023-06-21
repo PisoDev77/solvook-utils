@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Onesam } from "../lib/TypesPDF";
+import { Onesam } from "../lib/TypesPDF/index";
 
 export default function Tmp() {
   const [res, setRes] = useState([]);

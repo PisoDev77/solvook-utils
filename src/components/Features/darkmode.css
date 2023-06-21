@@ -1,0 +1,8 @@
+.darkmode-toggle-btn.dark {
+  color: red;
+  background-color: blue;
+}
+.darkmode-toggle-btn {
+  color: var(--main-color);
+  background-color: var(--main-bg-color);
+}
