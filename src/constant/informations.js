@@ -45,6 +45,7 @@ const collections = {
         description: "",
       },
       { content: ". 아래 글을 보고 문장을 재배열 하시오.", description: "" },
+      { content: ". 다음 글을 보고 영작하시오.", description: "" },
     ],
   },
 };

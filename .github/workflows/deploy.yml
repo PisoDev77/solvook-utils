@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: jsdoc-files
-          path: ./jsdocs
+          path: ./dist/jsdocs
 
   build:
     name: Build
@@ -72,7 +72,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: jsdoc-files
-          path: ./jsdocs
+          path: ./dist/jsdocs
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
