@@ -134,7 +134,7 @@ const data = {
         . 아래 글을 보고 문장을 재배열 하시오.
       </button>,
       <button onClick={(e) => copyTargetDom(e.target)}>
-        00. 다음 글을 보고 영작하시오.
+        . 다음 글을 보고 영작하시오.
       </button>,
     ],
   },

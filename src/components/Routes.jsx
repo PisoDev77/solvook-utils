@@ -6,7 +6,9 @@ import Modal from "./Modal";
 export default function RoutesNav({ routes }) {
   const location = useLocation();
 
-  const { name, contentsList } = collections.links;
+  const { name: linksName, contentsList: linkList } = collections.links;
+  const { name: standardQuestionsName, contentsList: standardQuestionList } =
+    collections.standardQuestions;
 
   return (
     <nav className="main-nav">
@@ -24,12 +26,21 @@ export default function RoutesNav({ routes }) {
       </ul>
 
       {/* prettier-ignore */}
-      <Modal
-        title={name}
-        contentList={contentsList.map(({ title, link, description }) => ({
-          content: (<Link className="custom-link" to={link} target="_blank" rel="noopener noreferrer">{title}</Link>),
+      <section>
+        <Modal 
+        title={standardQuestionsName}
+        contentList={standardQuestionList.map(({content,description})=> ({ 
+          content, description,}))}
+          />
+        <Modal
+        title={linksName}
+        contentList={linkList.map(({ title, link, description }) => ({
+          content: (<Link className="custom-link" to={link} target="_blank" rel="noopener noreferrer">
+                      {title}
+                    </Link>),
           description,}))}
-      />
+        />
+      </section>
     </nav>
   );
 }

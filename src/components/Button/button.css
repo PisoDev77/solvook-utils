@@ -8,6 +8,13 @@ button.modal-button {
   border-top: 4px;
   border-left: 4px;
 }
+
+button.copy-text-button {
+  border-style: solid;
+  border-top: 4px;
+  border-left: 4px;
+}
+
 a.custom-link {
   border-left: 4px;
   border-right: 4px;

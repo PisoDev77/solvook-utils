@@ -1,3 +1,6 @@
-.feat {
-  display: grid;
+.feat-type {
+  display: flex;
+}
+.feat-type > div {
+  padding: 8px;
 }

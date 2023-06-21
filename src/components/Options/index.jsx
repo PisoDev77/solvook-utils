@@ -4,6 +4,7 @@ import { copyTargetDom } from "../../lib/copy";
 
 export default function Options(props) {
   const { items } = props;
+  const wid = 100 / items.length;
   return (
     <div className="option">
       <table
@@ -11,7 +12,10 @@ export default function Options(props) {
         data-mce-selected="1"
       >
         <colgroup>
-          <col style={{ width: "20%" }} data-mce-style="width: 20%;"></col>
+          <col
+            style={{ width: wid + "%" }}
+            data-mce-style={`width: ${wid}%;`}
+          ></col>
         </colgroup>
         <tbody>
           <tr>

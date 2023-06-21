@@ -1,6 +1,6 @@
 const collections = {
   links: {
-    name: "링크모음",
+    name: "링크 모음",
     contentsList: [
       {
         title: "파싱 페이지 열기",
@@ -32,6 +32,10 @@ const collections = {
           "그동안 파싱 작업중 나왔던 예시들을 템플릿화하여 작성된 구글 프레젠테이션입니다.",
       },
     ],
+  },
+  standardQuestions: {
+    name: "질문 모음",
+    contentsList: [{ content: "ss", description: "" }],
   },
 };
 

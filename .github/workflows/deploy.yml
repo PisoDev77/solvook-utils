@@ -14,7 +14,7 @@ jobs:
       - name: Doc
         uses: andstor/jsdoc-action@v1
         with:
-          source_dir: ./src/lib/
+          source_dir: ./src
           recurse: true
           output_dir: ./docs
 
