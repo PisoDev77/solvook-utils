@@ -120,6 +120,7 @@ export default class StrongUnderline {
           <strong>
             {match.replace("<strong>", "").replace("</strong>", "")}
           </strong>
+          &nbsp;
         </>
       ) : (
         match.trim()

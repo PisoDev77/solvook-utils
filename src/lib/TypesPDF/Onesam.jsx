@@ -4,6 +4,8 @@
  * - 직독직해
  * ### 예시 일등급쌤 7007
  */
+import StrongUnderline from "../StrongUnderline";
+
 export default class Onesam {
   constructor(engStr, korStr, no) {
     this.engStr = engStr;
@@ -108,6 +110,18 @@ export default class Onesam {
       <div class="answer-box">
         답: {answers.map((answer, idx) => (<> {idx + 1}) {answer}&nbsp;&nbsp;&nbsp; </>))}
       </div>,
+    ];
+  }
+
+  // 어법 어휘
+  get grammarWord() {
+    const con = new StrongUnderline(this.engStr);
+
+    return [
+      <ol className="question-box sub-question">
+        <li>{this.no}. 어휘•어법 선택+수정, ( )안의 어구를 변형하시오.</li>
+      </ol>,
+      <p className="passage-box">{con.boldSqure}</p>,
     ];
   }
 
