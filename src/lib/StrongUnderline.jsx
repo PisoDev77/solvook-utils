@@ -78,7 +78,7 @@ export default class StrongUnderline {
           .replace("[", "[ ")
           .replace("]", " ]")
           .replace(/\/ | \//g, "/")
-          .replace("/", " / ")}</strong>`
+          .replace(/\//g, " / ")}</strong>`
     );
   }
 
@@ -97,7 +97,7 @@ export default class StrongUnderline {
           .replace("[", "[ ")
           .replace("]", " ]")
           .replace(/\/ | \//g, "/")
-          .replace("/", " / ")}</strong>`
+          .replace(/\//g, " / ")}</strong>`
     );
   }
 
@@ -110,15 +110,21 @@ export default class StrongUnderline {
   #extractByStrong(str) {
     const matches = str.match(/(<strong>[^<]*<\/strong>)|([^<]+)/g) ?? [];
 
-    return matches.map((match) =>
-      match.startsWith("<strong>") ? (
+    return matches.map((match) => {
+      if (match.startsWith("<strong>")) {
+        console.log(match.replace("<strong>", "").replace("</strong>", ""));
+      }
+      return match.startsWith("<strong>") ? (
         <>
-          &nbsp;<strong>{match.replace(/[<strong>|</strong>]/g, "")}</strong>
+          &nbsp;
+          <strong>
+            {match.replace("<strong>", "").replace("</strong>", "")}
+          </strong>
         </>
       ) : (
         match.trim()
-      )
-    );
+      );
+    });
   }
 
   /**
@@ -138,7 +144,9 @@ export default class StrongUnderline {
             style={{ textDecoration: "underline" }}
             data-mce-style="text-decoration: underline;"
           >
-            <strong>{match.replace(/[<strong>|</strong>]/g, "")}</strong>
+            <strong>
+              {match.replace("<strong>", "").replace("</strong>", "")}
+            </strong>
           </span>
           &nbsp;
         </>
