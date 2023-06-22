@@ -121,7 +121,7 @@ export default function TemplateP() {
               </tr>
             </>
           ));
-
+    console.log(contents[+toggle]);
     setDatas({
       ...formValues,
       ...contents[+toggle],

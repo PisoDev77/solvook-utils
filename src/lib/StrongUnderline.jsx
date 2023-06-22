@@ -162,7 +162,8 @@ export default class StrongUnderline {
    * @description 대괄호 안에 포함된 텍스트에 볼드체 서식을 적용합니다.
    */
   get boldSqure() {
-    return this.#extractByStrong(this.#wrapStrong());
+    const res = this.#extractByStrong(this.#wrapStrong());
+    return res.length === 0 ? null : res;
   }
 
   /**
@@ -170,7 +171,8 @@ export default class StrongUnderline {
    * @description 대괄호 안에 포함된 텍스트에 볼드체 서식과 번호를 적용합니다.
    */
   get boldSqureWithNumber() {
-    return this.#extractByStrong(this.#wrapStrongWithNumber());
+    const res = this.#extractByStrong(this.#wrapStrongWithNumber());
+    return res.length === 0 ? null : res;
   }
 
   /**
@@ -178,6 +180,7 @@ export default class StrongUnderline {
    * @description 텍스트에 볼드체와 밑줄을 적용합니다.
    */
   get boldWithLine() {
-    return this.#extractLineBoldByStrong(this.#wrapNextWordWithBold());
+    const res = this.#extractLineBoldByStrong(this.#wrapNextWordWithBold());
+    return res.length === 0 ? null : res;
   }
 }
