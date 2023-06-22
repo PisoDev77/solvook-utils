@@ -113,7 +113,7 @@ export default function TemplateP() {
     const seroform =
       formValues.seroform === ""
         ? false
-        : getOptions(tmp.seroform).map((item, idx) => (
+        : getOptions(formValues.seroform).map((item, idx) => (
             <>
               <tr data-answer="" data-q-number={idx + 1}>
                 <td>{bogis[idx]}</td>
