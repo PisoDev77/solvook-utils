@@ -39,7 +39,7 @@ export default class Onesam {
     this.korArr.pop();
 
     return this.engArr.map((eng, idx) => [
-      <ol className="question-box sub-question">
+      <ol className="question-box">
         <li>{this.no + idx}. 다음 각 문장을 해석하시오.</li>
       </ol>,
       <p key={idx + "-translation"} className="passage-box">
@@ -101,7 +101,7 @@ export default class Onesam {
     }
 
     return [
-      <ol className="question-box sub-question">
+      <ol className="question-box">
         <li>{this.no}. 빈칸에 들어갈 적절한 단어를 쓰시오.</li>
       </ol>,
       <p className="passage-box">{content.join(" ")}</p>,
@@ -116,12 +116,17 @@ export default class Onesam {
   // 어법 어휘
   get grammarWord() {
     const con = new StrongUnderline(this.engStr);
+    const answers = this.korStr.split("/");
 
     return [
-      <ol className="question-box sub-question">
+      <ol className="question-box">
         <li>{this.no}. 어휘•어법 선택+수정, ( )안의 어구를 변형하시오.</li>
       </ol>,
-      <p className="passage-box">{con.boldSqure}</p>,
+      <p className="passage-box">{con.boldSqureWithNumber}</p>,
+      // prettier-ignore
+      <div class="answer-box">
+        답: {answers.map((answer, idx) => (<> {idx + 1}) {answer}&nbsp;&nbsp;&nbsp; </>))}
+      </div>,
     ];
   }
 

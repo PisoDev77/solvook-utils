@@ -110,11 +110,8 @@ export default class StrongUnderline {
   #extractByStrong(str) {
     const matches = str.match(/(<strong>[^<]*<\/strong>)|([^<]+)/g) ?? [];
 
-    return matches.map((match) => {
-      if (match.startsWith("<strong>")) {
-        console.log(match.replace("<strong>", "").replace("</strong>", ""));
-      }
-      return match.startsWith("<strong>") ? (
+    return matches.map((match) =>
+      match.startsWith("<strong>") ? (
         <>
           &nbsp;
           <strong>
@@ -124,8 +121,8 @@ export default class StrongUnderline {
         </>
       ) : (
         match.trim()
-      );
-    });
+      )
+    );
   }
 
   /**
