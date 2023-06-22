@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import "../styles/SubAnswer.css";
 
+import { Question } from "../lib/ParsingComponents";
+
 export default function SubAnswer() {
   const [str, setStr] = useState("");
   const [res, setRes] = useState([]);
@@ -41,9 +43,7 @@ export default function SubAnswer() {
     const t = sub.map((item, index) => {
       return (
         <>
-          <ol className="question-box sub-question">
-            <li>{item}</li>
-          </ol>
+          {new Question(item).questionDOM}
           {bool !== "" ? (
             <div class="essay-box">
               <p>{bool}</p>
