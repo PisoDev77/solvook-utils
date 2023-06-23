@@ -42,7 +42,7 @@ export default function TemplateP() {
         .contentDOM,
       seroform: new Options(formValues.seroform).seroDOM,
       essay: new Essay(formValues.essay).essayDOM,
-      garo: new Options(formValues.garo).garoDOM,
+      // garo: new Options(formValues.garo).garoDOM,
       answer: new Answer(formValues.answer).answerDOM,
     });
   };
@@ -65,7 +65,7 @@ export default function TemplateP() {
           {content ?? ""}
           {essay ?? ""}
           {seroform ?? ""}
-          {garo ?? ""}
+          {/* {garo ?? ""} */}
           {answer ?? ""}
         </div>
       </section>
