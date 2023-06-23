@@ -4,7 +4,7 @@ export default class Essay {
   }
 
   get essayDOM() {
-    return this.content !== null ? (
+    return this.content.trim() !== "" ? (
       <div className="essay-box">
         <p>{this.content}</p>
       </div>
