@@ -14,6 +14,7 @@ dist-ssr
 
 .docs
 
+src/pages/playground.jsx
 
 # Editor directories and files
 .vscode/*
