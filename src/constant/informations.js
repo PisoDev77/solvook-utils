@@ -33,19 +33,28 @@ const collections = {
       },
     ],
   },
+  // prettier-ignore
   standardQuestions: {
     name: "질문 모음",
     contentsList: [
-      { content: ". 적절한 어휘/어법을 고르시오.", description: "" },
       { content: "※ 다음 글을 읽고 물음에 답하시오.", description: "" },
-      { content: ". 빈칸에 들어갈 적절한 단어를 쓰시오.", description: "" },
-      { content: ". 다음 각 문장을 해석하시오.", description: "" },
-      {
-        content: ". 문맥 상 주어진 문장 다음에 이어질 글의 순서를 쓰시오.",
-        description: "",
-      },
+      { content: ". 다음 글을 읽고 물음에 답하시오.", description: "" },
       { content: ". 아래 글을 보고 문장을 재배열 하시오.", description: "" },
       { content: ". 다음 글을 보고 영작하시오.", description: "" },
+      { content: ". 적절한 어휘/어법을 고르시오.", description: "" },
+      { content: ". 빈칸에 들어갈 적절한 단어를 쓰시오.", description: "" },
+      { content: ". 빈칸에 들어갈 적절한 단어/문장을 쓰시오. ", description: "" },
+      { content: ". 주어진 문장 다음에 이어질 글의 순서를 쓰시오.", description: "" },
+      { content: ". 아래 글을 보고 문장을 재배열하시오.", description: "" },
+      { content: ". 아래 글을 보고 단어를 재배열하시오.", description: "" },
+      { content: ". 다음 아래 문장을 번역하시오.", description: "" },
+      { content: ". 다음 단어의 뜻으로 알맞은 것을 고르시오. (단어를 보여주고 뜻 고르기)", description: "" },
+      { content: ". 다음 뜻에 알맞은 단어를 고르시오. (뜻을 보여주고 단어고르기)", description: "" },
+      { content: ". 다음 글을 읽고 O, X 중 알맞은 것을 고르시오.", description: "" },
+      { content: ". 주어진 문장이 들어가기에 가장 적절한 곳을 고르시오.", description: "" },
+      { content: ". 다음 글을 읽고 T, F 중 알맞은 것을 고르시오. ", description: "" },
+      { content: ". 빈칸에 들어갈 적절한 단어를 쓰시오. ", description: "" },
+      { content: ". 적절한 어휘/어법을 고르시오. (단. 기입해야할 곳은 기입하시오.) ", description: "" }
     ],
   },
   circleNums: {
