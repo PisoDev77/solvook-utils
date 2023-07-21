@@ -38,21 +38,23 @@ export default function TemplateP() {
         ? new StrongUnderline(formValues.content)
         : new ParsingStringHandler("circle-number", formValues.content)
             .ConvertParsingString;
-    console.log(contentInstance[contentByToggle[+toggle]]);
     const contentAInstance =
       +toggle !== 2
         ? new StrongUnderline(formValues.contenta)
         : new ParsingStringHandler("circle-number", formValues.contenta)
             .ConvertParsingString;
-
     console.log(contentInstance);
     setDatas({
       question: new Question(formValues.question).questionDOM,
       content: new Passage(
-        contentInstance[contentByToggle[+toggle]] ?? contentInstance
+        +toggle === 2
+          ? contentInstance
+          : contentInstance[contentByToggle[+toggle]]
       ).contentDOM,
       contenta: new Passage(
-        contentAInstance[contentByToggle[+toggle]] ?? contentAInstance
+        +toggle === 2
+          ? contentAInstance
+          : contentAInstance[contentByToggle[+toggle]]
       ).contentDOM,
       seroform: new Options(formValues.seroform).seroDOM,
       essay: new Essay(formValues.essay).essayDOM,
