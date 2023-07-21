@@ -25,7 +25,7 @@ const routes = [
   // },
 ];
 
-const Playground = Pages.PlayGround;
+// const Playground = Pages.PlayGround;
 
 function App() {
   return (
@@ -37,7 +37,7 @@ function App() {
           return <Route path={path} element={<$Element />} />;
         })}
 
-        <Route path={"/solvook-utils/playground"} element={<Playground />} />
+        {/* <Route path={"/solvook-utils/playground"} element={<Playground />} /> */}
       </Routes>
     </BrowserRouter>
   );
