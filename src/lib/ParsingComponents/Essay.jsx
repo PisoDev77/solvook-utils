@@ -4,9 +4,6 @@ export default class Essay {
   }
 
   get essayDOM() {
-    console.log(
-      this.content.split(/(\[br\])/g).map((i) => (i === "[br]" ? <br /> : i))
-    );
     return this.content.trim() !== "" ? (
       <div className="essay-box">
         <p>
