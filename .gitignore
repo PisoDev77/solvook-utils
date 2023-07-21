@@ -15,6 +15,9 @@ dist-ssr
 .docs
 
 src/pages/playground.jsx
+test.js
+
+solvook-utils.wiki
 
 # Editor directories and files
 .vscode/*
