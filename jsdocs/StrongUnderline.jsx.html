@@ -87,7 +87,7 @@ export default class StrongUnderline {
    */
   #wrapNextWordWithBold() {
     return this.str.replace(
-      /([①-⑮ⓐ-ⓩ])\s*(\b\w+\b)/g,
+      /([①-⑮ⓐ-ⓩ➀-➄])\s*(\b\w+\b)/g,
       `$1 &lt;strong>$2&lt;/strong>`
     );
   }
@@ -116,17 +116,29 @@ export default class StrongUnderline {
    * @returns {string} 변환된 텍스트
    * @private
    */
-  #wrapStrongWithNumber() {
+  #wrapStrongWithNumber(rm = false) {
     let cnt = 1;
-    return this._str.replace(
-      /\[(\[[^\]]*\]|[^\[\]]*)\]/g,
-      (match) =>
-        `${cnt++}) &lt;strong>${match
-          .replace("[", "[ ")
-          .replace("]", " ]")
-          .replace(/\/ | \//g, "/")
-          .replace(/\//g, " / ")}&lt;/strong>`
-    );
+    if (rm) {
+      return this._str.replace(
+        /\[(\[[^\]]*\]|[^\[\]]*)\]/g,
+        (match) =>
+          `${cnt++}) &lt;strong>${match
+            .replace("[", "")
+            .replace("]", "")
+            .replace(/\/ | \//g, "/")
+            .replace(/\//g, " / ")}&lt;/strong>`
+      );
+    } else {
+      return this._str.replace(
+        /\[(\[[^\]]*\]|[^\[\]]*)\]/g,
+        (match) =>
+          `${cnt++}) &lt;strong>${match
+            .replace("[", "[ ")
+            .replace("]", " ]")
+            .replace(/\/ | \//g, "/")
+            .replace(/\//g, " / ")}&lt;/strong>`
+      );
+    }
   }
 
   /**
@@ -137,20 +149,18 @@ export default class StrongUnderline {
    */
   #extractByStrong(str) {
     const matches = str.match(/(&lt;strong>[^&lt;]*&lt;\/strong>)|([^&lt;]+)/g) ?? [];
-
-    return matches.map((match) =>
-      match.startsWith("&lt;strong>") ? (
-        &lt;>
-          &amp;nbsp;
-          &lt;strong>
-            {match.replace("&lt;strong>", "").replace("&lt;/strong>", "")}
-          &lt;/strong>
-          &amp;nbsp;
-        &lt;/>
-      ) : (
-        match.trim()
-      )
+    // prettier-ignore
+    const res =  matches.map((match) =>
+      match === '&lt;strong>[ br ]&lt;/strong>' 
+      ? &lt;br /> 
+      : ( match.startsWith('&lt;strong>[ ul')
+        ? ( &lt;>&lt;span style={{ textDecoration: "underline" }} data-mce-style="text-decoration: underline;">
+              { match.replace("&lt;strong>[ ul",'').replace("]&lt;/strong>",'').trim() }&lt;/span> &lt;/> ) 
+        : match.startsWith("&lt;strong>") 
+          ? ( &lt;>&amp;nbsp;&lt;strong>{ match.replace("&lt;strong>", "").replace("&lt;/strong>", "") }&lt;/strong>&amp;nbsp;&lt;/> ) 
+          : match.trim() )
     );
+    return res;
   }
 
   /**
@@ -208,6 +218,71 @@ export default class StrongUnderline {
     const res = this.#extractLineBoldByStrong(this.#wrapNextWordWithBold());
     return res.length === 0 ? null : res;
   }
+
+  /**
+   * @method boldIn
+   * @description 괄호안 텍스트에 볼드체와 밑줄을 적용합니다.
+   */
+  get boldIn() {
+    const res = this.#extractLineBoldByStrong(this.#wrapStrongWithNumber(true));
+    return res.length === 0 ? null : res;
+  }
+
+  get both() {
+    const repl = this.str
+      .replace(
+        /([①-⑮ⓐ-ⓩ➀-➄][ ]?)\[((\[[^\]]*\]|[^\[\]]*))\]/g,
+        "$1 &lt;underline>$2&lt;/underline>"
+      )
+      .replace(/([①-⑮ⓐ-ⓩ➀-➄])\s*(\b\w+\b)/g, `$1 &lt;underline>$2&lt;/underline>`)
+      .replace(/(♠)\s*(\b\w+\b)/g, `&lt;underline>$2&lt;/underline>`)
+      .replace(
+        /\[(\[[^\]]*\]|[^\[\]]*)\]/g,
+        (match) =>
+          `&lt;strong>${match
+            .replace("[", "[ ")
+            .replace("]", " ]")
+            .replace(/\/ | \//g, "/")
+            .replace(/\//g, " / ")}&lt;/strong>`
+      );
+    const matches =
+      repl.match(
+        /(&lt;strong>[^&lt;]*&lt;\/strong>)|(&lt;underline>[^&lt;]*&lt;\/underline>)|([^&lt;]+)/g
+      ) ?? [];
+
+    return matches.map((match) => {
+      if (match.startsWith("&lt;underline>")) {
+        return (
+          &lt;>
+            &amp;nbsp;
+            &lt;span
+              style={{ textDecoration: "underline" }}
+              data-mce-style="text-decoration: underline;"
+            >
+              &lt;strong>
+                {match.replace("&lt;underline>", "").replace("&lt;/underline>", "")}
+              &lt;/strong>
+            &lt;/span>
+          &lt;/>
+        );
+      } else if (match.startsWith("&lt;strong>")) {
+        if (match === "&lt;strong>[ br ]&lt;/strong>") return &lt;br />;
+        else
+          return (
+            &lt;strong>
+              &amp;nbsp;{match.replace("&lt;strong>", "").replace("&lt;/strong>", "")}
+            &lt;/strong>
+          );
+      } else {
+        return match.trim().startsWith(".") |
+          match.trim().startsWith(",") |
+          match.trim().startsWith("!") |
+          match.trim().startsWith("?")
+          ? match.trim()
+          : " " + match.trim();
+      }
+    });
+  }
 }
 </code></pre>
         </article>
@@ -219,13 +294,13 @@ export default class StrongUnderline {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Copys.html">Copys</a></li><li><a href="StrongUnderline.html">StrongUnderline</a></li><li><a href="module.exports_module.exports.html">exports</a></li></ul><h3>Global</h3><ul><li><a href="global.html#boldSqure">boldSqure</a></li><li><a href="global.html#boldSqureWithNumber">boldSqureWithNumber</a></li><li><a href="global.html#boldWithLine">boldWithLine</a></li><li><a href="global.html#copyTargetDom">copyTargetDom</a></li><li><a href="global.html#copyText">copyText</a></li><li><a href="global.html#extractByStrong">extractByStrong</a></li><li><a href="global.html#extractLineBoldByStrong">extractLineBoldByStrong</a></li><li><a href="global.html#fillBlank">fillBlank</a></li><li><a href="global.html#getSingular">getSingular</a></li><li><a href="global.html#str">str</a></li><li><a href="global.html#translateEng">translateEng</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Copys.html">Copys</a></li><li><a href="StrongUnderline.html">StrongUnderline</a></li><li><a href="module.exports_module.exports.html">exports</a></li></ul><h3>Global</h3><ul><li><a href="global.html#boldIn">boldIn</a></li><li><a href="global.html#boldSqure">boldSqure</a></li><li><a href="global.html#boldSqureWithNumber">boldSqureWithNumber</a></li><li><a href="global.html#boldWithLine">boldWithLine</a></li><li><a href="global.html#copyTargetDom">copyTargetDom</a></li><li><a href="global.html#copyText">copyText</a></li><li><a href="global.html#extractByStrong">extractByStrong</a></li><li><a href="global.html#extractLineBoldByStrong">extractLineBoldByStrong</a></li><li><a href="global.html#fillBlank">fillBlank</a></li><li><a href="global.html#getSingular">getSingular</a></li><li><a href="global.html#str">str</a></li><li><a href="global.html#translateEng">translateEng</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Jul 21 2023 03:09:47 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Jul 21 2023 05:10:24 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
