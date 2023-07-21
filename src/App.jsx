@@ -11,7 +11,7 @@ const routes = [
     elementName: "TemplateP",
     caption: "템플릿",
   },
-  { path: "/solvook-utils/tmp", elementName: "Tmp", caption: "TMP" },
+  // { path: "/solvook-utils/tmp", elementName: "Tmp", caption: "TMP" },
   // { path: "/solvook-utils/make", elementName: "Make", caption: "Make" },
   // { path: "/solvook-utils/feat", elementName: "Feat", caption: "왓츄노 타입" },
   // { path: "/solvook-utils/parse", elementName: "Parse", caption: "1 단위" },
