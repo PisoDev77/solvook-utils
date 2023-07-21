@@ -15,7 +15,7 @@ button.copy-text-button {
   border-radius: 0;
 }
 
-button.copy-text-button:hover::after {
+button.copy-text-button.after:hover::after {
   content: " ( 복사할까요? )";
 }
 

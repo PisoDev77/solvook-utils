@@ -47,6 +47,7 @@ export default function ParsingContainer(props) {
 
       <TextContainer level="h3" label="서술형" name="essay" />
       <TextContainer {...AnswerForm.args} />
+      <TextareaContainer {...SeroForm.args} label="가로" name="garo" />
     </form>
   );
 }

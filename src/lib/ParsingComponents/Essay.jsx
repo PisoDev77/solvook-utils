@@ -4,9 +4,16 @@ export default class Essay {
   }
 
   get essayDOM() {
+    console.log(
+      this.content.split(/(\[br\])/g).map((i) => (i === "[br]" ? <br /> : i))
+    );
     return this.content.trim() !== "" ? (
       <div className="essay-box">
-        <p>{this.content}</p>
+        <p>
+          {this.content
+            .split(/(\[br\])/g)
+            .map((i) => (i === "[br]" ? <br /> : i))}
+        </p>
       </div>
     ) : null;
   }

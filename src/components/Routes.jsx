@@ -11,6 +11,14 @@ export default function RoutesNav({ routes }) {
   const { name: linksName, contentsList: linkList } = collections.links;
   const { name: standardQuestionsName, contentsList: standardQuestionList } =
     collections.standardQuestions;
+  const { name: circleNumsName, contentsList: circleNumList } =
+    collections.circleNums;
+
+  const circleArr = new Array(15).fill(0x2460).map((num, idx) => (
+    <Button {...CopytextButton.args} type={"copy-text-button"}>
+      {String.fromCharCode(num + idx)}
+    </Button>
+  ));
 
   return (
     <nav className="main-nav">
@@ -29,6 +37,12 @@ export default function RoutesNav({ routes }) {
 
       {/* prettier-ignore */}
       <section>
+        <Modal 
+        title={circleNumsName}
+        contentList={[...circleNumList.map(({content,description})=> ({ 
+          content:<Button {...CopytextButton.args}>{content}</Button>, 
+          description,})), {content: circleArr, description: '원하는 숫자를 클릭하면 복사가 됩니다.'}]}
+          />
         <Modal 
         title={standardQuestionsName}
         contentList={standardQuestionList.map(({content,description})=> ({ 

@@ -48,6 +48,20 @@ const collections = {
       { content: ". 다음 글을 보고 영작하시오.", description: "" },
     ],
   },
+  circleNums: {
+    name: "자주 사용하는 문자",
+    contentsList: [
+      {
+        content: "※",
+        description: "통합문제 질문 컴포넌트 앞에 사용되는 문자",
+      },
+      {
+        content: "→",
+        description:
+          "서술형이나 주관식, 방향 등을 표시할 때 사용되는 화살표 문자",
+      },
+    ],
+  },
 };
 
 export { collections };

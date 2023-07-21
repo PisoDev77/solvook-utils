@@ -65,9 +65,13 @@ export default function Option({ clsName, width, options, direction }) {
       );
       const colRender = (
         <>
-          <col style={{ width: "24px" }}></col>
+          <col
+            style={{ width: "24px" }}
+            data-mce-style={`width: ${24}px;`}
+          ></col>
           <col
             style={{ width: `calc((100% - 24px) / ${options[1].length})` }}
+            data-mce-style={`width: calc((100% - 24px) / ${options[1].length})`}
           ></col>
         </>
       );

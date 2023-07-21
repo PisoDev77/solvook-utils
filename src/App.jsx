@@ -12,9 +12,11 @@ const routes = [
     caption: "템플릿",
   },
   { path: "/solvook-utils/tmp", elementName: "Tmp", caption: "TMP" },
+  // { path: "/solvook-utils/make", elementName: "Make", caption: "Make" },
   // { path: "/solvook-utils/feat", elementName: "Feat", caption: "왓츄노 타입" },
   // { path: "/solvook-utils/parse", elementName: "Parse", caption: "1 단위" },
   { path: "/solvook-utils/split", elementName: "Split", caption: "나누기" },
+
   // { path: "/solvook-utils/helpers", elementName: "Helper", caption: "헬퍼" },
   // {
   //   path: "/solvook-utils/configuration",
@@ -22,6 +24,8 @@ const routes = [
   //   caption: "설정",
   // },
 ];
+
+const Playground = Pages.PlayGround;
 
 function App() {
   return (
@@ -32,6 +36,8 @@ function App() {
           const $Element = Pages[elementName];
           return <Route path={path} element={<$Element />} />;
         })}
+
+        <Route path={"/solvook-utils/playground"} element={<Playground />} />
       </Routes>
     </BrowserRouter>
   );

@@ -59,7 +59,7 @@ export default class StrongUnderline {
    */
   #wrapNextWordWithBold() {
     return this.str.replace(
-      /([①-⑮ⓐ-ⓩ])\s*(\b\w+\b)/g,
+      /([①-⑮ⓐ-ⓩ➀-➄])\s*(\b\w+\b)/g,
       `$1 <strong>$2</strong>`
     );
   }
@@ -88,17 +88,29 @@ export default class StrongUnderline {
    * @returns {string} 변환된 텍스트
    * @private
    */
-  #wrapStrongWithNumber() {
+  #wrapStrongWithNumber(rm = false) {
     let cnt = 1;
-    return this._str.replace(
-      /\[(\[[^\]]*\]|[^\[\]]*)\]/g,
-      (match) =>
-        `${cnt++}) <strong>${match
-          .replace("[", "[ ")
-          .replace("]", " ]")
-          .replace(/\/ | \//g, "/")
-          .replace(/\//g, " / ")}</strong>`
-    );
+    if (rm) {
+      return this._str.replace(
+        /\[(\[[^\]]*\]|[^\[\]]*)\]/g,
+        (match) =>
+          `${cnt++}) <strong>${match
+            .replace("[", "")
+            .replace("]", "")
+            .replace(/\/ | \//g, "/")
+            .replace(/\//g, " / ")}</strong>`
+      );
+    } else {
+      return this._str.replace(
+        /\[(\[[^\]]*\]|[^\[\]]*)\]/g,
+        (match) =>
+          `${cnt++}) <strong>${match
+            .replace("[", "[ ")
+            .replace("]", " ]")
+            .replace(/\/ | \//g, "/")
+            .replace(/\//g, " / ")}</strong>`
+      );
+    }
   }
 
   /**
@@ -109,20 +121,18 @@ export default class StrongUnderline {
    */
   #extractByStrong(str) {
     const matches = str.match(/(<strong>[^<]*<\/strong>)|([^<]+)/g) ?? [];
-
-    return matches.map((match) =>
-      match.startsWith("<strong>") ? (
-        <>
-          &nbsp;
-          <strong>
-            {match.replace("<strong>", "").replace("</strong>", "")}
-          </strong>
-          &nbsp;
-        </>
-      ) : (
-        match.trim()
-      )
+    // prettier-ignore
+    const res =  matches.map((match) =>
+      match === '<strong>[ br ]</strong>' 
+      ? <br /> 
+      : ( match.startsWith('<strong>[ ul')
+        ? ( <><span style={{ textDecoration: "underline" }} data-mce-style="text-decoration: underline;">
+              { match.replace("<strong>[ ul",'').replace("]</strong>",'').trim() }</span> </> ) 
+        : match.startsWith("<strong>") 
+          ? ( <>&nbsp;<strong>{ match.replace("<strong>", "").replace("</strong>", "") }</strong>&nbsp;</> ) 
+          : match.trim() )
     );
+    return res;
   }
 
   /**
@@ -179,5 +189,70 @@ export default class StrongUnderline {
   get boldWithLine() {
     const res = this.#extractLineBoldByStrong(this.#wrapNextWordWithBold());
     return res.length === 0 ? null : res;
+  }
+
+  /**
+   * @method boldIn
+   * @description 괄호안 텍스트에 볼드체와 밑줄을 적용합니다.
+   */
+  get boldIn() {
+    const res = this.#extractLineBoldByStrong(this.#wrapStrongWithNumber(true));
+    return res.length === 0 ? null : res;
+  }
+
+  get both() {
+    const repl = this.str
+      .replace(
+        /([①-⑮ⓐ-ⓩ➀-➄][ ]?)\[((\[[^\]]*\]|[^\[\]]*))\]/g,
+        "$1 <underline>$2</underline>"
+      )
+      .replace(/([①-⑮ⓐ-ⓩ➀-➄])\s*(\b\w+\b)/g, `$1 <underline>$2</underline>`)
+      .replace(/(♠)\s*(\b\w+\b)/g, `<underline>$2</underline>`)
+      .replace(
+        /\[(\[[^\]]*\]|[^\[\]]*)\]/g,
+        (match) =>
+          `<strong>${match
+            .replace("[", "[ ")
+            .replace("]", " ]")
+            .replace(/\/ | \//g, "/")
+            .replace(/\//g, " / ")}</strong>`
+      );
+    const matches =
+      repl.match(
+        /(<strong>[^<]*<\/strong>)|(<underline>[^<]*<\/underline>)|([^<]+)/g
+      ) ?? [];
+
+    return matches.map((match) => {
+      if (match.startsWith("<underline>")) {
+        return (
+          <>
+            &nbsp;
+            <span
+              style={{ textDecoration: "underline" }}
+              data-mce-style="text-decoration: underline;"
+            >
+              <strong>
+                {match.replace("<underline>", "").replace("</underline>", "")}
+              </strong>
+            </span>
+          </>
+        );
+      } else if (match.startsWith("<strong>")) {
+        if (match === "<strong>[ br ]</strong>") return <br />;
+        else
+          return (
+            <strong>
+              &nbsp;{match.replace("<strong>", "").replace("</strong>", "")}
+            </strong>
+          );
+      } else {
+        return match.trim().startsWith(".") |
+          match.trim().startsWith(",") |
+          match.trim().startsWith("!") |
+          match.trim().startsWith("?")
+          ? match.trim()
+          : " " + match.trim();
+      }
+    });
   }
 }

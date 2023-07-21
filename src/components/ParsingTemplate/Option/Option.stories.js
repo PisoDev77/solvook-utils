@@ -29,7 +29,7 @@ const horizontalOptions = [
 ];
 export const HorizontalOptions = {
   args: {
-    clasName: "choice-box number-choice no-text mce-item-table",
+    clsName: "choice-box number-choice no-text mce-item-table",
     direction: "horizontal",
     width: 100 / horizontalOptions.length,
     options: horizontalOptions,
@@ -38,7 +38,7 @@ export const HorizontalOptions = {
 
 export const ABOptions = {
   args: {
-    clasName: "choice-box alphabet-choice",
+    clsName: "choice-box alphabet-choice",
     direction: "ABC",
     width: 24,
     options: [
@@ -53,7 +53,7 @@ export const ABOptions = {
 
 export const ABCOptions = {
   args: {
-    clasName: "choice-box alphabet-choice",
+    clsName: "choice-box alphabet-choice triple mce-item-table",
     direction: "ABC",
     width: 24,
     options: [

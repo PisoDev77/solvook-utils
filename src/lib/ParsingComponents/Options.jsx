@@ -1,10 +1,16 @@
+import Option from "../../components/ParsingTemplate/Option";
+import {
+  ABCOptions,
+  ABOptions,
+} from "../../components/ParsingTemplate/Option/Option.stories";
+
 export default class Options {
   constructor(content) {
     this.content = content;
   }
 
   get seroDOM() {
-    const options = this.content.replace(/\n/g, "").split(/[①-⑮]/g);
+    const options = this.content.replace(/\n/g, "").split(/[①-⑮➀-➄]/g);
     options.shift();
     if (options.length === 0) return null;
     const wid = 21;
@@ -30,7 +36,7 @@ export default class Options {
   }
 
   get garoDOM() {
-    const options = this.content.replace(/\n/g, "").split(/[①-⑮]/g);
+    const options = this.content.replace(/\n/g, "").split(/[①-⑮➀-➄]/g);
     options.shift();
 
     if (options.length === 0) return null;
@@ -56,5 +62,27 @@ export default class Options {
         </tbody>
       </table>
     );
+  }
+
+  get ABCDOMByHipen() {
+    const options = this.content
+      .replace(/\n/g, "")
+      .split(/[①-⑮➀-➄]/g)
+      .map((i) => i.split(/[-–]/g))
+      .map((i) => i.map((j) => j.trim()));
+    options.shift();
+
+    return <Option {...ABCOptions.args} options={options} />;
+  }
+
+  get ABDOMByHipen() {
+    const options = this.content
+      .replace(/\n/g, "")
+      .split(/[①-⑮➀-➄]/g)
+      .map((i) => i.split(/[-–]/g))
+      .map((i) => i.map((j) => j.trim()));
+    options.shift();
+
+    return <Option {...ABOptions.args} options={options} />;
   }
 }
