@@ -3,6 +3,7 @@ import "./page.css";
 import { useState } from "react";
 
 import StrongUnderline from "../lib/StrongUnderline";
+import ParsingStringHandler from "../lib/ParsingStringHandler";
 
 import { NormalParsing } from "../components/Containers/ParsingContainer/ParsingContainer.stories";
 import { ParsingContainer } from "../components/Containers";
@@ -32,14 +33,27 @@ export default function TemplateP() {
   const handleParsingTemplate = (event) => {
     const formValues = Object.fromEntries(new FormData(event.currentTarget));
 
-    const contentInstance = new StrongUnderline(formValues.content);
-    const contentAInstance = new StrongUnderline(formValues.contenta);
+    const contentInstance =
+      +toggle !== 2
+        ? new StrongUnderline(formValues.content)
+        : new ParsingStringHandler("circle-number", formValues.content)
+            .ConvertParsingString;
+    console.log(contentInstance[contentByToggle[+toggle]]);
+    const contentAInstance =
+      +toggle !== 2
+        ? new StrongUnderline(formValues.contenta)
+        : new ParsingStringHandler("circle-number", formValues.contenta)
+            .ConvertParsingString;
+
+    console.log(contentInstance);
     setDatas({
       question: new Question(formValues.question).questionDOM,
-      content: new Passage(contentInstance[contentByToggle[+toggle]])
-        .contentDOM,
-      contenta: new Passage(contentAInstance[contentByToggle[+toggle]])
-        .contentDOM,
+      content: new Passage(
+        contentInstance[contentByToggle[+toggle]] ?? contentInstance
+      ).contentDOM,
+      contenta: new Passage(
+        contentAInstance[contentByToggle[+toggle]] ?? contentAInstance
+      ).contentDOM,
       seroform: new Options(formValues.seroform).seroDOM,
       essay: new Essay(formValues.essay).essayDOM,
       // garo: new Options(formValues.garo).garoDOM,
