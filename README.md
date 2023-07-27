@@ -1,18 +1,18 @@
-# Helper Static Web Site For Part-Timer
+# Solvook Studio parsing 작업 파트타이머들을 위한 Solvook Studio Helper
 
 > [class methods documentations](https://pisodev77.github.io/solvook-utils/jsdocs/)
 
-## Purpose
+## 목적
 
-The purpose of this project is to provide assistance to part-timers in parsing components.
+- 북아이피스 파싱 작업 파트타이머들을 도와주는 기능들을 구현합니다.
 
 ## Expected Benefits
 
-- Reduces the time required for copying tasks from the original componenet.
+- 파싱 작업에 소요되는 작업 시간을 줄여줍니다.
 
 ## Features
 
-- Automatic Conversion: The site provides an automatic conversion feature that transforms the content of the original PDF document into a standardized format according to the internal specifications. This saves time and effort in formatting manually. Also this maintains consistenct across the converted content.
+- 자동 변환: 원본 PDF의 컨텐츠들을 정해진 규칙에 맞게 변환되도록 도와줍니다. 이는 시간과 노력을 줄여줍니다. 일관된 결과물들을 얻을 수 있습니다.
 
 ## License
 
