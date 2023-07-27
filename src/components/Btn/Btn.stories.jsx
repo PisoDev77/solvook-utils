@@ -8,7 +8,7 @@ export default {
   component: Btn,
 };
 
-const copyClsName = "copy-text";
+const copyClsName = "copy-text-btn";
 export const CopytextBtn = {
   args: {
     className: copyClsName,
@@ -16,7 +16,21 @@ export const CopytextBtn = {
       const wantedTxt = e.target.textContent;
       new Copy(wantedTxt, copyClsName).copyText();
 
-      toast.success("Toast Chages1", { position: toast.POSITION.BOTTOM_RIGHT });
+      toast.success(`"${wantedTxt}" 복사 완료`, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     },
+  },
+};
+
+export const ModalBtn = {
+  args: {
+    className: "modal-btn",
+  },
+};
+
+export const CloseBtn = {
+  args: {
+    className: "close-btn",
   },
 };

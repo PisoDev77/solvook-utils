@@ -1,28 +1,20 @@
-button.close {
-  border: none;
-  font-size: 1.5rem;
+button.copy-text-btn:hover::after {
+  content: " ( 복사할까요? )";
 }
 
-button.modal-button {
+.modal-btn {
   border-style: solid;
   border-top: 4px;
   border-left: 4px;
 }
 
-button.copy-text-button {
-  border-left: 4px;
-  border-right: 4px;
-  border-radius: 0;
-}
-
-button.copy-text-button.after:hover::after {
-  content: " ( 복사할까요? )";
+.close-btn {
+  font-size: 1.5rem;
+  border-style: none;
 }
 
 a.custom-link {
-  border-left: 4px;
-  border-right: 4px;
-  border-radius: 0;
+  border: none;
 }
 a.custom-link::after {
   content: " →";
