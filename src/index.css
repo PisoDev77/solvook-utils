@@ -169,3 +169,8 @@ col:first-child {
 .ssss {
   display: none;
 }
+
+.Toastify__toast--success {
+  background-color: var(--main-bgcolor);
+  color: var(--main-color);
+}

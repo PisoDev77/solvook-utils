@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import RoutesNav from "./components/Routes";
 
@@ -11,7 +13,7 @@ const routes = [
     elementName: "TemplateP",
     caption: "템플릿",
   },
-  // { path: "/solvook-utils/tmp", elementName: "Tmp", caption: "TMP" },
+  { path: "/solvook-utils/tmp", elementName: "Tmp", caption: "TMP" },
   // { path: "/solvook-utils/make", elementName: "Make", caption: "Make" },
   // { path: "/solvook-utils/feat", elementName: "Feat", caption: "왓츄노 타입" },
   // { path: "/solvook-utils/parse", elementName: "Parse", caption: "1 단위" },
@@ -36,9 +38,8 @@ function App() {
           const $Element = Pages[elementName];
           return <Route path={path} element={<$Element />} />;
         })}
-
-        {/* <Route path={"/solvook-utils/playground"} element={<Playground />} /> */}
       </Routes>
+      <ToastContainer autoClose={2000} />
     </BrowserRouter>
   );
 }

@@ -15,8 +15,9 @@ export default class Copy {
    * @constructor
    * @param {string} str - 클립보드나 DOM에 복사할 텍스트
    */
-  constructor(str) {
+  constructor(str, className) {
     this.str = str;
+    this.copyClsname = className;
   }
 
   /**
@@ -24,7 +25,7 @@ export default class Copy {
    * @description 버튼에 적혀있는 텍스트를 클립보드에 복사하는 메소드입니다.
    */
   copyText() {
-    this.clipboard = new ClipboardJS(".copy-text-button", {
+    this.clipboard = new ClipboardJS("." + this.copyClsname, {
       text: () => this.str,
     });
     this.clipboard.on("success", () => {
