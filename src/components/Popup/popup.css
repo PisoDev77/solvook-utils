@@ -1,0 +1,39 @@
+.popup-container {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000000;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 1rem;
+}
+
+.popup {
+  position: absolute;
+  left: 50%;
+  width: 65%;
+  height: 70%;
+  transform: translate(-50%, 20%);
+  background-color: var(--main-bgcolor);
+  padding: 1rem;
+  border-radius: 1rem;
+  overflow-y: scroll;
+}
+
+.popup li {
+  margin-bottom: 1rem;
+}
+
+.popup::-webkit-scrollbar {
+  display: none;
+}
+.popup {
+  -ms-overflow-style: none; /* 인터넷 익스플로러 */
+  scrollbar-width: none; /* 파이어폭스 */
+}
+
+.popup > button {
+  position: absolute;
+  right: 1rem;
+}
