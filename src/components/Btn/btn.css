@@ -1,0 +1,33 @@
+button.close {
+  border: none;
+  font-size: 1.5rem;
+}
+
+button.modal-button {
+  border-style: solid;
+  border-top: 4px;
+  border-left: 4px;
+}
+
+button.copy-text-button {
+  border-left: 4px;
+  border-right: 4px;
+  border-radius: 0;
+}
+
+button.copy-text-button.after:hover::after {
+  content: " ( 복사할까요? )";
+}
+
+a.custom-link {
+  border-left: 4px;
+  border-right: 4px;
+  border-radius: 0;
+}
+a.custom-link::after {
+  content: " →";
+}
+a.custom-link:hover {
+  padding-left: 2rem;
+  transition: padding-left 0.5s ease-in-out;
+}
