@@ -1,9 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 
 import { collections } from "../constant/informations";
+
 import Modal from "./Modal";
 import Button from "./Button";
 import { CopytextButton } from "./Button/Button.stories";
+import Btn from "./Btn";
+import { ModalBtn } from "./Btn/Btn.stories";
+import Popup from "./Popup";
+import { LinkPopup, QuestionPopup } from "./Popup/Popup.stories";
 
 export default function RoutesNav({ routes }) {
   const location = useLocation();
@@ -37,26 +42,14 @@ export default function RoutesNav({ routes }) {
 
       {/* prettier-ignore */}
       <section>
+        <Popup {...QuestionPopup.args}>질문모음</Popup>
+        <Popup {...LinkPopup.args}>링크모음</Popup>
         <Modal 
         title={circleNumsName}
         contentList={[...circleNumList.map(({content,description})=> ({ 
           content:<Button {...CopytextButton.args}>{content}</Button>, 
           description,})), {content: circleArr, description: '원하는 숫자를 클릭하면 복사가 됩니다.'}]}
           />
-        <Modal 
-        title={standardQuestionsName}
-        contentList={standardQuestionList.map(({content,description})=> ({ 
-          content:<Button {...CopytextButton.args}>{content}</Button>, 
-          description,}))}
-          />
-        <Modal
-        title={linksName}
-        contentList={linkList.map(({ title, link, description }) => ({
-          content: (<Link className="custom-link" to={link} target="_blank" rel="noopener noreferrer">
-                      {title}
-                    </Link>),
-          description,}))}
-        />
       </section>
     </nav>
   );
