@@ -19,7 +19,7 @@
   border-radius: 1rem;
 }
 
-.contents {
+.contentsB {
   display: flex;
   gap: 1rem;
 }
@@ -27,7 +27,7 @@
 .content-types {
   display: flex;
 }
-.contents > div {
+.contentsB > div {
   width: 100%;
 }
 .input textarea {
@@ -38,7 +38,7 @@
   -ms-overflow-style: none; /* 인터넷 익스플로러 */
   scrollbar-width: none; /* 파이어폭스 */
 }
-.contents > textarea::-webkit-scrollbar {
+.contentsB > textarea::-webkit-scrollbar {
   display: none;
 }
 
