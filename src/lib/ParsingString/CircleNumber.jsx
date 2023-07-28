@@ -1,18 +1,26 @@
-import ConvertString from "./ConvertString";
-
 export default class CircleNumber {
-  constructor(value) {
+  constructor(value, isBoth = false) {
     this.value = value;
+    this.isBoth = isBoth;
   }
 
   get content() {
-    return new ConvertString(
-      this.value
-        .replace(
-          /([①-⑮ⓐ-ⓩ➀-➄][ ]?)\[((\[[^\]]*\]|[^\[\]]*))\]/g,
-          "$1 <both>$2</both>"
+    const res = this.value
+      .replace(
+        /([①-⑮ⓐ-ⓩ➀-➄][ ]?)\[((\[[^\]]*\]|[^\[\]]*))\]/g,
+        "$1 <both>$2</both>"
+      )
+      .replace(/([①-⑮ⓐ-ⓩ➀-➄])\s*(\b\w+\b)/g, "$1 <both>$2</both>");
+
+    return this.isBoth
+      ? res.replace(
+          /\[((\[[^\]]*\]|[^\[\]]*))\]/g,
+          (match) =>
+            `<strong>${match
+              .replace("[", "[ ")
+              .replace("]", " ]")
+              .replace(/\/ | \//g, "/")}</strong>`
         )
-        .replace(/([①-⑮ⓐ-ⓩ➀-➄])\s*(\b\w+\b)/g, "$1 <both>$2</both>")
-    ).convertString;
+      : res;
   }
 }

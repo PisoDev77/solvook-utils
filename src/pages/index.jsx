@@ -1,9 +1,10 @@
 import Parsing from "./parsing";
-import TemplateP from "./template";
+import TemplateA from "./template";
+import TemplateB from "./TemplateB";
 import Tmp from "./tmp";
 import Feat from "./feat";
 import Split from "./Split";
-// import PlayGround from "./playground";
+import PlayGround from "./playground";
 import Make from "./Make";
 
-export { Parsing, TemplateP, Tmp, Feat, Split, Make };
+export { Parsing, TemplateA, TemplateB, Tmp, Feat, Split, Make, PlayGround };

@@ -24,7 +24,7 @@ const contentTypes = [
   { label: (<> ① <strong style={{ textDecoration: "underline" }}>wordA</strong> </>), id:'boldSqureWithLineType' } 
 ];
 
-export default function TemplateP() {
+export default function TemplateA() {
   const [datas, setDatas] = useState({});
   const [toggle, setToggle] = useState(0);
 

@@ -6,28 +6,14 @@ import RoutesNav from "./components/Routes";
 
 import * as Pages from "./pages";
 
+// prettier-ignore
 const routes = [
   { path: "/solvook-utils", elementName: "Parsing", caption: "파싱" },
-  {
-    path: "/solvook-utils/template",
-    elementName: "TemplateP",
-    caption: "템플릿",
-  },
-  { path: "/solvook-utils/tmp", elementName: "Tmp", caption: "TMP" },
-  // { path: "/solvook-utils/make", elementName: "Make", caption: "Make" },
-  // { path: "/solvook-utils/feat", elementName: "Feat", caption: "왓츄노 타입" },
-  // { path: "/solvook-utils/parse", elementName: "Parse", caption: "1 단위" },
+  { path: "/solvook-utils/template", elementName: "TemplateA", caption: "템플릿 A" },
+  // { path: "/solvook-utils/tmp", elementName: "Tmp", caption: "TMP" },
   { path: "/solvook-utils/split", elementName: "Split", caption: "나누기" },
-
-  // { path: "/solvook-utils/helpers", elementName: "Helper", caption: "헬퍼" },
-  // {
-  //   path: "/solvook-utils/configuration",
-  //   elementName: "Feat",
-  //   caption: "설정",
-  // },
+  { path: "/solvook-utils/templateB", elementName: "TemplateB", caption: "템플릿 B" },
 ];
-
-// const Playground = Pages.PlayGround;
 
 function App() {
   return (
@@ -35,8 +21,8 @@ function App() {
       <RoutesNav routes={routes} />
       <Routes>
         {routes.map(({ path, elementName }) => {
-          const $Element = Pages[elementName];
-          return <Route path={path} element={<$Element />} />;
+          const $Page = Pages[elementName];
+          return <Route path={path} element={<$Page />} />;
         })}
       </Routes>
       <ToastContainer autoClose={2000} />
