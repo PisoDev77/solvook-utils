@@ -6,7 +6,7 @@ export default class ConvertString {
   get convertString() {
     const matches =
       this.value.match(
-        /(<stro ng>[^<]*<\/strong>)|(<both>[^<]*<\/both>)|(<underline>[^<]*<\/underline>)|([^<]+)/g
+        /(<strong>[^<]*<\/strong>)|(<both>[^<]*<\/both>)|(<underline>[^<]*<\/underline>)|([^<]+)/g
       ) ?? [];
 
     return matches.map((match) => {
@@ -17,6 +17,17 @@ export default class ConvertString {
           data-mce-style="text-decoration: underline;">
             <strong>{match.replace('<both>','').replace('</both>','')}</strong>
         </span>
+      } else if(match.startsWith('<underline>')){
+        return <span
+          style={{ textDecoration: "underline" }}
+          data-mce-style="text-decoration: underline;">
+            {match.replace('<underline>','').replace('</underline>','')}
+        </span>
+      } else if(match.startsWith('<strong>')) {
+        if(match === '<strong>[ br ]</strong>' || match === '[br]' || match === '<strong>[br]</strong>'){
+          return <br />
+        }
+        return <strong>{match.replace('<strong>','').replace('</strong>','')}</strong>
       } else {
         const str = match.trim();
         return /^[.,?!-'"`]/g.test(str) ? `${str} ` : ` ${str} `

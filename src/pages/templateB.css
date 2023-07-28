@@ -1,0 +1,64 @@
+.template-B {
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+.input,
+.output {
+  width: 50%;
+  padding: 1rem;
+  border: 2px solid;
+  border-color: var(--main-color);
+  border-radius: 1rem;
+}
+
+.input > input[type="text"] {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem 4px;
+  border-radius: 1rem;
+}
+
+.contents {
+  display: flex;
+  gap: 1rem;
+}
+
+.content-types {
+  display: flex;
+}
+.contents > div {
+  width: 100%;
+}
+.input textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 1rem;
+  -ms-overflow-style: none; /* 인터넷 익스플로러 */
+  scrollbar-width: none; /* 파이어폭스 */
+}
+.contents > textarea::-webkit-scrollbar {
+  display: none;
+}
+
+.input,
+select {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 1rem 4px;
+  border-radius: 1rem;
+}
+select span.underline {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.output > .question-box {
+  list-style-type: none;
+  padding: 0;
+}
+.output > .passage-box {
+  border: solid 1px;
+  padding: 4px;
+}
