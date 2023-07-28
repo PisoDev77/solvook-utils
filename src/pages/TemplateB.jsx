@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./templateB.css";
 
 import ParsingStringHandler from "../lib/ParsingStringHandler";
+import Copy from "../lib/Copys";
+import { useRef } from "react";
 
 export default function TemplateB() {
   const [parsing, setParsing] = useState({
@@ -49,9 +51,11 @@ export default function TemplateB() {
 
   const { question, content, text, option, answer } = parsing;
 
+  const tmp = useRef(null);
   return (
     <>
       <h1>템플릿 다른 버전</h1>
+
       <main className="template-B">
         <form className="input" onChange={handleForm}>
           <h2>입력</h2>
