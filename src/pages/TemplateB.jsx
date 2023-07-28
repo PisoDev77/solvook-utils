@@ -57,7 +57,7 @@ export default function TemplateB() {
           <h2>입력</h2>
           <h3>질문</h3>
           <input type="text" name="question" />
-          <div className="contents">
+          <div className="contentsB">
             <div>
               <h3>본문 유형</h3>
               <select name="contentType">

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 import Popup from ".";
-import { questions, links } from "../../constant";
+import { questions, links, chars } from "../../constant";
 import Btn from "../Btn";
 import { CopytextBtn } from "../Btn/Btn.stories";
 
@@ -33,6 +33,17 @@ export const LinkPopup = {
         <br />
         <small style={{ paddingTop: "1rem" }}>{description}</small>
         <hr />
+      </li>
+    )),
+  },
+};
+
+export const CharsPopup = {
+  args: {
+    collections: chars.map(({ char, description }) => (
+      <li>
+        <Btn {...CopytextBtn.args}>{char}</Btn>
+        <p>{description}</p>
       </li>
     )),
   },
