@@ -4,6 +4,7 @@ import "./templateB.css";
 import ParsingStringHandler from "../lib/ParsingStringHandler";
 import Copy from "../lib/Copys";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 export default function TemplateB() {
   const [parsing, setParsing] = useState({
@@ -55,7 +56,14 @@ export default function TemplateB() {
   return (
     <>
       <h1>템플릿 다른 버전</h1>
-
+      <Link
+        className="custom-link"
+        to={"https://github.com/PisoDev77/solvook-utils/wiki/TemplateB"}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        어떻게 사용하나요?
+      </Link>
       <main className="template-B">
         <form className="input" onChange={handleForm}>
           <h2>입력</h2>
