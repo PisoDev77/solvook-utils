@@ -58,10 +58,17 @@ export default class StrongUnderline {
    * @private
    */
   #wrapNextWordWithBold() {
-    return this.str.replace(
-      /([①-⑮ⓐ-ⓩ➀-➄])\s*(\b\w+\b)/g,
-      `$1 <strong>$2</strong>`
-    );
+    return this.str
+      .replace(/([①-⑮ⓐ-ⓩ➀-➄])\s*(\b\w+\b)/g, `$1 <strong>$2</strong>`)
+      .replace(
+        /\[(\[[^\]]*\]|[^\[\]]*)\]/g,
+        (match) =>
+          `<strong>${match
+            .replace("[", "[ ")
+            .replace("]", " ]")
+            .replace(/\/ | \//g, "/")
+            .replace(/\//g, " / ")}</strong>`
+      );
   }
 
   /**
@@ -101,15 +108,17 @@ export default class StrongUnderline {
             .replace(/\//g, " / ")}</strong>`
       );
     } else {
-      return this._str.replace(
-        /\[(\[[^\]]*\]|[^\[\]]*)\]/g,
-        (match) =>
-          `${cnt++}) <strong>${match
+      return this._str.replace(/\[(\[[^\]]*\]|[^\[\]]*)\]/g, (match) => {
+        if (match === "[br]") {
+          return `<strong>[ br ]</strong>`;
+        } else {
+          return `${cnt++}) <strong>${match
             .replace("[", "[ ")
             .replace("]", " ]")
             .replace(/\/ | \//g, "/")
-            .replace(/\//g, " / ")}</strong>`
-      );
+            .replace(/\//g, " / ")}</strong>`;
+        }
+      });
     }
   }
 
@@ -126,7 +135,7 @@ export default class StrongUnderline {
       match === '<strong>[ br ]</strong>' 
       ? <br /> 
       : ( match.startsWith('<strong>[ ul')
-        ? ( <><span style={{ textDecoration: "underline" }} data-mce-style="text-decoration: underline;">
+        ? ( <>&nbsp;<span style={{ textDecoration: "underline" }} data-mce-style="text-decoration: underline;">
               { match.replace("<strong>[ ul",'').replace("]</strong>",'').trim() }</span> </> ) 
         : match.startsWith("<strong>") 
           ? ( <>&nbsp;<strong>{ match.replace("<strong>", "").replace("</strong>", "") }</strong>&nbsp;</> ) 
@@ -145,21 +154,24 @@ export default class StrongUnderline {
     const matches = str.match(/(<strong>[^<]*<\/strong>)|([^<]+)/g) ?? [];
 
     return matches.map((match) =>
-      match.startsWith("<strong>") ? (
-        <>
-          &nbsp;
-          <span
-            style={{ textDecoration: "underline" }}
-            data-mce-style="text-decoration: underline;"
-          >
-            <strong>
-              {match.replace("<strong>", "").replace("</strong>", "")}
-            </strong>
-          </span>
-          &nbsp;
-        </>
-      ) : (
-        match.trim()
+      // prettier-ignore
+      match === "<strong>[ br ]</strong>" 
+      ? <br /> 
+      : ( match.startsWith('<strong>[ ul') 
+        ? ( <>&nbsp;<span style={{ textDecoration: "underline" }} data-mce-style="text-decoration: underline;">
+              { match.replace("<strong>[ ul",'').replace("]</strong>",'').trim() }</span> 
+            </> ) 
+        : ( match.startsWith("<strong>") 
+          ? <>
+              &nbsp;
+              <span style={{ textDecoration: "underline" }} data-mce-style="text-decoration: underline;" >
+                <strong>
+                  {match.replace("<strong>", "").replace("</strong>", "")}
+                </strong>
+              </span>
+              &nbsp;
+            </>
+          : match.trim() )
       )
     );
   }
@@ -203,6 +215,10 @@ export default class StrongUnderline {
   get both() {
     const repl = this.str
       .replace(
+        /([♠][ ]?)\[((\[[^\]]*\]|[^\[\]]*))\]/g,
+        "<underline>$2</underline>"
+      )
+      .replace(
         /([①-⑮ⓐ-ⓩ➀-➄][ ]?)\[((\[[^\]]*\]|[^\[\]]*))\]/g,
         "$1 <underline>$2</underline>"
       )
@@ -239,7 +255,22 @@ export default class StrongUnderline {
         );
       } else if (match.startsWith("<strong>")) {
         if (match === "<strong>[ br ]</strong>") return <br />;
-        else
+        else if (match.startsWith("<strong>[ ul ")) {
+          return (
+            <>
+              &nbsp;
+              <span
+                style={{ textDecoration: "underline" }}
+                data-mce-style="text-decoration: underline;"
+              >
+                {match
+                  .replace("<strong>[ ul", "")
+                  .replace("]</strong>", "")
+                  .trim()}
+              </span>
+            </>
+          );
+        } else
           return (
             <strong>
               &nbsp;{match.replace("<strong>", "").replace("</strong>", "")}

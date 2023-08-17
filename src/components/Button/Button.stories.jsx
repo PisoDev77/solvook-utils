@@ -25,7 +25,7 @@ export const CopytextButton = {
     type: "copy-text-button after",
     children: "텍스트 복사 버튼",
     onClick: (e) => {
-      new Copy(e.target.textContent).copyText();
+      new Copy(e.target.textContent, "copy-text-button").copyText();
     },
   },
 };

@@ -35,4 +35,17 @@ export default class Copy {
       this.clipboard.destroy();
     });
   }
+
+  copyDOM() {
+    console.log("sss");
+    navigator.clipboard
+      .write([
+        new ClipboardItem({
+          "text/html": new Blob([this.str.innerHTML], { type: "text/html" }),
+        }),
+      ])
+      .then(() => {
+        console.log("tj");
+      });
+  }
 }
