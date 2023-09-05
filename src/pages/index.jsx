@@ -6,5 +6,6 @@ import Feat from "./feat";
 import Split from "./Split";
 // import PlayGround from "./playground";
 import Make from "./Make";
+import saveSol from "./saveSol";
 
-export { Parsing, TemplateA, TemplateB, Tmp, Feat, Split, Make };
+export { Parsing, TemplateA, TemplateB, Tmp, Feat, Split, Make, saveSol };
