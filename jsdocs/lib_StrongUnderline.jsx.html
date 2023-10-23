@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: StrongUnderline.jsx</title>
+    <title>JSDoc: Source: lib/StrongUnderline.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: StrongUnderline.jsx</h1>
+    <h1 class="page-title">Source: lib/StrongUnderline.jsx</h1>
 
     
 
@@ -86,10 +86,17 @@ export default class StrongUnderline {
    * @private
    */
   #wrapNextWordWithBold() {
-    return this.str.replace(
-      /([①-⑮ⓐ-ⓩ➀-➄])\s*(\b\w+\b)/g,
-      `$1 &lt;strong>$2&lt;/strong>`
-    );
+    return this.str
+      .replace(/([①-⑮ⓐ-ⓩ➀-➄])\s*(\b\w+\b)/g, `$1 &lt;strong>$2&lt;/strong>`)
+      .replace(
+        /\[(\[[^\]]*\]|[^\[\]]*)\]/g,
+        (match) =>
+          `&lt;strong>${match
+            .replace("[", "[ ")
+            .replace("]", " ]")
+            .replace(/\/ | \//g, "/")
+            .replace(/\//g, " / ")}&lt;/strong>`
+      );
   }
 
   /**
@@ -129,15 +136,17 @@ export default class StrongUnderline {
             .replace(/\//g, " / ")}&lt;/strong>`
       );
     } else {
-      return this._str.replace(
-        /\[(\[[^\]]*\]|[^\[\]]*)\]/g,
-        (match) =>
-          `${cnt++}) &lt;strong>${match
+      return this._str.replace(/\[(\[[^\]]*\]|[^\[\]]*)\]/g, (match) => {
+        if (match === "[br]") {
+          return `&lt;strong>[ br ]&lt;/strong>`;
+        } else {
+          return `${cnt++}) &lt;strong>${match
             .replace("[", "[ ")
             .replace("]", " ]")
             .replace(/\/ | \//g, "/")
-            .replace(/\//g, " / ")}&lt;/strong>`
-      );
+            .replace(/\//g, " / ")}&lt;/strong>`;
+        }
+      });
     }
   }
 
@@ -154,7 +163,7 @@ export default class StrongUnderline {
       match === '&lt;strong>[ br ]&lt;/strong>' 
       ? &lt;br /> 
       : ( match.startsWith('&lt;strong>[ ul')
-        ? ( &lt;>&lt;span style={{ textDecoration: "underline" }} data-mce-style="text-decoration: underline;">
+        ? ( &lt;>&amp;nbsp;&lt;span style={{ textDecoration: "underline" }} data-mce-style="text-decoration: underline;">
               { match.replace("&lt;strong>[ ul",'').replace("]&lt;/strong>",'').trim() }&lt;/span> &lt;/> ) 
         : match.startsWith("&lt;strong>") 
           ? ( &lt;>&amp;nbsp;&lt;strong>{ match.replace("&lt;strong>", "").replace("&lt;/strong>", "") }&lt;/strong>&amp;nbsp;&lt;/> ) 
@@ -173,21 +182,24 @@ export default class StrongUnderline {
     const matches = str.match(/(&lt;strong>[^&lt;]*&lt;\/strong>)|([^&lt;]+)/g) ?? [];
 
     return matches.map((match) =>
-      match.startsWith("&lt;strong>") ? (
-        &lt;>
-          &amp;nbsp;
-          &lt;span
-            style={{ textDecoration: "underline" }}
-            data-mce-style="text-decoration: underline;"
-          >
-            &lt;strong>
-              {match.replace("&lt;strong>", "").replace("&lt;/strong>", "")}
-            &lt;/strong>
-          &lt;/span>
-          &amp;nbsp;
-        &lt;/>
-      ) : (
-        match.trim()
+      // prettier-ignore
+      match === "&lt;strong>[ br ]&lt;/strong>" 
+      ? &lt;br /> 
+      : ( match.startsWith('&lt;strong>[ ul') 
+        ? ( &lt;>&amp;nbsp;&lt;span style={{ textDecoration: "underline" }} data-mce-style="text-decoration: underline;">
+              { match.replace("&lt;strong>[ ul",'').replace("]&lt;/strong>",'').trim() }&lt;/span> 
+            &lt;/> ) 
+        : ( match.startsWith("&lt;strong>") 
+          ? &lt;>
+              &amp;nbsp;
+              &lt;span style={{ textDecoration: "underline" }} data-mce-style="text-decoration: underline;" >
+                &lt;strong>
+                  {match.replace("&lt;strong>", "").replace("&lt;/strong>", "")}
+                &lt;/strong>
+              &lt;/span>
+              &amp;nbsp;
+            &lt;/>
+          : match.trim() )
       )
     );
   }
@@ -231,6 +243,10 @@ export default class StrongUnderline {
   get both() {
     const repl = this.str
       .replace(
+        /([♠][ ]?)\[((\[[^\]]*\]|[^\[\]]*))\]/g,
+        "&lt;underline>$2&lt;/underline>"
+      )
+      .replace(
         /([①-⑮ⓐ-ⓩ➀-➄][ ]?)\[((\[[^\]]*\]|[^\[\]]*))\]/g,
         "$1 &lt;underline>$2&lt;/underline>"
       )
@@ -267,7 +283,22 @@ export default class StrongUnderline {
         );
       } else if (match.startsWith("&lt;strong>")) {
         if (match === "&lt;strong>[ br ]&lt;/strong>") return &lt;br />;
-        else
+        else if (match.startsWith("&lt;strong>[ ul ")) {
+          return (
+            &lt;>
+              &amp;nbsp;
+              &lt;span
+                style={{ textDecoration: "underline" }}
+                data-mce-style="text-decoration: underline;"
+              >
+                {match
+                  .replace("&lt;strong>[ ul", "")
+                  .replace("]&lt;/strong>", "")
+                  .trim()}
+              &lt;/span>
+            &lt;/>
+          );
+        } else
           return (
             &lt;strong>
               &amp;nbsp;{match.replace("&lt;strong>", "").replace("&lt;/strong>", "")}
@@ -300,7 +331,7 @@ export default class StrongUnderline {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jul 31 2023 06:33:11 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Oct 23 2023 03:05:29 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>

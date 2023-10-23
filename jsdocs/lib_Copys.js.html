@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: StrongUnderline</title>
+    <title>JSDoc: Source: lib/Copys.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,137 +17,69 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: StrongUnderline</h1>
+    <h1 class="page-title">Source: lib/Copys.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>StrongUnderline<span class="signature">()</span><span class="type-signature"></span></h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-    
-
-    
-    <h4 class="name" id="StrongUnderline"><span class="type-signature"></span>new StrongUnderline<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    복사한 텍스트 내용을 표준화된 형식으로 변환하는 데 도움을 주는 클래스입니다.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_StrongUnderline.jsx.html">lib/StrongUnderline.jsx</a>, <a href="lib_StrongUnderline.jsx.html#line7">line 7</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @author Piso
+ * @file Copys.js
+ * @description 텍스트나 DOM을 클립보드에 복사하는 클래스
+ */
+import ClipboardJS from "clipboard";
+
+/**
+ * @class Copys
+ * @description 텍스트나 DOM을 클립보드에 복사하는 클래스
+ */
+export default class Copy {
+  /**
+   * Create a Copy instance.
+   * @constructor
+   * @param {string} str - 클립보드나 DOM에 복사할 텍스트
+   */
+  constructor(str, className) {
+    this.str = str;
+    this.copyClsname = className;
+  }
+
+  /**
+   * @method copyText
+   * @description 버튼에 적혀있는 텍스트를 클립보드에 복사하는 메소드입니다.
+   */
+  copyText() {
+    this.clipboard = new ClipboardJS("." + this.copyClsname, {
+      text: () => this.str,
+    });
+    this.clipboard.on("success", () => {
+      this.clipboard.destroy();
+    });
+    this.clipboard.on("error", () => {
+      this.clipboard.destroy();
+    });
+  }
+
+  copyDOM() {
+    console.log("sss");
+    navigator.clipboard
+      .write([
+        new ClipboardItem({
+          "text/html": new Blob([this.str.innerHTML], { type: "text/html" }),
+        }),
+      ])
+      .then(() => {
+        console.log("tj");
+      });
+  }
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
