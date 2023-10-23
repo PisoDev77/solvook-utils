@@ -1,5 +1,3 @@
-import { string } from "prop-types";
-
 export default class Passage {
   constructor(content) {
     this.content = content;

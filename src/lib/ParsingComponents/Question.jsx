@@ -7,8 +7,8 @@ export default class Question {
         /못한|다른|않는|없는|어색한|틀린|않은|아닌|두 개\w|세 개|2개/g,
         (match) => `<under>${match}</under>`
       )
-      .replace(/\d+\.[+A-Z+가-힣+]/, (match) => `${match.replace(".", ". ")}`)
-      .replace(" ?", "?")
+      .replace(/\d+\.[+A-Z+가-힣+]?/, (match) => `${match.replace(".", ". ")}`)
+      .replace(" ?", "? ")
       .replace(" .", ".")
       .replace(/것.+은|것\n은/g, "것은")
       .replace("관계<under>없는</under>", "관계<under>(농)없는</under>");

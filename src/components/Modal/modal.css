@@ -17,8 +17,17 @@
   background-color: var(--main-bgcolor);
   transform: translate(-50%, 20%);
   width: 60%;
+  height: 70%;
   border-radius: 1rem;
   padding: 1rem;
+  overflow-y: scroll;
+}
+.modal-contents::-webkit-scrollbar {
+  display: none;
+}
+.modal-contents {
+  -ms-overflow-style: none; /* 인터넷 익스플로러 */
+  scrollbar-width: none; /* 파이어폭스 */
 }
 
 .modal-contents > .close {
