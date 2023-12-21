@@ -1,65 +1,76 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export default function Split() {
-  const [data, setData] = useState({
-    str: "",
-    seperator: ".",
-    res: [],
-  });
+    const [ta1, setTa1] = useState('');
+    const [res1, setRes1] = useState([]);
+    const handleChange = (e) => {
+        const { value } = e.target;
 
-  const handleForm = (e) => {
-    const { seperator, str } = e.currentTarget;
+        let formerUnitId = 0;
+        let formerPargrapId = 1;
+        const arr = value
+            .split('//')
+            .filter((i) => i.trim() !== '')
+            .map((i, idx) => {
+                const [paragraphs, json] = i.split('{구분}');
+                const { textbook_id, unit_id, page_info, meta_data } = JSON.parse(json.replace(/\n/g, ' '));
 
-    const anss = [];
-    const arr = str.value
-      .replace(/\n/g, " ")
-      .split("{구분}")
-      .filter((i) => i.trim() !== "")
-      .map((one) => {
-        console.log(one);
-        const tmp = one.replace(/\n/g, " ").split("//");
-        const [eng, kor] = tmp;
+                return (
+                    <tr>
+                        -54
+                        <td>{idx + 44}</td>
+                        <td>{textbook_id}</td>
+                        {unit_id === formerUnitId ? (
+                            <>
+                                <td>{formerUnitId}</td>
+                                <td>{++formerPargrapId}</td>
+                                <td>{page_info}</td>
+                                <td>{meta_data}</td>
+                                <td>{textbook_id + '_' + formerUnitId}</td>
+                            </>
+                        ) : (
+                            <>
+                                <td>{++formerUnitId}</td>
+                                <td>{(formerPargrapId = 1)}</td>
+                                <td>{page_info}</td>
+                                <td>{meta_data}</td>
+                                <td>{textbook_id + '_' + formerUnitId}</td>
+                            </>
+                        )}
+                    </tr>
+                );
+            });
 
-        anss.push(["1) " + kor, <br />]);
-        return [
-          "아래 글을 보고 단어를 재배열하시오. {19}{질문}",
-          <br />,
-          eng,
-          <br />,
-          "{일반}{본문}",
-          <br />,
-          kor.replace(/\[|\]/g, ""),
-          <br />,
-          "{지문}{주관식}{문제}",
-          <br />,
-        ];
-      });
-    const res = [...arr];
+        setTa1(value);
+        setRes1(
+            <>
+                <thead>
+                    <th>no</th>
+                    <th>textbookId</th>
+                    <th>unitId</th>
+                    <th>paragraph_id</th>
+                    <th>page_info</th>
+                    <th>meta_data</th>
+                </thead>
+                <tbody>{arr}</tbody>
+            </>
+        );
+    };
 
-    setData({
-      str: str.value,
-      seperator: seperator.value,
-      res,
-    });
-  };
-
-  return (
-    <form onChange={handleForm}>
-      <h3>숫자를 기준으로 나눌 수 있습니다</h3>
-      <input type="text" name="seperator" value={data.seperator} />
-      <label> 기준이 될 문자 ., ) 등을 입력하세요.</label>
-      <br></br>
-      <label>ex) [ 1. a 2. b 3. c ] 복사해서 확인해보세요.</label>
-      <br />
-      <label>ex) [ 1) a 2) b 3) c ] 복사해서 확인해보세요.</label>
-      <hr />
-      <textarea
-        value={data.str}
-        name={"str"}
-        style={{ resize: "both", height: "20vh" }}
-      ></textarea>
-      <br />
-      {data.res}
-    </form>
-  );
+    return (
+        <main>
+            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'start' }}>
+                <textarea
+                    style={{ padding: '1rem', minWidth: '30%' }}
+                    defaultValue={ta1}
+                    cols="60"
+                    rows="50"
+                    onChange={handleChange}
+                ></textarea>
+                <table border={1} style={{ padding: '1rem' }}>
+                    {res1}
+                </table>
+            </div>
+        </main>
+    );
 }
