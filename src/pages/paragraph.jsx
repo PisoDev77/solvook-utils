@@ -1,90 +1,99 @@
 import { useState } from 'react';
-import './paragraph.css';
 
 export default function Paragraph() {
-    const [data, setData] = useState({
-        str: '',
-        res: [],
-    });
+	const [data, setData] = useState({
+		str: '',
+		res: [],
+	});
 
-    const lbs = [
-        'textbook_id',
-        'unit_id',
-        'story_id',
-        'paragraph_id',
-        'paragraphs',
-        'page_info',
-        'meta_data',
-        'filename',
-    ];
+	/**
+	 * 주어진 할당된 paragraph 문자열을 문장 단위로 나누어 React Element 배열을 반환하는 함수.
+	 * @param {string} paragraph - paragraph 문자열
+	 * @returns {Array<JSX.Element>} - React Element 배열
+	 */
+	const parseParagraph = (paragraph) => {
+		const [textbookId, unitId, storyId, paragraphId, paragraphText, pageInfo, meta_data, filename] =
+			paragraph.split(/\t/g);
 
-    const oneTr = (val) => {
-        const step1 = val.split(/\t/g);
+		// 문장 분리 정규식 패턴0
+		const sentencePattern = /(\.|\!|\?)/g;
 
-        const arr = step1[4].split(/(\.|\!|\?)/g).map((i) => i.replace(/\n/g, '').trim());
-        const paragraphs = arr.filter((i) => !/\.|\!|\?/.test(i.trim()));
-        const dots = arr.filter((i) => /\.|\!|\?/.test(i.trim()));
+		// 문장을 분리하여 배열에 저장
+		const sentences = paragraphText
+			.replace(/Mr\.|Dr\./g, (match) => match.replace('.', ',,'))
+			.replace(/U\.S\./g, (match) => match.replace('.', ',,'))
+			.split(sentencePattern)
+			.map((sentence) => sentence.replace(/\n/g, '').trim());
 
-        console.log(paragraphs, dots);
+		const sentenceElements = [];
+		let formerSentence = '';
 
-        const obj = {
-            textbook_id: step1[0],
-            unit_id: step1[1],
-            story_id: step1[2],
-            paragraph_id: step1[3],
-            paragraphs: paragraphs.map((paragraph, idx) =>
-                dots[idx] === undefined ? '삭제해' : paragraph + dots[idx]
-            ),
-            page_info: step1[5],
-            meta_data: step1[6],
-            filename: step1[7],
-        };
+		let previousForm = [0, 0, 0];
+		let sentenceId = 0;
 
-        return (
-            <>
-                {' '}
-                {obj.paragraphs.map((paragraph) => {
-                    if (paragraph !== '삭제해')
-                        return (
-                            <tr>
-                                <td>{obj.textbook_id}</td>
-                                <td>{obj.unit_id}</td>
-                                <td>{obj.story_id}</td>
-                                <td>{obj.paragraph_id}</td>
-                                <td>{paragraph}</td>
-                                <td>{obj.page_info}</td>
-                                <td></td>
-                                <td>{obj.filename}</td>
-                            </tr>
-                        );
-                })}
-            </>
-        );
-    };
+		sentences.forEach((sentence) => {
+			const isFullStop = sentencePattern.test(sentence.trim());
+			formerSentence = isFullStop ? formerSentence + sentence : sentence;
 
-    const handleForm = (e) => {
-        const { str } = e.currentTarget;
+			if (isFullStop) {
+				if (+textbookId !== +previousForm[0]) sentenceId = 1;
+				else if (+unitId !== +previousForm[1]) sentenceId = 1;
+				else if (+paragraphId !== +previousForm[2]) sentenceId = 1;
+				else sentenceId++;
 
-        const res = str.value
-            .split('{구분}')
-            .filter((i) => i.trim() !== '')
-            .map((i) => oneTr(i));
+				sentenceElements.push(
+					<tr key={sentenceElements.length}>
+						<td>{textbookId}</td>
+						<td>{unitId}</td>
+						<td>{storyId}</td>
+						<td>{paragraphId}</td>
+						<td>{sentenceId}</td>
+						<td>{formerSentence.replace(',,', '.')}</td>
+						<td>{pageInfo}</td>
+						<td>{meta_data}</td>
+						<td>{filename}</td>
+					</tr>
+				);
+			}
 
-        setData({
-            str: str.value,
-            res: <table border={1}>{res}</table>,
-        });
-    };
+			previousForm = [textbookId, unitId, paragraphId];
+		});
 
-    return (
-        <form onChange={handleForm}>
-            <hr />
-            <textarea value={data.str} name={'str'} style={{ resize: 'both', height: '20vh' }}></textarea>
-            <br />
-            <div style={{ display: 'flex' }}>
-                <div style={{ width: '80%' }}>{data.res}</div>
-                {/* <div style={{ width: '20%' }}>{data.answers}</div> */}
-            </div>
-        </form>
-    );
+		return sentenceElements;
+	};
+
+	const handleForm = (e) => {
+		const { value } = e.target;
+
+		const paragraphs = value.split('{구분}').filter((i) => i.trim() !== '');
+
+		// 문장 분리 정규식 패턴0
+		const sentencePattern = /(\.|\!|\?)/g;
+
+		// const res = paragraphs.map((paragraph) =>
+		// 	paragraph.split(sentencePattern).map((sentence) => <div>{sentence}</div>)
+		// );
+
+		const res = paragraphs
+			.map((paragraph) => paragraph.replace(sentencePattern, (match) => match + '{Enter}'))
+			.map((paragraph) => paragraph.split('{Enter}').map((sentence) => <div>{sentence}</div>));
+
+		setData({
+			str: value,
+			res,
+		});
+	};
+
+	return (
+		<>
+			<form onChange={handleForm}>
+				<hr />
+				<textarea value={data.str} name={'str'} style={{ resize: 'both', height: '20vh' }}></textarea>
+				<br />
+				<div style={{ display: 'flex' }}>
+					<div style={{ width: '80%' }}>{data.res}</div>
+				</div>
+			</form>
+		</>
+	);
 }
