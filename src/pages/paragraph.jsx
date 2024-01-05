@@ -86,6 +86,11 @@ export default function Paragraph() {
 
 	return (
 		<>
+			<div>
+				&nbsp;&nbsp;&nbsp;<kbd>shift</kbd>+<kbd>ctrl</kbd>+<kbd>v</kbd>&nbsp;
+				<br />
+				&nbsp; 서식없이 붙여넣기로 엑셀에 넣으면 줄바꿈대로 셀에 기입됩니다.
+			</div>
 			<form onChange={handleForm}>
 				<hr />
 				<textarea value={data.str} name={'str'} style={{ resize: 'both', height: '20vh' }}></textarea>
