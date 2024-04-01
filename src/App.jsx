@@ -8,16 +8,9 @@ import * as Pages from './pages';
 
 // prettier-ignore
 const routes = [
-  { path: "/solvook-utils", elementName: "Parsing", caption: "파싱" },
-  { path: "/solvook-utils/template", elementName: "TemplateA", caption: "템플릿 A" },
-  // { path: "/solvook-utils/tmp", elementName: "Tmp", caption: "TMP" },
-//   { path: "/solvook-utils/split", elementName: "Split", caption: "나누기" },
-  { path: "/solvook-utils/templateB", elementName: "TemplateB", caption: "템플릿 B" },
-  // { path: "/solvook-utils/saveSol", elementName: "saveSol", caption: "SaveSol" },
-  { path: "/solvook-utils/paragraph", elementName: "Paragraph", caption: ".|!|? 문장 자르기" },
-//   { path: "/solvook-utils/story-id", elementName: "StoryId", caption: "story id" },
-//   { path: "/solvook-utils/지문추출", elementName: "지문추출", caption: "지문추출" },
-  // { path: "/solvook-utils/문항수", elementName: "문항수", caption: "문항수" },
+  { path: "/solvook-utils/", elementName: "ExtractBody", caption: "Home" },
+  { path: "/solvook-utils/extractBody", elementName: "ExtractBody", caption: "지문추출" },
+  { path: "/solvook-utils/openJSON", elementName: "OpenJSON", caption: "JSON 파일 까보기" },
 ];
 
 function App() {
