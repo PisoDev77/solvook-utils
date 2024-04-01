@@ -8,8 +8,9 @@ import * as Pages from './pages';
 
 // prettier-ignore
 const routes = [
-  { path: "/solvook-utils/", elementName: "Home", caption: "Home" },
-  { path: "/solvook-utils/지문추출", elementName: "지문추출", caption: "지문추출" },
+  { path: "/solvook-utils/", elementName: "ExtractBody", caption: "Home" },
+  { path: "/solvook-utils/extractBody", elementName: "ExtractBody", caption: "지문추출" },
+  { path: "/solvook-utils/openJSON", elementName: "OpenJSON", caption: "JSON 파일 까보기" },
 ];
 
 function App() {

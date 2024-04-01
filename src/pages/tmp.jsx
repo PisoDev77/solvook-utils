@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
-export default function 지문추출() {
+import './ExtractBody.css';
+
+export default function ExtractBody() {
 	const [ta1, setTa1] = useState();
 	const [res1, setRes1] = useState([]);
 
@@ -28,22 +30,32 @@ export default function 지문추출() {
 			.split('{과}')
 			.filter((i) => i.trim() !== '')
 			.map((i) => i.split('{페이지}').map((j) => j.split('//')));
-		const arr = ['strategy 01', 'Challenge 2'];
-		const arr2 = ['C 01번-02번', '07번-11번', '13번-17번', '18번-22번', '17번-20번'];
+		const arr = ['기출 01', '적용 01'];
+		const type = ['OVERALL 05번', 'Review Test Reading 1번', 'Review Test Reading 2번'];
+		let bool = false;
+		let cnt = 163;
 		const res = tmp.map((i, idx) => {
+			bool = !bool;
+			const len = i.length;
 			const am = i.map((j, idx2) => (
 				<tr>
-					{/* <td>{'Progress Test'}</td> */}
-					{/* <td>{'Progress Test ' + (idx + 0) + ''}</td> */}
-					<td>{'' + (idx + 3 + '').padStart(2, '0') + '과'}</td>
-					{/* <td>{'유형 ' + (idx + 1 + '').padStart(2, '0') + ''}</td> */}
-					{/* <td>{'모의고사 ' + (idx + 1 + '').padStart(2, '0') + '회'}</td> */}
-					{/* <td>{'Read & Apply ' + (idx2 + 1 + '').padStart(2, '0') + ''}</td> */}
-					{/* <td>{idx2 === 0 ? '유형 예제 1' : 'Apply and Practice ' + idx2 + '번'}</td> */}
-					<td>{idx2 + 1 + '번'}</td>
-					{/* <td>{arr2[idx2]}</td> */}
-					{/* <td>{`Reading ${(idx2 + 1 + '').padStart(2, '0')}`}</td> */}
-					{/* <td style={{}}>{j[0]}</td> */}
+					{/* <td>Chapter 2</td> */}
+					{/* <td>{'' + (idx + 9 + '').padStart(2, '0') + '강'}</td> */}
+					<td>{'Dictation ' + (idx + 16 + '').padStart(1, '0') + '회'}</td>
+					{/* <td>{'' + (idx + 9 + '').padStart(2, '0') + '회'}</td> */}
+					{/* <td>{'Unit ' + (parseInt(idx / type.length) + 1 + '').padStart(2, '0') + ''}</td> */}
+					{/* <td>{'' + (parseInt(idx / 2) + 8 + '').padStart(2, '0') + '강'}</td> */}
+					{/* <td>{idx2 === 0 ? 'Practice A' : 'Actual ' + (idx2 - 1 + '').padStart(1, '0') + '번'}</td> */}
+					{/* <td>
+						{idx2 < arr.length
+							? arr[idx2]
+							: 'Read & Apply ' + (idx2 - arr.length + 1 + '').padStart(2, '0') + ''}
+					</td> */}
+					{/* <td>{'' + (cnt++ + '').padStart(2, '0') + '번'}</td> */}
+					<td>{'' + (idx2 + 1 + '').padStart(2, '0') + '번'}</td>
+					{/* <td>{type[idx2]}</td> */}
+					{/* <td>{'Read & Apply ' + (idx2 + 1 + '').padStart(1, '0') + '번'}</td> */}
+					{/* <td>{`${idx2 === 0 ? '기출 01' : 'Read & Apply ' + idx2 + '번'}`}</td> */}
 					<td style={{}}>{j[0].replace(/\n/, ' ')}</td>
 					<td style={{}}>{j[1] ? metadata1(j[1]) : ''}</td>
 				</tr>

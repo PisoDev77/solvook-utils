@@ -1,3 +1,4 @@
-import 지문추출 from './지문추출';
+import ExtractBody from './ExtractBody';
+import OpenJSON from './OpenJSON';
 
-export { 지문추출 };
+export { ExtractBody, OpenJSON };
