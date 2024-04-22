@@ -43,9 +43,22 @@ export default function OpenJSON() {
 		);
 	};
 
+	const renderDepth = (data) => {
+		if (!data) return null;
+
+		const depth1 = data.curriMetaMap[0];
+		const depth2 = data.curriMetaMap[1];
+		const depth3 = data.curriMetaMap[2];
+
+		console.log(depth1);
+		console.log(depth2);
+		console.log(depth3);
+	};
+
 	return (
 		<div>
 			<input type='file' onChange={handleFileUpload} />
+			<div>{renderDepth(parseJSONContent())}</div>
 			<div>
 				<h2>Content from Uploaded JSON:</h2>
 				{renderJSONContent(parseJSONContent())}
