@@ -12,6 +12,7 @@ const routes = [
   { path: "/solvook-utils/extractBody", elementName: "ExtractBody", caption: "지문추출" },
   { path: "/solvook-utils/openJSON", elementName: "OpenJSON", caption: "JSON 파일 까보기" },
   { path: "/solvook-utils/excel", elementName: "Excel", caption: "Excel" },
+  { path: "/solvook-utils/copycbs", elementName: "CopyCBS", caption: "복사하기" },
   { path: "/solvook-utils/autofy", elementName: "Autofy", caption: "자동화" },
 ];
 

@@ -1,0 +1,21 @@
+.CBS {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	font-size: xx-large;
+	gap: 1rem;
+}
+
+.CBS > textarea {
+	font-size: large;
+}
+
+textarea {
+	padding: 1rem;
+	resize: vertical;
+}
+
+.CBS > .copy-text {
+	padding: 1rem;
+	border: 2px solid var(--main-color);
+}
