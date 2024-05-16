@@ -8,6 +8,11 @@ import Copy from '../lib/Copys';
 export default function CopyCBS() {
 	const [ta, setTa] = useState('');
 	const [res, setRes] = useState('');
+	const [selectedOption, setSelectedOption] = useState('option1');
+
+	const handleOptionChange = (e) => {
+		setSelectedOption(e.target.value);
+	};
 
 	const handleChange = (e) => {
 		const str = e.target.value;
@@ -23,9 +28,26 @@ export default function CopyCBS() {
 			position: 'bottom-center',
 		});
 	};
+	const optionsInfo = [
+		{ caption: '기본', value: 'option1' },
+		{ caption: '들여쓰기', value: 'option2' },
+	];
 
 	return (
 		<section className='CBS'>
+			<div className='options'>
+				{optionsInfo.map(({ caption, value }) => (
+					<label>
+						<input
+							type='radio'
+							value={value}
+							checked={selectedOption === value}
+							onChange={handleOptionChange}
+						/>
+						{caption}
+					</label>
+				))}
+			</div>
 			<label htmlFor=''>복사하고 싶은 텍스트</label>
 			<textarea value={ta} rows={10} onChange={handleChange}></textarea>
 			<div className='copy-text' onClick={handleClick}>

@@ -19,3 +19,8 @@ textarea {
 	padding: 1rem;
 	border: 2px solid var(--main-color);
 }
+
+.CBS > .options {
+	padding: 1rem;
+	border: 2px solid var(--main-color);
+}

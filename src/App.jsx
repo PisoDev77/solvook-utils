@@ -14,6 +14,7 @@ const routes = [
   { path: "/solvook-utils/excel", elementName: "Excel", caption: "Excel" },
   { path: "/solvook-utils/copycbs", elementName: "CopyCBS", caption: "복사하기" },
   { path: "/solvook-utils/autofy", elementName: "Autofy", caption: "자동화" },
+  { path: "/solvook-utils/timer", elementName: "Timer", caption: "Google Time Timer" },
 ];
 
 function App() {
