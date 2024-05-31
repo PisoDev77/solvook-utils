@@ -1,0 +1,54 @@
+.CBS {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	font-size: xx-large;
+	gap: 1rem;
+}
+
+.CBS > textarea {
+	font-size: large;
+}
+textarea {
+	padding: 1rem;
+	resize: vertical;
+}
+
+.CBS > .copy-text {
+	padding: 1rem;
+	border: 2px solid var(--main-color);
+}
+
+.CBS > .options {
+	padding: 1rem;
+	border: 2px solid var(--main-color);
+}
+
+#CBS-tabs {
+	width: 100%;
+	border-bottom: solid 1px var(--main-color);
+	border-top: solid 1px var(--main-color);
+}
+#CBS-tabs li.current {
+	border: solid 2px var(--main-color);
+	border-radius: 0.5rem;
+}
+
+#CBS-tabs li {
+	padding: 0.25rem 0.5rem;
+}
+
+form.quote-form {
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+form.quote-form > textarea {
+	resize: none;
+	padding: 1rem;
+	min-height: 10rem;
+	border: 2px solid var(--main-color);
+	font-size: 1.5rem;
+	font-weight: 600;
+}

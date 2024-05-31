@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import './CopyCBS.css';
-
 import { toast } from 'react-toastify';
+import '../../pages/CBS.css';
 
-import Copy from '../lib/Copys';
+import Copy from '../../lib/Copys';
 
 export default function CopyCBS() {
 	const [ta, setTa] = useState('');
@@ -33,21 +32,40 @@ export default function CopyCBS() {
 		{ caption: '들여쓰기', value: 'option2' },
 	];
 
+	const option1U = (
+		<div className='options'>
+			{optionsInfo.map(({ caption, value }) => (
+				<label>
+					<input
+						type='radio'
+						value={value}
+						checked={selectedOption === value}
+						onChange={handleOptionChange}
+					/>
+					{caption}
+				</label>
+			))}
+		</div>
+	);
+	const option2U = (
+		<div className='options'>
+			{optionsInfo.map(({ caption, value }) => (
+				<label>
+					<input
+						type='radio'
+						value={value}
+						checked={selectedOption === value}
+						onChange={handleOptionChange}
+					/>
+					{caption}
+				</label>
+			))}
+		</div>
+	);
 	return (
 		<section className='CBS'>
-			<div className='options'>
-				{optionsInfo.map(({ caption, value }) => (
-					<label>
-						<input
-							type='radio'
-							value={value}
-							checked={selectedOption === value}
-							onChange={handleOptionChange}
-						/>
-						{caption}
-					</label>
-				))}
-			</div>
+			{selectedOption === 'option2' ? option2U : option1U}
+
 			<label htmlFor=''>복사하고 싶은 텍스트</label>
 			<textarea value={ta} rows={10} onChange={handleChange}></textarea>
 			<div className='copy-text' onClick={handleClick}>
