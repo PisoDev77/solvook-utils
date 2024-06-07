@@ -52,3 +52,32 @@ form.quote-form > textarea {
 	font-size: 1.5rem;
 	font-weight: 600;
 }
+
+.CBS-table {
+	padding: 1rem;
+}
+.CBS-table-meta {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+}
+.CBS-table-meta > textarea {
+	resize: none;
+	margin-top: 1rem;
+	height: 1%;
+	flex-grow: 1;
+}
+
+.CBS-table-meta input[type='number'] {
+	padding: 0.5rem 0.5rem;
+}
+
+.CBS-table table {
+	padding: 1rem;
+	width: 100%;
+}
+.CBS-table table tr,
+.CBS-table table td {
+	padding: 1rem;
+	border: 1px solid var(--main-color);
+}

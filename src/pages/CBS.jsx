@@ -3,13 +3,15 @@ import './CBS.css';
 
 import CopyCBS from '../components/CBS/copy';
 import QuoteCBS from '../components/CBS/quote';
+import TableCBS from '../components/CBS/table';
 
 export default function CBS() {
 	const tabs = {
-		copy: { caption: 'CBS 복사', element: <CopyCBS /> },
-		quote: { caption: '따옴표 변환', element: <QuoteCBS /> },
+		copy: { caption: 'CBS 텍스트 복사', element: <CopyCBS /> },
+		quote: { caption: 'CBS 표 복사', element: <TableCBS /> },
+		table: { caption: '따옴표 변환', element: <QuoteCBS /> },
 	};
-	const [tab, setTab] = useState('quote');
+	const [tab, setTab] = useState('copy');
 
 	const handleTabs = (e) => {
 		setTab(e.target.dataset.tab);

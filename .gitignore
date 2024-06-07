@@ -41,3 +41,6 @@ solvook-utils.wiki
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+play.js
+play.html

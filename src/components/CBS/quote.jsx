@@ -21,7 +21,7 @@ export default function QuoteCBS() {
 	return (
 		<form className='quote-form'>
 			<textarea name='original' value={originalStr} onChange={handleStr}></textarea>
-			<textarea name='convertrf' value={convertedStr} disabled></textarea>
+			<textarea name='converted' value={convertedStr} disabled></textarea>
 		</form>
 	);
 }
