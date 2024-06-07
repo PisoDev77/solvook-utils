@@ -5,4 +5,8 @@ import Autofy from './Autofy';
 import CBS from './CBS';
 import Timer from './Timer';
 
-export { ExtractBody, OpenJSON, Excel, Autofy, CBS, Timer };
+function Home() {
+	return <h1>Welcome To Helper Page!!</h1>;
+}
+
+export { Home, ExtractBody, OpenJSON, Excel, Autofy, CBS, Timer };
