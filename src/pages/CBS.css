@@ -81,3 +81,29 @@ form.quote-form > textarea {
 	padding: 1rem;
 	border: 1px solid var(--main-color);
 }
+
+.CBS-context {
+	display: flex;
+	flex-direction: column-reverse;
+
+	gap: 1rem;
+	padding: 1rem;
+}
+
+.CBS-context-metas {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+	padding: 1rem;
+	border: 2px solid var(--main-color);
+	border-radius: 1rem;
+}
+
+.CBS-context-metas label {
+	display: inline-block;
+	min-width: 100px;
+}
+
+.CBS-context-metas input {
+	width: 100%;
+}

@@ -96,6 +96,9 @@ export default function TableCBS() {
 				</div>
 				<textarea name='' id='' onChange={handleTa} value={ta}></textarea>
 			</section>
+			<section className='CBS-table-meta'>
+				<button onClick={handleCopy}>복사하기</button>
+			</section>
 			<figure>
 				<table>
 					<tr>
@@ -113,9 +116,7 @@ export default function TableCBS() {
 				</table>
 			</figure>
 
-			<section className='copy-table' onClick={handleCopy}>
-				{table ?? '메타 정보들을 변경하세요'}
-			</section>
+			<section className='copy-table'>{table ?? '메타 정보들을 변경하세요'}</section>
 		</article>
 	);
 }

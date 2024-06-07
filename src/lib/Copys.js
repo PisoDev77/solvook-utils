@@ -26,7 +26,10 @@ export default class Copy {
 	 */
 	copyText() {
 		this.clipboard = new ClipboardJS('.' + this.copyClsname, {
-			text: () => this.str,
+			text: (trigger) => {
+				console.log(this.str, trigger);
+				return this.str;
+			},
 		});
 		this.clipboard.on('success', () => {
 			this.clipboard.destroy();
