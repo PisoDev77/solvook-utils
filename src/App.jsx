@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -19,7 +19,7 @@ const routes = [
 
 function App() {
 	return (
-		<BrowserRouter basename='/solvook-utils'>
+		<HashRouter>
 			<RoutesNav routes={routes} />
 			<Routes>
 				{routes.map(({ path, elementName }) => {
@@ -28,7 +28,7 @@ function App() {
 				})}
 			</Routes>
 			<ToastContainer autoClose={2000} />
-		</BrowserRouter>
+		</HashRouter>
 	);
 }
 
