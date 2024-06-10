@@ -15,6 +15,7 @@
 
 	--main-color: rgba(255, 255, 255, 0.87);
 	--main-bgcolor: #242424;
+	--sub-color: rgba(255, 255, 255, 0.199);
 }
 @media (max-width: 512px) {
 	body {
@@ -52,13 +53,13 @@ h1 {
 
 a,
 button {
-	color: rgba(255, 255, 255, 0.87);
-	background-color: #242424;
+	color: var(--main-color);
+	background-color: var(--main-bgcolor);
 
 	font-weight: 700;
 	text-decoration: none;
 
-	border: solid black 2px;
+	border: solid var(--main-color) 2px;
 	border-color: inherit;
 	padding: 8px;
 	border-radius: 1rem;
@@ -77,14 +78,7 @@ a.current {
 		background-color: #ffffff;
 		--main-color: #213547;
 		--main-bgcolor: #ffffff;
-	}
-	button {
-		background-color: #f9f9f9;
-	}
-	a,
-	button {
-		color: #213547;
-		background-color: #ffffff;
+		--sub-color: rgba(255, 255, 255, 0.658);
 	}
 	li.current,
 	a.current {

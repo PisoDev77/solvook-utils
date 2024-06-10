@@ -24,18 +24,20 @@ textarea {
 	border: 2px solid var(--main-color);
 }
 
-#CBS-tabs {
-	width: 100%;
+#CBS-tabs > ul {
 	border-bottom: solid 1px var(--main-color);
 	border-top: solid 1px var(--main-color);
+	padding: 0;
 }
 #CBS-tabs li.current {
-	border: solid 2px var(--main-color);
-	border-radius: 0.5rem;
+	border-left: solid 2px var(--main-color);
+	border-right: solid 2px var(--main-color);
+	background-color: var(--sub-color);
+	font-weight: 900;
 }
 
 #CBS-tabs li {
-	padding: 0.25rem 0.5rem;
+	padding: 0.5rem 1rem;
 }
 
 form.quote-form {
@@ -60,15 +62,16 @@ form.quote-form > textarea {
 	display: flex;
 	gap: 1rem;
 	align-items: center;
+	padding: 1rem;
 }
 .CBS-table-meta > textarea {
 	resize: none;
 	margin-top: 1rem;
-	height: 1%;
 	flex-grow: 1;
 }
 
-.CBS-table-meta input[type='number'] {
+.CBS-table-meta input[type='number'],
+.CBS-table-meta select {
 	padding: 0.5rem 0.5rem;
 }
 
@@ -106,4 +109,10 @@ form.quote-form > textarea {
 
 .CBS-context-metas input {
 	width: 100%;
+}
+
+.CBS-context-resSection {
+	padding: 2rem 1rem;
+	background-color: var(--sub-color);
+	border-radius: 1rem;
 }

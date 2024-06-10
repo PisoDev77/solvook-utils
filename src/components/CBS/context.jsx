@@ -26,9 +26,8 @@ export default function ContextCBS() {
 
 	const handleClick = (e) => {
 		const copyStr = metas
-			.map(
-				({ fontSize, color, str }) =>
-					`<span style="font-size: ${fontSize / 16}rem; color: ${color}">${str}</span>`
+			.map(({ fontSize, color, str }) =>
+				str.trim() !== '' ? `<span style="font-size: ${fontSize / 16}rem; color: ${color}">${str}</span>` : ''
 			)
 			.join('');
 
@@ -51,16 +50,16 @@ export default function ContextCBS() {
 
 	return (
 		<section className='CBS-context'>
-			<section>{res ?? ''}</section>
+			<section className='CBS-context-resSection'>{res ?? ''}</section>
 			<section className='CBS-context-metas'>
-				<button type='button' onClick={addMeta}>
-					+
+				<button type='button' onClick={removeMeta}>
+					-
 				</button>
 				<button type='button' className='CBS-context-res' onClick={handleClick}>
 					복사하기
 				</button>
-				<button type='button' onClick={removeMeta}>
-					-
+				<button type='button' onClick={addMeta}>
+					+
 				</button>
 			</section>
 

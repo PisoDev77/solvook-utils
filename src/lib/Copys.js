@@ -26,10 +26,7 @@ export default class Copy {
 	 */
 	copyText() {
 		this.clipboard = new ClipboardJS('.' + this.copyClsname, {
-			text: (trigger) => {
-				console.log(this.str, trigger);
-				return this.str;
-			},
+			text: (trigger) => this.str,
 		});
 		this.clipboard.on('success', () => {
 			this.clipboard.destroy();
@@ -50,8 +47,12 @@ export default class Copy {
 	}
 
 	copyInnerHTML() {
+		console.log('aaa', this.copyClsname);
 		this.clipboard = new ClipboardJS('.' + this.copyClsname, {
-			text: (trigger) => '{"ctype":"kve-clip-block","html":"' + trigger.innerHTML.replaceAll('"', '\\"') + '"}',
+			text: (trigger) => {
+				console.log(trigger);
+				return '{"ctype":"kve-clip-block","html":"' + trigger.innerHTML.replaceAll('"', '\\"') + '"}';
+			},
 		});
 		this.clipboard.on('success', () => {
 			this.clipboard.destroy();

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import '../../pages/CBS.css';
 
@@ -6,14 +6,17 @@ import Copy from '../../lib/Copys';
 
 export default function TableCBS() {
 	const [fontSize, setFontSize] = useState(16);
+	const [fontFamily, setFontFamily] = useState(null);
 	const [ta, setTa] = useState('');
 	const [cols, setCols] = useState([]);
 	const [table, setTable] = useState(null);
 
+	const ref = useRef(null);
 	const renderTable = ({ tableDatas, fontSize = 16, colWids }) => {
 		const tmp = colWids ?? new Array(tableDatas[0].length).fill(+`${100 / tableDatas[0].length}`);
 		setCols(tmp);
 
+		console.log(fontFamily);
 		setTable(
 			<div
 				data-editable='false'
@@ -24,6 +27,7 @@ export default function TableCBS() {
 					verticalAlign: 'middle',
 					maxWidth: '100%',
 					fontSize: fontSize / 16 + 'rem',
+					fontFamily: fontFamily ?? '',
 				}}
 			>
 				<figure>
@@ -65,8 +69,17 @@ export default function TableCBS() {
 		renderTable({ tableDatas: ta.split('\n').map((cols) => cols.split('\t')), fontSize, colWids: cols });
 	};
 
+	const handleFont = (e) => {
+		const fontFamily = e.target.value;
+		setFontFamily(fontFamily);
+		console.log(fontFamily);
+	};
+
 	const handleCopy = (e) => {
-		new Copy('', e.currentTarget.className).copyInnerHTML();
+		new Copy(
+			'{"ctype":"kve-clip-block","html":"' + ref.current.innerHTML.replaceAll('"', '\\"') + '"}',
+			'CBS-table-res'
+		).copyText();
 		toast.success("'복사를 완료했어요. CBS로 가서 확인해보세요.'", {
 			position: 'bottom-center',
 		});
@@ -90,14 +103,21 @@ export default function TableCBS() {
 	return (
 		<article className='CBS-table'>
 			<section className='CBS-table-meta'>
-				<div style={{ display: 'flex', flexDirection: 'column' }}>
+				<div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
 					<label htmlFor='fontSize'>폰트크기</label>
 					<input type='number' name='fontSize' value={fontSize} onChange={handleFontSize} />
+					<label htmlFor='fontSize'>폰트</label>
+					<select name='font' value={fontFamily} onChange={handleFont}>
+						<option value={null}>폰트를 지정하세요. 안해도 되고</option>
+						<option value={'Verdana, sans-serif'}>Verdana</option>
+					</select>
 				</div>
-				<textarea name='' id='' onChange={handleTa} value={ta}></textarea>
+				<textarea name='' id='' rows={6} onChange={handleTa} value={ta}></textarea>
 			</section>
 			<section className='CBS-table-meta'>
-				<button onClick={handleCopy}>복사하기</button>
+				<button onClick={handleCopy} className='CBS-table-res'>
+					복사하기
+				</button>
 			</section>
 			<figure>
 				<table>
@@ -116,7 +136,9 @@ export default function TableCBS() {
 				</table>
 			</figure>
 
-			<section className='copy-table'>{table ?? '메타 정보들을 변경하세요'}</section>
+			<section className='copy-table' ref={ref}>
+				{table ?? '메타 정보들을 변경하세요'}
+			</section>
 		</article>
 	);
 }
