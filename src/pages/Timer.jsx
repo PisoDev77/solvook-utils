@@ -9,9 +9,9 @@ const Timer = () => {
 	const [sec, setSec] = useState(0);
 
 	const [isRunning, setIsRunning] = useState(false);
-	const [isCompleted, setIsCompleted] = useState(false);
 
 	useEffect(() => {
+		requestNotificationPermission();
 		let interval;
 		if (isRunning) {
 			interval = setInterval(() => {
@@ -19,12 +19,10 @@ const Timer = () => {
 					if (prevTime <= 1) {
 						clearInterval(interval);
 						setIsRunning(false);
-						if (!isCompleted) {
-							toast.success('Timer 끝', {
-								position: 'bottom-center',
-							});
-							setIsCompleted(true);
-						}
+						showNotification('이벤트 완료', {
+							body: '이벤트가 성공적으로 완료되었습니다.',
+							// icon: 'path/to/icon.png', // 알림 아이콘 (선택 사항)
+						});
 					}
 					return prevTime > 0 ? prevTime - 1 : 0;
 				});
@@ -34,7 +32,27 @@ const Timer = () => {
 		}
 
 		return () => clearInterval(interval);
-	}, [isRunning, isCompleted]);
+	}, [isRunning]);
+
+	function requestNotificationPermission() {
+		if (!('Notification' in window)) {
+			// console.log('이 브라우저는 데스크탑 알림을 지원하지 않습니다.');
+		} else if (Notification.permission === 'granted') {
+			// console.log('알림 권한이 이미 허용되었습니다.');
+		} else if (Notification.permission !== 'denied') {
+			Notification.requestPermission().then((permission) => {
+				if (permission === 'granted') {
+					// console.log('알림 권한이 허용되었습니다.');
+				}
+			});
+		}
+	}
+	function showNotification(title, options) {
+		console.log(Notification.permission === 'granted');
+		if (Notification.permission === 'granted') {
+			new Notification(title, options);
+		}
+	}
 
 	const handleMaxTime = (e) => {
 		const newMax = +e.target.value;
