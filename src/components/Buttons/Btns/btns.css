@@ -1,6 +1,0 @@
-.btn-btns {
-  display: flex;
-}
-.btn-btns > button {
-  flex-grow: 1;
-}
