@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '../../pages/CBS.css';
+import '../../styles/CBS.css';
 
 export default function QuoteCBS() {
 	const [originalStr, setOriginalStr] = useState('');

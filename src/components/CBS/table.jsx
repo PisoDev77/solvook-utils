@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { toast } from 'react-toastify';
-import '../../pages/CBS.css';
+import '../../styles/CBS.css';
 
 import Copy from '../../lib/Copys';
 

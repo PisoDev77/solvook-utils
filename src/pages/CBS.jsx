@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './CBS.css';
+import '../styles/CBS.css';
 
 import CopyCBS from '../components/CBS/copy';
 import QuoteCBS from '../components/CBS/quote';

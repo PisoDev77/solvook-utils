@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import './Timer.css';
+import '../styles/Timer.css';
 
 const Timer = () => {
 	const [time, setTime] = useState(0);

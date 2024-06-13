@@ -71,69 +71,15 @@ button {
 		border: none;
 	}
 }
-kbd {
-	color: var(--main-color);
-}
-kbd.key {
-	border-style: solid;
-	border-width: 1px;
-	border-color: var(--main-color);
-	border-radius: 4px;
-	padding: 4px 8px;
-}
-
-.warns {
-	color: rgb(168, 0, 0);
-	text-shadow: -0.5px 0 var(--main-color), 0 0.5px var(--main-color), 0.5px 0 var(--main-color),
-		0 -0.5px var(--main-color);
-}
 
 button {
 	filter: invert(0);
 	transition: filter 0.5s ease-in-out;
-
 	border-radius: 0.5rem;
 }
 
 button:hover {
 	filter: invert(1);
-}
-
-.regular-box {
-	border-style: solid;
-	border-width: 2px;
-	border-color: var(--main-color);
-	border-radius: 1rem;
-}
-
-.normal-parsing {
-	display: flex;
-	gap: 8px;
-}
-.normal-parsing > div {
-	padding: 4px;
-	border: solid 1px var(--main-color);
-	max-width: 600px;
-}
-table {
-	table-layout: fixed;
-}
-
-col:first-child {
-	width: 21px;
-}
-
-.temp {
-	display: flex;
-	gap: 8px;
-	padding: 16px;
-}
-
-.essay-box > p {
-	white-space: pre-line;
-}
-.answer-box {
-	white-space: pre-line;
 }
 
 .Toastify__toast--success {
