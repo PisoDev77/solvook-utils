@@ -1,9 +1,9 @@
 import { useState } from 'react';
+import { darkMode as DarkIcon, lightMode as LightIcon } from '../SVG/Darkmode';
 
 export default function Darkmode() {
 	const [scheme, setScheme] = useState(window.matchMedia('(prefers-color-scheme: dark)').matches && 'dark');
-
-	const handleDarkmode = (e) => {
+	const handleDarkmode = () => {
 		const root = document.documentElement;
 		const currentScheme = scheme === 'dark' ? 'light' : 'dark';
 		setScheme(currentScheme);
@@ -24,5 +24,5 @@ export default function Darkmode() {
 			root.style.setProperty('color-scheme', 'light');
 		}
 	};
-	return <button onClick={handleDarkmode}>Dark</button>;
+	return <button onClick={handleDarkmode}>{scheme === 'dark' ? <DarkIcon /> : <LightIcon />}</button>;
 }
