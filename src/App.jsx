@@ -9,11 +9,8 @@ import Header from './components/Header';
 // prettier-ignore
 const routes = [
   { path: "", elementName: "Home", caption: "Home" },
-  { path: "extractBody", elementName: "ExtractBody", caption: "지문추출" },
   { path: "openJSON", elementName: "OpenJSON", caption: "JSON 파일 까보기" },
-  { path: "excel", elementName: "Excel", caption: "Excel" },
   { path: "cbs", elementName: "CBS", caption: "CBS" },
-  { path: "autofy", elementName: "Autofy", caption: "자동화" },
   { path: "timer", elementName: "Timer", caption: "Google Time Timer" },
 ];
 
