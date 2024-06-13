@@ -1,3 +1,37 @@
-.lib-ui {
-	background-color: white;
+.timer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1.25rem;
+}
+.time-input input {
+	border: none;
+	background-color: var(--main-bgcolor);
+	border-bottom: solid var(--main-color);
+	width: 4em;
+	font-size: 1.1rem;
+	text-align: right;
+	padding: 0.5rem 0;
+}
+.time-input {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+}
+.timer-text {
+	font: 1rem sans-serif;
+	fill: var(--main-color);
+}
+.timer-circle {
+	padding: 1rem;
+	fill: none;
+	min-width: 200px;
+	width: 35%;
+}
+.timer-circle .progress {
+	stroke: rgba(255, 0, 0, 0.849);
+	transition: stroke-dashoffset 0.35s;
+	transform: rotate(-90deg);
+	transform-origin: 50% 50%;
 }

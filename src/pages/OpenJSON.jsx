@@ -56,13 +56,13 @@ export default function OpenJSON() {
 	};
 
 	return (
-		<div>
+		<article>
 			<input type='file' onChange={handleFileUpload} />
 			<div>{renderDepth(parseJSONContent())}</div>
 			<div>
 				<h2>Content from Uploaded JSON:</h2>
 				{renderJSONContent(parseJSONContent())}
 			</div>
-		</div>
+		</article>
 	);
 }

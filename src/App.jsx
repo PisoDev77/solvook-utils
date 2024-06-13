@@ -1,10 +1,10 @@
-import { HashRouter, BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import RoutesNav from './components/Routes';
-
 import * as Pages from './pages';
+import Header from './components/Header';
 
 // prettier-ignore
 const routes = [
@@ -20,14 +20,14 @@ const routes = [
 function App() {
 	return (
 		<HashRouter>
-			<RoutesNav routes={routes} />
+			<Header routes={routes} />
 			<Routes>
-				{routes.map(({ path, elementName }) => {
+				{routes.map(({ path, elementName }, idx) => {
 					const $Page = Pages[elementName];
-					return <Route path={path} element={<$Page />} />;
+					return <Route path={path} element={<$Page />} key={'route-' + idx} />;
 				})}
 			</Routes>
-			<ToastContainer autoClose={2000} />
+			<ToastContainer autoClose={1500} />
 		</HashRouter>
 	);
 }

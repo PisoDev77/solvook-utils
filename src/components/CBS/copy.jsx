@@ -35,7 +35,7 @@ export default function CopyCBS() {
 	const option1U = (
 		<div className='options'>
 			{optionsInfo.map(({ caption, value }) => (
-				<label>
+				<label key={caption}>
 					<input
 						type='radio'
 						value={value}
@@ -50,7 +50,7 @@ export default function CopyCBS() {
 	const option2U = (
 		<div className='options'>
 			{optionsInfo.map(({ caption, value }) => (
-				<label>
+				<label key={caption}>
 					<input
 						type='radio'
 						value={value}

@@ -15,8 +15,6 @@ export default function TableCBS() {
 	const renderTable = ({ tableDatas, fontSize = 16, colWids }) => {
 		const tmp = colWids ?? new Array(tableDatas[0].length).fill(+`${100 / tableDatas[0].length}`);
 		setCols(tmp);
-
-		console.log(fontFamily);
 		setTable(
 			<div
 				data-editable='false'
@@ -72,7 +70,6 @@ export default function TableCBS() {
 	const handleFont = (e) => {
 		const fontFamily = e.target.value;
 		setFontFamily(fontFamily);
-		console.log(fontFamily);
 	};
 
 	const handleCopy = (e) => {
@@ -101,14 +98,14 @@ export default function TableCBS() {
 	};
 
 	return (
-		<article className='CBS-table'>
+		<section className='CBS-table'>
 			<section className='CBS-table-meta'>
 				<div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
 					<label htmlFor='fontSize'>폰트크기</label>
 					<input type='number' name='fontSize' value={fontSize} onChange={handleFontSize} />
 					<label htmlFor='fontSize'>폰트</label>
 					<select name='font' value={fontFamily} onChange={handleFont}>
-						<option value={null}>폰트를 지정하세요. 안해도 되고</option>
+						<option value={undefined}>폰트를 지정하세요. 안해도 되고</option>
 						<option value={'Verdana, sans-serif'}>Verdana</option>
 					</select>
 				</div>
@@ -139,6 +136,6 @@ export default function TableCBS() {
 			<section className='copy-table' ref={ref}>
 				{table ?? '메타 정보들을 변경하세요'}
 			</section>
-		</article>
+		</section>
 	);
 }

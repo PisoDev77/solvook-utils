@@ -28,6 +28,8 @@ textarea {
 	border-bottom: solid 1px var(--main-color);
 	border-top: solid 1px var(--main-color);
 	padding: 0;
+	display: flex;
+	list-style-type: none;
 }
 #CBS-tabs li.current {
 	border-left: solid 2px var(--main-color);
@@ -38,6 +40,9 @@ textarea {
 
 #CBS-tabs li {
 	padding: 0.5rem 1rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 form.quote-form {

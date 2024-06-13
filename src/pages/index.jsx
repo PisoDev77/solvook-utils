@@ -6,7 +6,11 @@ import CBS from './CBS';
 import Timer from './Timer';
 
 function Home() {
-	return <h1>Welcome To Helper Page!!</h1>;
+	return (
+		<article>
+			<h1>Welcome To Helper Page!!</h1>
+		</article>
+	);
 }
 
 export { Home, ExtractBody, OpenJSON, Excel, Autofy, CBS, Timer };

@@ -1,14 +1,9 @@
-import { Link, useLocation } from 'react-router-dom';
-
-import Popup from './Popup';
-import { LinkPopup, QuestionPopup, CharsPopup } from './Popup/Popup.stories';
 import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function RoutesNav({ routes }) {
 	const location = useLocation();
-	const [scheme, setScheme] = useState(
-		getComputedStyle(document.documentElement).getPropertyValue('color-scheme').trim()
-	);
+	const [scheme, setScheme] = useState(window.matchMedia('(prefers-color-scheme: dark)').matches && 'dark');
 
 	const handleDarkmode = (e) => {
 		const root = document.documentElement;
@@ -38,7 +33,7 @@ export default function RoutesNav({ routes }) {
 				{routes.map(({ path, caption }) => (
 					<li key={path}>
 						{/* prettier-ignore */}
-						<Link className={path === location.pathname ? "current" : ""} to={path}>
+						<Link className={'/' + path === location.pathname ? "current" : ""} to={path}>
               { caption }
             </Link>
 					</li>
