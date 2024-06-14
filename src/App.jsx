@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import * as Pages from './pages';
 import Header from './components/Header';
+import AMF from './components/SVG/AMF';
 
 // prettier-ignore
 const routes = [
@@ -27,6 +28,9 @@ function App() {
 				<Route path='*' element={<Page404 />} />
 			</Routes>
 			<ToastContainer autoClose={1500} />
+			<footer className='main-footer'>
+				<AMF />
+			</footer>
 		</HashRouter>
 	);
 }

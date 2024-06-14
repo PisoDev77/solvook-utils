@@ -87,6 +87,22 @@ button:hover {
 	color: var(--main-color);
 }
 
+article {
+	opacity: 0; /* 기본 상태에서 article을 보이지 않게 설정 */
+	animation: slideDown 1s ease forwards; /* 애니메이션 적용 */
+}
+
+footer.main-footer {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	color: white;
+	font-size: 18px;
+	animation: move 500s infinite;
+	padding: 0;
+	margin: 0;
+}
+
 /* animation */
 @keyframes slideDown {
 	from {
@@ -98,8 +114,49 @@ button:hover {
 		transform: translateY(0);
 	}
 }
-
-article {
-	opacity: 0; /* 기본 상태에서 article을 보이지 않게 설정 */
-	animation: slideDown 1s ease forwards; /* 애니메이션 적용 */
+@keyframes move {
+	0% {
+		right: 0;
+		bottom: 0;
+	}
+	10% {
+		right: 20%;
+		bottom: 2%;
+	}
+	20% {
+		right: 40%;
+		bottom: 1%;
+	}
+	30% {
+		right: 60%;
+		bottom: 0;
+	}
+	40% {
+		right: 80%;
+		bottom: 1%;
+	}
+	50% {
+		right: 100%;
+		bottom: 2%;
+	}
+	60% {
+		right: 80%;
+		bottom: 1%;
+	}
+	70% {
+		right: 60%;
+		bottom: 0;
+	}
+	80% {
+		right: 40%;
+		bottom: 1%;
+	}
+	90% {
+		right: 20%;
+		bottom: 2%;
+	}
+	100% {
+		right: 0;
+		bottom: 0;
+	}
 }
