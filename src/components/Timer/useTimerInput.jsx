@@ -28,5 +28,5 @@ export default function useTimerInput({ setTime }) {
 		}
 	};
 
-	return { maxTime, setMaxTime, min, handleMin, sec, handleSec, handleMaxTime };
+	return { maxTime, setMaxTime, min, sec, setMin, setSec, handleMin, handleSec, handleMaxTime };
 }

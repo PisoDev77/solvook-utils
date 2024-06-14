@@ -6,7 +6,8 @@ import Copy from '../../lib/Copys';
 
 export default function ContextCBS() {
 	const [res, setRes] = useState(null);
-	const [metas, setMetas] = useState([{ fontSize: 16, color: '#000000', str: '' }]);
+
+	const [metas, setMetas] = useState([{ fontSize: 16, color: '#000000', str: '', fontFamily: '' }]);
 
 	const handleContextForm = (e, idx) => {
 		const { name, value } = e.target;
@@ -14,8 +15,8 @@ export default function ContextCBS() {
 		newMetas[idx] = { ...newMetas[idx], [name]: value };
 		setMetas(newMetas);
 		setRes(
-			newMetas.map(({ fontSize, color, str }) => (
-				<span style={{ fontSize: fontSize / 16 + 'rem', color }}>{str}</span>
+			newMetas.map(({ fontSize, color, str, fontFamily }) => (
+				<span style={{ fontSize: fontSize / 16 + 'rem', color, fontFamily }}>{str}</span>
 			))
 		);
 	};
@@ -23,11 +24,11 @@ export default function ContextCBS() {
 	const addMeta = () => {
 		setMetas([...metas, { fontSize: 16, color: '#000000', str: '' }]);
 	};
-
 	const handleClick = (e) => {
+		// prettier-ignore
 		const copyStr = metas
-			.map(({ fontSize, color, str }) =>
-				str.trim() !== '' ? `<span style="font-size: ${fontSize / 16}rem; color: ${color}">${str}</span>` : ''
+			.map(({ fontSize, color, str,fontFamily }) =>
+				str.trim() !== '' ? `<span style="font-size: ${fontSize / 16}rem; color: ${color}; font-family: ${fontFamily}">${str}</span>` : ''
 			)
 			.join('');
 
@@ -69,7 +70,7 @@ export default function ContextCBS() {
 						<hr />
 						<span>{idx + 1} Part</span>
 						<div className='input-box'>
-							<label htmlFor={`fontSize-${idx}`}>폰트 크기 </label>
+							<label htmlFor={`fontSize-${idx}`}>폰트 크기</label>
 							<input
 								id={`fontSize-${idx}`}
 								name='fontSize'
@@ -79,7 +80,18 @@ export default function ContextCBS() {
 							/>
 						</div>
 						<div className='input-box'>
-							<label htmlFor={`color-${idx}`}>텍스트 색상 </label>
+							<label htmlFor={`fontFamily-${idx}`}>폰트</label>
+							<select
+								name='fontFamily'
+								value={meta.fontFamily}
+								onChange={(e) => handleContextForm(e, idx)}
+							>
+								<option value={undefined}>폰트를 지정하세요. 안해도 되고</option>
+								<option value={'Verdana, sans-serif'}>Verdana</option>
+							</select>
+						</div>
+						<div className='input-box'>
+							<label htmlFor={`color-${idx}`}>텍스트 색상</label>
 							<input
 								id={`color-${idx}`}
 								name='color'

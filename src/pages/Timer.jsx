@@ -14,9 +14,15 @@ const Timer = () => {
 
 	const [isRunning, setIsRunning] = useState(false);
 	const timerInputs = useTimerInput({ setTime });
-	const { maxTime } = timerInputs;
+	const { maxTime, min, sec, setMin, setSec } = timerInputs;
 
 	const [noti] = usePushNotification();
+
+	const formatTime = (time, bool = false) => {
+		const minutes = String(Math.floor(time / 60)).padStart(2, '0');
+		const seconds = String(time % 60).padStart(2, '0');
+		return bool ? `${time > 60 ? `${minutes}분 ` : ''} ${seconds}초 ` : `${minutes}:${seconds}`;
+	};
 
 	useEffect(() => {
 		let interval;
@@ -32,8 +38,8 @@ const Timer = () => {
 			}, 1000);
 		} else {
 			if (time === 0) {
-				noti('이벤트 완료', {
-					body: '이벤트가 성공적으로 완료되었습니다.',
+				noti('Timer 종료', {
+					body: formatTime(min * 60 + sec, true) + '가 지났습니다.',
 					icon: TimerIcon, // 알림 아이콘 (선택 사항)
 				});
 			}
@@ -43,13 +49,12 @@ const Timer = () => {
 		return () => clearInterval(interval);
 	}, [isRunning]);
 
-	const formatTime = (time) => {
-		const minutes = String(Math.floor(time / 60)).padStart(2, '0');
-		const seconds = String(time % 60).padStart(2, '0');
-		return `${minutes}:${seconds}`;
-	};
-
 	const circleMeta = {
+		time,
+		setMin,
+		setSec,
+		maxTime,
+		setTime,
 		cxy: 50,
 		strokeDasharray: 2 * Math.PI * 35,
 		strokeDashoffset: 2 * Math.PI * 35 * (1 - (time < 0 ? 0 : time) / maxTime),
@@ -66,8 +71,8 @@ const Timer = () => {
 	return (
 		<article className='timer'>
 			<TimerInput {...timerInputs} />
-			<TimerCircle {...circleMeta} />
 			<TimerButtons {...buttonsMeta} />
+			<TimerCircle {...circleMeta} />
 		</article>
 	);
 };
