@@ -1,6 +1,7 @@
 import OpenJSON from './OpenJSON';
 import CBS from './CBS';
 import Timer from './Timer';
+import Page404 from './Page404';
 
 function Home() {
 	return (
@@ -10,4 +11,4 @@ function Home() {
 	);
 }
 
-export { Home, OpenJSON, CBS, Timer };
+export { Home, OpenJSON, CBS, Timer, Page404 };

@@ -13,14 +13,9 @@ export default defineConfig({
 				target: 'https://v2api.solvook.com/api',
 				rewrite: (path) => path.replace(/^\/api/, ''),
 			},
-			'/unit': {
-				changeOrigin: true,
-				target: 'https://api.staging.solvook.com/api',
-				rewrite: (path) => path.replace(/^\/unit/, ''),
-			},
 			'/cbs': {
 				changeOrigin: true,
-				target: 'https://t-cmsapi.vsaidt.com',
+				target: 'https://t-cmsapi.vsaidt.com/api/',
 				rewrite: (path) => path.replace(/^\/cbs/, ''),
 			},
 		},

@@ -15,6 +15,7 @@ const routes = [
 ];
 
 function App() {
+	const Page404 = Pages['Page404'];
 	return (
 		<HashRouter>
 			<Header routes={routes} />
@@ -23,6 +24,7 @@ function App() {
 					const $Page = Pages[elementName];
 					return <Route path={path} element={<$Page />} key={'route-' + idx} />;
 				})}
+				<Route path='*' element={<Page404 />} />
 			</Routes>
 			<ToastContainer autoClose={1500} />
 		</HashRouter>
