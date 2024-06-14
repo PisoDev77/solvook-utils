@@ -1,3 +1,5 @@
+import { useLocation } from 'react-router-dom';
+
 function DJImg() {
 	return (
 		<svg
@@ -37,8 +39,11 @@ function DJImg() {
 }
 
 export default function Page404() {
+	const location = useLocation();
+
 	return (
-		<article>
+		<article style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+			<h1>{location.pathname}</h1>
 			<DJImg />
 		</article>
 	);
