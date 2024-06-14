@@ -15,14 +15,14 @@ export default function useTimerInput({ setTime }) {
 	};
 	const handleMin = (e) => {
 		const newMin = +e.target.value;
-		if (newMin >= 0 && newMin <= 60) {
+		if (newMin >= 0 && newMin <= maxTime) {
 			setMin(newMin);
 			setTime(newMin * 60 + sec);
 		}
 	};
 	const handleSec = (e) => {
 		const newSec = +e.target.value;
-		if (newSec >= 0 && newSec <= 60) {
+		if (newSec >= 0 && newSec <= maxTime) {
 			setSec(newSec);
 			setTime(min * 60 + newSec);
 		}
