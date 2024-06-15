@@ -59,6 +59,7 @@ export default function TimerCircle({
 	};
 
 	const handleMouseMove = (e) => {
+		e.preventDefault();
 		if (isMouseDown) {
 			throttledGetPos(e); // 마우스 클릭 상태일 때만 이벤트 처리
 		}
@@ -69,6 +70,7 @@ export default function TimerCircle({
 	};
 
 	const handleTouchMove = (e) => {
+		e.preventDefault();
 		throttledGetPos(e.touches[0]); // 터치 이벤트 처리
 	};
 
