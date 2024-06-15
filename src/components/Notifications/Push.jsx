@@ -21,8 +21,13 @@ export default function usePushNotification() {
 	}, []);
 
 	const noti = (title, options) => {
-		if (Notification.permission === 'granted') {
-			new Notification(title, { ...options });
+		// if (Notification.permission === 'granted') {
+		// 	new Notification(title, { ...options });
+		// }
+		if (navigator.serviceWorker && 'Notification' in window && Notification.permission === 'granted') {
+			navigator.serviceWorker.ready.then((registration) => {
+				registration.showNotification(title, options);
+			});
 		}
 	};
 
