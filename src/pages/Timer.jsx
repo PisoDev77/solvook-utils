@@ -64,6 +64,8 @@ const Timer = () => {
 
 	const buttonsMeta = {
 		setIsRunning,
+		min,
+		sec,
 		isRunning,
 		setTime,
 	};
