@@ -41,7 +41,9 @@ a.link.current {
 }
 
 .main-header-buttons {
-	vertical-align: middle;
+	/* vertical-align: middle; */
+	display: flex;
+	gap: 0.3rem;
 }
 
 .page-list-modal {
