@@ -1,14 +1,8 @@
-export default function TimerButtons({ setIsRunning, isRunning, setTime, min, sec }) {
+export default function TimerButtons({ isRunning, pauseTime, resetTime }) {
 	return (
 		<section className='timer-buttons'>
-			<button onClick={() => setIsRunning(!isRunning)}>{isRunning ? 'STOP' : 'START'}</button>
-			<button
-				onClick={() => {
-					setIsRunning(false);
-					setTime(min * 60 + sec);
-				}}
-				disabled={isRunning ? true : false}
-			>
+			<button onClick={pauseTime}>{isRunning ? 'STOP' : 'START'}</button>
+			<button onClick={resetTime} disabled={isRunning ? true : false}>
 				RESET
 			</button>
 		</section>

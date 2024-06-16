@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 
+import TimerIcon from '../../assets/timer.svg';
+
 export default function usePushNotification() {
 	useEffect(() => {
 		if (!('Notification' in window)) {
@@ -20,16 +22,19 @@ export default function usePushNotification() {
 		}
 	}, []);
 
-	const noti = (title, options) => {
+	const timerNoti = ({ title, body }) => {
 		// if (Notification.permission === 'granted') {
 		// 	new Notification(title, { ...options });
 		// }
 		if (navigator.serviceWorker && 'Notification' in window && Notification.permission === 'granted') {
 			navigator.serviceWorker.ready.then((registration) => {
-				registration.showNotification(title, options);
+				registration.showNotification(title, {
+					body,
+					icon: TimerIcon, // 알림 아이콘 (선택 사항)
+				});
 			});
 		}
 	};
 
-	return [noti];
+	return { timerNoti };
 }

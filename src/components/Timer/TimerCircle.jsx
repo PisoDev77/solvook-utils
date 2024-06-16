@@ -2,28 +2,26 @@ import { useEffect, useState, useRef } from 'react';
 import throttle from 'lodash/throttle';
 
 export default function TimerCircle({
-	setMin,
-	setSec,
 	maxTime,
 	time,
-	setTime,
 	cxy = 0,
 	strokeDasharray = 0,
 	strokeDashoffset = 0,
 	strokeWidth = 10,
-	str = '',
+	mmss = '',
+	handleTime,
 }) {
 	const ref = useRef(null);
-	const [tmp, setTmp] = useState(strokeDashoffset);
+
+	const [_strokeDashoffset, setStrokeDashoffset] = useState(strokeDashoffset);
 	const [isMouseDown, setIsMouseDown] = useState(false); // 클릭 상태를 나타내는 상태 변수 추가
 
 	useEffect(() => {
-		setTmp(strokeDashoffset);
+		setStrokeDashoffset(strokeDashoffset);
 	}, [time, strokeDashoffset]);
 
-	const getPos = (e) => {
-		const section = ref.current;
-		const rect = section.getBoundingClientRect();
+	const calTimeByDeg = (e) => {
+		const rect = ref.current.getBoundingClientRect();
 		const offsetX = (e.clientX ?? e.touches[0].clientX) - rect.left;
 		const offsetY = (e.clientY ?? e.touches[0].clientY) - rect.top;
 
@@ -35,23 +33,14 @@ export default function TimerCircle({
 		const angle = Math.atan2(relativeY, relativeX);
 		// 각도를 0~360 범위로 변환
 		const angleInDegrees = (angle * (180 / Math.PI) + 360 + 90) % 360;
-
 		// 각도를 초로 변환 (0~60 초 범위)
-		const seconds = Math.round((angleInDegrees / 360) * maxTime);
-
-		if (maxTime === 60) {
-			setSec(seconds);
-		} else {
-			setMin(Math.floor(seconds / 60));
-			setSec(seconds % 60);
-		}
-		setTime(seconds);
+		handleTime.time = Math.round((angleInDegrees / 360) * maxTime);
 	};
 
-	const throttledGetPos = throttle(getPos, 200); // 200ms 간격으로 호출
+	const throttledCalTimeByDeg = throttle(calTimeByDeg, 200); // 200ms 간격으로 호출
 
 	const handleClick = (e) => {
-		getPos(e);
+		calTimeByDeg(e);
 	};
 
 	const handleMouseDown = (e) => {
@@ -61,7 +50,7 @@ export default function TimerCircle({
 	const handleMouseMove = (e) => {
 		e.preventDefault();
 		if (isMouseDown) {
-			throttledGetPos(e); // 마우스 클릭 상태일 때만 이벤트 처리
+			throttledCalTimeByDeg(e); // 마우스 클릭 상태일 때만 이벤트 처리
 		}
 	};
 
@@ -71,7 +60,7 @@ export default function TimerCircle({
 
 	const handleTouchMove = (e) => {
 		e.preventDefault();
-		throttledGetPos(e.touches[0]); // 터치 이벤트 처리
+		throttledCalTimeByDeg(e.touches[0]); // 터치 이벤트 처리
 	};
 
 	return (
@@ -87,13 +76,13 @@ export default function TimerCircle({
 			<svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'>
 				<circle cx={cxy} cy={cxy} r={cxy / 2 + 10} />
 				<text x='30' y='55' className='timer-text'>
-					{str}
+					{mmss}
 				</text>
 				<circle
 					className={'progress'}
 					style={{
 						strokeDasharray,
-						strokeDashoffset: tmp,
+						strokeDashoffset: _strokeDashoffset,
 					}}
 					cx={cxy}
 					cy={cxy}
