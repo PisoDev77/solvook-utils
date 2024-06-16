@@ -138,6 +138,12 @@ function DJImg() {
 }
 
 function Hong({ hongs }) {
+	function getRandomHexColor() {
+		// 랜덤한 16진수 색상 코드 생성
+		const letters = '0123456789ABCDEF';
+		return '#' + Array.from({ length: 6 }, () => letters[Math.floor(Math.random() * 16)]).join('');
+	}
+
 	function extractRandomElements(arr, numElements) {
 		if (numElements > arr.length) {
 			throw new Error('Number of elements to extract cannot be greater than the length of the array.');
@@ -151,7 +157,14 @@ function Hong({ hongs }) {
 			let randomIndex = Math.floor(Math.random() * arrCopy.length);
 
 			// 선택된 요소를 결과 배열에 추가하고 원래 배열에서 제거
-			result.push(arrCopy[randomIndex]);
+			result.push({
+				sentence: arrCopy[randomIndex],
+				fontSize: parseFloat((Math.random() * 4).toFixed(1)),
+				top: parseInt(Math.random() * 75),
+				textIndent: parseInt(Math.random() * 7) + 'em',
+				color: getRandomHexColor(),
+			});
+
 			arrCopy.splice(randomIndex, 1);
 		}
 
@@ -159,8 +172,27 @@ function Hong({ hongs }) {
 	}
 
 	// 27개의 랜덤한 요소 추출
-	const randomElements = extractRandomElements(hongs, 27);
-	return randomElements.map((i) => <div style={{ fontSize: '1.5rem' }}>{i.replace('인물', '홍석진')}</div>);
+	const randomElements = extractRandomElements(hongs, 32);
+
+	return randomElements.map(({ sentence, fontSize, top, textIndent, color }) => (
+		<div
+			style={{
+				position: 'absolute',
+				color,
+				fontSize: fontSize + 'rem',
+				top: '0',
+				left: 0,
+				transform: `translate(0, ${top}vh)`,
+				textIndent,
+				width: '100%',
+				whiteSpace: 'nowrap',
+				overflow: 'hidden',
+				textOverflow: 'ellipsis',
+			}}
+		>
+			<p>{sentence.replace('인물', '홍석진')}</p>
+		</div>
+	));
 }
 
 export default function Page404() {
@@ -168,7 +200,11 @@ export default function Page404() {
 	const isHong = decodeURIComponent(location.pathname);
 	const [hongs, setHongs] = useState(arr);
 	return (
-		<article style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+		<article
+			style={{
+				position: 'relative',
+			}}
+		>
 			{isHong === '/홍석진' ? (
 				<Hong hongs={hongs} />
 			) : (
