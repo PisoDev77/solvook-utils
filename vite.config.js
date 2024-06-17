@@ -17,18 +17,18 @@ export default defineConfig({
 			manifest: {
 				name: 'My Vite App',
 				short_name: 'ViteApp',
-				start_url: '/',
+				start_url: '/solvook-utils',
 				display: 'standalone',
 				background_color: '#ffffff',
 				theme_color: '#42b883',
 				icons: [
 					{
-						src: 'pwa-192x192.png',
+						src: 'helper-192.png',
 						sizes: '192x192',
 						type: 'image/png',
 					},
 					{
-						src: 'pwa-512x512.png',
+						src: 'helper-512.png',
 						sizes: '512x512',
 						type: 'image/png',
 					},
@@ -38,7 +38,7 @@ export default defineConfig({
 	],
 	base: '/solvook-utils',
 	server: {
-		host: true,
+		// host: true,
 		proxy: {
 			'/api': {
 				changeOrigin: true,

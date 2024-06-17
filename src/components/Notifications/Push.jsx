@@ -30,7 +30,7 @@ export default function usePushNotification() {
 			navigator.serviceWorker.ready.then((registration) => {
 				registration.showNotification(title, {
 					body,
-					icon: TimerIcon, // 알림 아이콘 (선택 사항)
+					icon: TimerIcon + `?color=${encodeURIComponent('red')}`, // 알림 아이콘 (선택 사항)
 				});
 			});
 		}
