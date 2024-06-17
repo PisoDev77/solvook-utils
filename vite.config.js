@@ -18,7 +18,7 @@ export default defineConfig({
 				name: 'Helper',
 				short_name: 'Helper',
 				start_url: '/solvook-utils/',
-				display: 'standalone',
+				display: 'fullscreen',
 				background_color: '#ffffff',
 				theme_color: '#42b883',
 				icons: [
