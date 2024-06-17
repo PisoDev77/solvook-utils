@@ -14,14 +14,14 @@ export default function QSlayer() {
 	useEffect(() => {
 		const loadList = () => JSON.parse(localStorage.getItem('qslayerList')) ?? [];
 
-		// setList(loadList());
+		setList(loadList());
 		setList([
 			{ reg_date: '2024-06-17', update_date: '2024-06-17', content: 'Test 1', answer: '' },
 			{ reg_date: '2024-06-17', update_date: '2024-06-17', content: 'Test 2', answer: '' },
 			{ reg_date: '2024-06-17', update_date: '2024-06-17', content: 'Test 3', answer: '' },
 		]);
 
-		// return () => saveList();
+		return () => saveList();
 	}, []);
 
 	const handleNewContent = (e) => {
