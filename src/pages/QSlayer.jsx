@@ -4,25 +4,16 @@ import '../styles/QSlayer.css';
 export default function QSlayer() {
 	const newContentInput = useRef(null);
 
-	const [list, setList] = useState([]);
+	const [list, setList] = useState(JSON.parse(localStorage.getItem('qslayerList')) ?? []);
 	const [newContent, setNewContent] = useState('');
 
-	const saveList = () => {
-		localStorage.stringifyetItem('qslayerList', JSON.stringify(list));
-	};
-
 	useEffect(() => {
-		const loadList = () => JSON.parse(localStorage.getItem('qslayerList')) ?? [];
+		const saveList = () => {
+			localStorage.setItem('qslayerList', JSON.stringify(list));
+		};
 
-		setList(loadList());
-		setList([
-			{ reg_date: '2024-06-17', update_date: '2024-06-17', content: 'Test 1', answer: '' },
-			{ reg_date: '2024-06-17', update_date: '2024-06-17', content: 'Test 2', answer: '' },
-			{ reg_date: '2024-06-17', update_date: '2024-06-17', content: 'Test 3', answer: '' },
-		]);
-
-		return () => saveList();
-	}, []);
+		saveList();
+	}, [list]);
 
 	const handleNewContent = (e) => {
 		const inputContent = e.target.value;
@@ -38,7 +29,6 @@ export default function QSlayer() {
 	const handleUpdateAnswer = (e, idx) => {
 		const newList = [...list];
 		newList[idx].answer = e.target.value
-			// .replace(/∴/, '')
 			.split('\n')
 			.map((i) => `${i}`)
 			.join('\n');
@@ -55,12 +45,13 @@ export default function QSlayer() {
 		return list.map(({ reg_date, update_date, content, answer }, idx) => (
 			<section className='qslayer-content'>
 				<section className='content'>
-					<h2>{idx + 1}.</h2>
+					<h2>
+						{idx + 1}.<input type='text' value={content} onChange={(e) => handleUpdateContent(e, idx)} />
+					</h2>
 					<label htmlFor='reg_date'>등록일</label>
 					<input type='text' disabled value={reg_date} name='reg_date' />
 					<label htmlFor='update_date'>수정일</label>
 					<input type='text' disabled value={update_date} name='update_date' />
-					<input type='text' value={content} onChange={(e) => handleUpdateContent(e, idx)} />
 				</section>
 				<textarea
 					rows={10}
