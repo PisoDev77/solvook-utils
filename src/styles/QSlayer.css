@@ -1,0 +1,13 @@
+.qslayer {
+	padding: 1rem;
+}
+.qslayer-contents {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.qslayer-content {
+	padding: 1rem;
+	border: solid 0.1rem var(--main-color);
+}
