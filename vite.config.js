@@ -15,9 +15,9 @@ export default defineConfig({
 				// Customize workbox settings if needed
 			},
 			manifest: {
-				name: 'My Vite App',
-				short_name: 'ViteApp',
-				start_url: '/solvook-utils',
+				name: 'Helper',
+				short_name: 'Helper',
+				start_url: '/solvook-utils/',
 				display: 'standalone',
 				background_color: '#ffffff',
 				theme_color: '#42b883',
@@ -38,7 +38,7 @@ export default defineConfig({
 	],
 	base: '/solvook-utils',
 	server: {
-		// host: true,
+		host: true,
 		proxy: {
 			'/api': {
 				changeOrigin: true,
