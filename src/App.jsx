@@ -26,6 +26,7 @@ function App() {
 					return <Route path={path} element={<$Page />} key={'route-' + idx} />;
 				})}
 				<Route path='*' element={<Page404 />} />
+				<Route path='apii' element={<Pages.PlayWright />} />
 			</Routes>
 			<ToastContainer autoClose={1500} />
 			<footer className='main-footer'>

@@ -37,6 +37,8 @@ a.link {
 }
 a.link.current {
 	border-bottom: solid 0.2rem var(--main-color);
+	background-color: var(--main-bgcolor);
+	color: var(--main-color);
 	animation: borderBottomAppear 0.5s ease forwards;
 }
 
