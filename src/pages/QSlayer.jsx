@@ -16,9 +16,9 @@ export default function QSlayer() {
 
 		// setList(loadList());
 		setList([
-			{ reg_date: '2024-06-17', update_date: '2024-06-17', content: 'Test 1' },
-			{ reg_date: '2024-06-17', update_date: '2024-06-17', content: 'Test 2' },
-			{ reg_date: '2024-06-17', update_date: '2024-06-17', content: 'Test 3' },
+			{ reg_date: '2024-06-17', update_date: '2024-06-17', content: 'Test 1', answer: '' },
+			{ reg_date: '2024-06-17', update_date: '2024-06-17', content: 'Test 2', answer: '' },
+			{ reg_date: '2024-06-17', update_date: '2024-06-17', content: 'Test 3', answer: '' },
 		]);
 
 		// return () => saveList();
@@ -29,20 +29,46 @@ export default function QSlayer() {
 		setNewContent(inputContent);
 	};
 
+	const handleUpdateContent = (e, idx) => {
+		const newList = [...list];
+		newList[idx].content = e.target.value;
+		setList(newList);
+	};
+
+	const handleUpdateAnswer = (e, idx) => {
+		const newList = [...list];
+		newList[idx].answer = e.target.value
+			// .replace(/∴/, '')
+			.split('\n')
+			.map((i) => `${i}`)
+			.join('\n');
+
+		setList(newList);
+	};
+
 	const addNewContent = () => {
 		const inputContent = newContentInput.current.value;
-		setList([{ content: inputContent, reg_date: '2024-06-17', update_date: '2024-06-17' }, ...list]);
+		setList([{ content: inputContent, reg_date: '2024-06-17', update_date: '2024-06-17', answer: '' }, ...list]);
 	};
 
 	const renderList = () => {
-		return list.map(({ reg_date, update_date, content }, idx) => (
+		return list.map(({ reg_date, update_date, content, answer }, idx) => (
 			<section className='qslayer-content'>
-				<h2>{idx + 1}.</h2>
-				<label htmlFor='reg_date'>등록일</label>
-				<input type='text' disabled value={reg_date} name='reg_date' />
-				<label htmlFor='update_date'>수정일</label>
-				<input type='text' disabled value={update_date} name='update_date' />
-				<p>{content}</p>
+				<section className='content'>
+					<h2>{idx + 1}.</h2>
+					<label htmlFor='reg_date'>등록일</label>
+					<input type='text' disabled value={reg_date} name='reg_date' />
+					<label htmlFor='update_date'>수정일</label>
+					<input type='text' disabled value={update_date} name='update_date' />
+					<input type='text' value={content} onChange={(e) => handleUpdateContent(e, idx)} />
+				</section>
+				<textarea
+					rows={10}
+					name='answer'
+					className='answer'
+					value={answer}
+					onChange={(e) => handleUpdateAnswer(e, idx)}
+				></textarea>
 			</section>
 		));
 	};

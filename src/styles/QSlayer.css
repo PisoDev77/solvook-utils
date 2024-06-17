@@ -11,3 +11,14 @@
 	padding: 1rem;
 	border: solid 0.1rem var(--main-color);
 }
+/* .qslayer-content > .content {
+} */
+.qslayer-content > .answer {
+	margin-top: 1rem;
+	box-sizing: border-box;
+	padding: 1rem;
+	width: 100%;
+	resize: none;
+	border-radius: 1rem;
+	line-height: 1.7;
+}
