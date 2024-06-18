@@ -22,6 +22,11 @@ body {
 	width: 100%;
 	min-height: 100vh;
 }
+h1 {
+	font-size: 3.2rem;
+	margin: 0;
+	padding: 0.2rem 0.4rem;
+}
 
 @media (prefers-color-scheme: light) {
 	:root {
