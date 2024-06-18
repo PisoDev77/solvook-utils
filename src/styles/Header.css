@@ -2,7 +2,6 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1rem;
 }
 .main-header.reverse {
 	flex-direction: row-reverse;
@@ -32,18 +31,16 @@
 
 a.link {
 	font-size: 1.15rem;
-	border: none;
-	border-radius: 0;
+	padding: 0.2rem 0.4rem;
 }
-a.link.current {
+
+.main-header-nav li.current {
 	border-bottom: solid 0.2rem var(--main-color);
 	background-color: var(--main-bgcolor);
 	color: var(--main-color);
-	animation: borderBottomAppear 0.5s ease forwards;
 }
 
 .main-header-buttons {
-	/* vertical-align: middle; */
 	display: flex;
 	gap: 0.3rem;
 }
@@ -60,9 +57,11 @@ a.link.current {
 
 .page-list-modal .close {
 	position: absolute;
+	line-height: 1.7;
+	font-size: 1.15rem;
 	top: 0;
 	right: 0;
-	margin: 1rem;
+	border: none;
 	z-index: 20001;
 }
 

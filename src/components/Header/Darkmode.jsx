@@ -8,21 +8,14 @@ export default function Darkmode() {
 		const currentScheme = scheme === 'dark' ? 'light' : 'dark';
 		setScheme(currentScheme);
 
-		if (currentScheme === 'dark') {
-			root.style.setProperty('color', 'rgba(255, 255, 255, 0.87)');
-			root.style.setProperty('background-color', '#242424');
-			root.style.setProperty('--main-color', 'rgba(255, 255, 255, 0.87)');
-			root.style.setProperty('--main-bgcolor', '#242424');
-			root.style.setProperty('--sub-color', 'rgba(151, 147, 147, 0.3)');
-			root.style.setProperty('color-scheme', 'dark');
-		} else {
-			root.style.setProperty('color', '#213547');
-			root.style.setProperty('background-color', '#ffffff');
-			root.style.setProperty('--main-color', '#213547');
-			root.style.setProperty('--main-bgcolor', '#ffffff');
-			root.style.setProperty('--sub-color', 'rgba(255, 255, 255, 0.199)');
-			root.style.setProperty('color-scheme', 'light');
-		}
+		const styles = {
+			dark: { '--main-color': '#ffffffde', '--main-bgcolor': '#242424', '--sub-color': '#ffffff33' },
+			light: { '--main-color': '#213547', '--main-bgcolor': '#ffffff', '--sub-color': '#ffffffa8' },
+		};
+
+		Object.entries(styles[currentScheme]).forEach(([key, value]) => {
+			root.style.setProperty(key, value);
+		});
 	};
 	return <button onClick={handleDarkmode}>{scheme === 'dark' ? <DarkIcon /> : <LightIcon />}</button>;
 }

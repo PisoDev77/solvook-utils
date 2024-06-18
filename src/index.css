@@ -3,83 +3,68 @@
 	line-height: 1.5;
 	font-weight: 400;
 
-	color-scheme: light dark;
-	color: rgba(255, 255, 255, 0.87);
-	background-color: #242424;
-
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
-
-	--main-color: rgba(255, 255, 255, 0.87);
-	--main-bgcolor: #242424;
-	--sub-color: rgba(255, 255, 255, 0.199);
 }
+
 @media (max-width: 512px) {
 	body {
 		font-size: 12px;
 	}
 }
-
 body {
 	margin: 0;
-	display: flex;
-	justify-content: center;
-	min-height: 100vh;
 }
-
 #root {
 	width: 100%;
-	/* padding: 1rem; */
-}
-
-h1 {
-	font-size: 3.2em;
-	line-height: 1.1;
-}
-
-a,
-button {
-	color: var(--main-color);
-	background-color: var(--main-bgcolor);
-
-	font-weight: 700;
-	text-decoration: none;
-
-	border: solid var(--main-color) 2px;
-	border-color: inherit;
-	padding: 8px;
-	border-radius: 1rem;
-
-	font-size: 1em;
+	min-height: 100vh;
 }
 
 @media (prefers-color-scheme: light) {
 	:root {
-		color: #213547;
-		background-color: #ffffff;
 		--main-color: #213547;
 		--main-bgcolor: #ffffff;
-		--sub-color: rgba(255, 255, 255, 0.658);
+		--sub-color: #ffffffa8;
 	}
-	li.current,
-	a.current {
-		color: rgba(255, 255, 255, 0.87);
-		background-color: #242424;
-		border: none;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--main-color: #ffffffde;
+		--main-bgcolor: #242424;
+		--sub-color: #ffffff33;
 	}
+}
+
+#root {
+	width: 100%;
+	color: var(--main-color);
+	background-color: var(--main-bgcolor);
 }
 
 button {
-	filter: invert(0);
-	transition: filter 0.5s ease-in-out;
-	border-radius: 0.5rem;
-}
+	font-weight: 700;
+	padding: 0.3rem 0.6rem;
+	color: var(--main-color);
+	background-color: var(--main-bgcolor);
 
+	border: solid var(--main-color) 0.1rem;
+	border-radius: 0.5rem;
+
+	transition: filter 0.5s ease-in-out;
+}
 button:hover {
 	filter: invert(1);
+}
+
+input,
+textarea,
+select {
+	color: var(--main-color);
+	background-color: var(--main-bgcolor);
 }
 
 .Toastify__toast--success {
