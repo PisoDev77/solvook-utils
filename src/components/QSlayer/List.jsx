@@ -1,42 +1,31 @@
-import { InputCalendar } from '../Inputs';
+import { InputCalendar, formatDate } from '../Inputs';
 
-export default function Add({ list, setList }) {
-	const handleUpdateContent = (e, idx) => {
-		const newList = [...list];
-		newList[idx].content = e.target.value;
-		setList(newList);
+export default function List({ updateSlayer, deleteSlayer, slayers }) {
+	const handleUpdateSlayer = (e, cid) => {
+		updateSlayer({ cid, slayer: e.target.value }, slayers);
 	};
 
-	const handleUpdateAnswer = (e, idx) => {
-		const newList = [...list];
-		newList[idx].answer = e.target.value
-			.split('\n')
-			.map((i) => `${i}`)
-			.join('\n');
-
-		setList(newList);
+	const handleUpdateAnswer = (e, cid) => {
+		updateSlayer({ cid, answer: e.target.value }, slayers);
 	};
 
 	const renderList = () => {
-		return list.map(({ reg_date, update_date, content, answer }, idx) => {
+		return slayers.map((_slayer) => {
+			const { slayer, cid, reg_date, update_date, answer } = _slayer;
+
 			return (
-				<section className='qslayer-content'>
-					<section className='content'>
-						<h2>
-							{idx + 1}.
-							<input type='text' value={content} onChange={(e) => handleUpdateContent(e, idx)} />
-						</h2>
-						<InputCalendar attrProps={{ value: reg_date, name: 'reg_date', disabled: true }} />
-						<InputCalendar attrProps={{ value: update_date, name: 'update_date', disabled: true }} />
+				<section className='qslayer-slayer'>
+					<section className='slayer'>
+						<Slayer slayer={slayer} onChange={(e) => handleUpdateSlayer(e, cid)} />
+						<Delete onClick={() => deleteSlayer(cid)} />
+						<div>
+							📅
+							<InputCalendar attrProps={{ value: reg_date, name: 'reg_date', disabled: true }} />
+							🛠️
+							<InputCalendar attrProps={{ value: update_date, name: 'update_date', disabled: true }} />
+						</div>
 					</section>
-					<textarea
-						rows={10}
-						name='answer'
-						className='answer'
-						value={answer}
-						list={list}
-						onChange={(e) => handleUpdateAnswer(e, idx)}
-					></textarea>
+					<Answer answer={answer} onChange={(e) => handleUpdateAnswer(e, cid)} />
 				</section>
 			);
 		});
@@ -45,15 +34,27 @@ export default function Add({ list, setList }) {
 	return <section className='qslayer-contents'>{renderList()}</section>;
 }
 
-function Content(title) {
+function Slayer({ slayer, onChange }) {
+	return <input type='text' value={slayer} onChange={onChange} />;
+}
+
+function Delete({ onClick }) {
 	return (
-		<section className='content'>
-			<h2>
-				{idx + 1}.
-				<input type='text' value={content} onChange={(e) => handleUpdateContent(e, idx)} />
-			</h2>
-			<InputCalendar attrProps={{ value: reg_date, name: 'reg_date', disabled: true }} />
-			<InputCalendar attrProps={{ value: update_date, name: 'update_date', disabled: true }} />
-		</section>
+		<button className='delete-slayer' onClick={onClick}>
+			🗑️
+		</button>
+	);
+}
+
+function Answer({ answer, onChange }) {
+	return (
+		<textarea
+			placer="Let's Slays Question"
+			rows={10}
+			name='answer'
+			className='answer'
+			value={answer}
+			onChange={onChange}
+		></textarea>
 	);
 }

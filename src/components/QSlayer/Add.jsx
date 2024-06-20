@@ -1,10 +1,6 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
-import { formatDate } from '../Inputs';
-
-export default function Add({ list, setList }) {
-	const ref = useRef(null);
-
+export default function Add({ addSlayer }) {
 	const [newContent, setNewContent] = useState('');
 
 	const handleNewContent = (e) => {
@@ -12,16 +8,24 @@ export default function Add({ list, setList }) {
 		setNewContent(inputContent);
 	};
 
-	const addNewContent = () => {
-		const newDate = formatDate(new Date());
-		const inputContent = ref.current.value;
-		setList([{ content: inputContent, reg_date: newDate, update_date: newDate, answer: '' }, ...list]);
+	const handleAddForm = (e) => {
+		e.preventDefault();
+		const inputContent = e.currentTarget.qslayerContent.value;
+		if (inputContent.trim() === '') return;
+		addSlayer(inputContent);
+		setNewContent('');
 	};
 
 	return (
-		<section>
-			<input ref={ref} type='text' value={newContent} onChange={handleNewContent} />
-			<button onClick={addNewContent}>ADD</button>
-		</section>
+		<form className='qslayer-add' onSubmit={handleAddForm}>
+			<input
+				type='text'
+				name='qslayerContent'
+				value={newContent}
+				onChange={handleNewContent}
+				placeholder='Write New Question Slayer!!'
+			/>
+			<button type='submit'>+</button>
+		</form>
 	);
 }

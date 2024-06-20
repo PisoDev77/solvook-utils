@@ -9,7 +9,9 @@
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
 }
-
+* {
+	box-sizing: border-box;
+}
 @media (max-width: 512px) {
 	body {
 		font-size: 12px;
