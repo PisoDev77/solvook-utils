@@ -5,7 +5,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import * as Pages from './pages';
 import Header from './components/Header';
-import AMF from './components/SVG/AMF';
 
 // prettier-ignore
 const routes = [
@@ -20,7 +19,7 @@ function App() {
 	const Page404 = Pages['Page404'];
 	return (
 		<HashRouter>
-			<Header routes={routes} />
+			<Header />
 			<Routes>
 				{routes.map(({ path, elementName }, idx) => {
 					const $Page = Pages[elementName];
@@ -30,9 +29,6 @@ function App() {
 				<Route path='apii' element={<Pages.PlayWright />} />
 			</Routes>
 			<ToastContainer autoClose={1500} />
-			<footer className='main-footer'>
-				<AMF />
-			</footer>
 		</HashRouter>
 	);
 }

@@ -9,8 +9,8 @@ export default function Darkmode() {
 		setScheme(currentScheme);
 
 		const styles = {
-			dark: { '--main-color': '#ffffffde', '--main-bgcolor': '#242424', '--sub-color': '#ffffff33' },
-			light: { '--main-color': '#213547', '--main-bgcolor': '#ffffff', '--sub-color': '#ffffffa8' },
+			dark: { '--main-color': '#f8f7f4', '--main-bgcolor': '#352f36', '--sub-color': '#ffffff33' },
+			light: { '--main-color': '#213547', '--main-bgcolor': '#fbfff4', '--sub-color': '#ffffffa8' },
 		};
 
 		Object.entries(styles[currentScheme]).forEach(([key, value]) => {

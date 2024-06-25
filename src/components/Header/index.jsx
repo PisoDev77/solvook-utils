@@ -1,38 +1,22 @@
-import { useState, useEffect } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import '../../styles/Header.css';
+import AMF from '../SVG/AMF';
+import DarkMode from './Darkmode';
 
-import Routes from './Routes';
-import Darkmode from './Darkmode';
-import PageList from './PageList';
-
-export default function Header({ routes }) {
-	const [isMobile, setIsMobile] = useState(false);
-
-	const checkMobileSize = () => {
-		setIsMobile(window.innerWidth <= 768);
-	};
-
-	useEffect(() => {
-		// Set initial value
-		checkMobileSize();
-
-		// Add event listener for window resize
-		window.addEventListener('resize', checkMobileSize);
-
-		// Clean up event listener on component unmount
-		return () => {
-			window.removeEventListener('resize', checkMobileSize);
-		};
-	}, []);
+export default function Header() {
+	const navigate = useNavigate();
 
 	return (
-		<header className={`main-header ${isMobile && 'reverse'}`}>
-			{!isMobile && <Routes routes={routes} />}
-			<section className='main-header-buttons'>
-				{isMobile && <PageList isMobile={isMobile} routes={routes} />}
-				<Darkmode />
-			</section>
+		<header className={`main-header`}>
+			<div
+				style={{ display: 'flex', justifyContent: 'center' }}
+				onClick={() => {
+					navigate('/');
+				}}
+			>
+				<AMF />
+			</div>
+			<DarkMode />
 		</header>
 	);
 }
