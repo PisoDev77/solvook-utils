@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import * as Pages from './pages';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 // prettier-ignore
 const routes = [
@@ -28,6 +29,7 @@ function App() {
 				<Route path='*' element={<Page404 />} />
 				<Route path='apii' element={<Pages.PlayWright />} />
 			</Routes>
+			<Footer />
 			<ToastContainer autoClose={1500} />
 		</HashRouter>
 	);

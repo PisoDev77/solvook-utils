@@ -84,7 +84,7 @@ select {
 article {
 	opacity: 0; /* 기본 상태에서 article을 보이지 않게 설정 */
 	animation: slideDown 1s ease forwards; /* 애니메이션 적용 */
-	/* height: 90vh; */
+	/* height: 100vh; */
 }
 
 footer.main-footer {
