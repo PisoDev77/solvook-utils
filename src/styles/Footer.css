@@ -1,20 +1,19 @@
+footer {
+	height: 6rem;
+}
 .footer-nav {
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	width: 100%;
 }
 
-.footer-nav nav {
-	padding: 0;
+.footer-nav ul {
 	background-color: var(--sub-color);
 	border-radius: 2rem;
 	margin: 0.5rem;
-}
-.footer-nav ul {
 	list-style: none;
 	padding: 1rem;
 	display: flex;
-	margin: 0;
 	justify-content: center;
 	gap: 1rem;
 }

@@ -1,15 +1,38 @@
 import SubPages from '../components/SubPages';
 import '../styles/page.css';
+import { useLocation } from 'react-router-dom';
+
+import CopyCBS from '../components/CBS/copy';
+import QuoteCBS from '../components/CBS/quote';
+import TableCBS from '../components/CBS/table';
+import ContextCBS from '../components/CBS/context';
 
 export default function Additional() {
+	const location = useLocation();
+	const queryParams = new URLSearchParams(location.search);
+	const pageName = queryParams.get('page') ?? 'default'; // query string에서 'page' 파라미터 값을 가져옴
+
+	const CBSElements = {
+		text: CopyCBS,
+		quote: QuoteCBS,
+		table: TableCBS,
+		context: ContextCBS,
+		default: CBSSubPage,
+	};
+
+	const CBSElement = CBSElements[pageName];
+
+	return <CBSElement />;
+}
+
+function CBSSubPage() {
 	return (
 		<SubPages
-			pageName={''}
 			subpages={[
-				{ name: 'CBS 텍스트 복사', path: '/' },
-				{ name: 'CBS 표 복사', path: '/' },
-				{ name: '따옴표 변환', path: '/' },
-				{ name: '서식 복사', path: '/' },
+				{ name: 'CBS 텍스트 복사', path: '/cbs?page=text' },
+				{ name: '따옴표 변환', path: '/cbs?page=quote' },
+				{ name: 'CBS 표 복사', path: '/cbs?page=table' },
+				{ name: '서식 복사', path: '/cbs?page=context' },
 			]}
 			PageIcon={Icon}
 		/>
