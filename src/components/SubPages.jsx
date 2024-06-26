@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function SubPages({ subpages, PageIcon }) {
 	return (
-		<section className='sub-page'>
+		<article className='sub-page'>
 			<h1 style={{ textAlign: 'center' }}>
 				<PageIcon />
 			</h1>
@@ -16,6 +16,6 @@ export default function SubPages({ subpages, PageIcon }) {
 					))}
 				</ul>
 			</nav>
-		</section>
+		</article>
 	);
 }
