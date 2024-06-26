@@ -10,10 +10,11 @@ import Footer from './components/Footer';
 // prettier-ignore
 const routes = [
   { path: "", elementName: "Home", caption: "Home" },
-  { path: "openJSON", elementName: "OpenJSON", caption: "JSON 파일 까보기" },
+  { path: "json", elementName: "OpenJSON", caption: "JSON 파일 까보기" },
   { path: "cbs", elementName: "CBS", caption: "CBS" },
   { path: "timer", elementName: "Timer", caption: "Google Time Timer" },
   { path: "qslayer", elementName: "QSlayer", caption: "QSlayer" },
+{ path: "additional", elementName: "Additional", caption: "Additional" },
 ];
 
 function App() {
