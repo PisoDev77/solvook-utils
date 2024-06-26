@@ -17,13 +17,13 @@ export default function Footer({ routes }) {
 		// prettier-ignore
 		<footer className='footer-nav'>
 			<nav><ul>
-				<li onClick={() => {navigate('openJSON');}}>
+				<li onClick={() => {navigate('json');}}>
 					<JSON />
 				</li>
-				<li onClick={handleClick}>
+				<li onClick={() => {navigate('CBS');}}>
 					<CBS />
 				</li>
-				<li onClick={handleClick}>
+				<li onClick={() => {navigate('additional');}}>
 					<Additional />
 				</li>
 			</ul></nav>
