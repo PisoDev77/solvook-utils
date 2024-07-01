@@ -1,13 +1,13 @@
-import SubPages from '../components/SubPages';
-import '../styles/page.css';
 import { useLocation } from 'react-router-dom';
+import '../styles/page.css';
 
+import SubPages from '../components/SubPages';
 import CopyCBS from '../components/CBS/copy';
 import QuoteCBS from '../components/CBS/quote';
 import TableCBS from '../components/CBS/table';
 import ContextCBS from '../components/CBS/context';
 
-export default function Additional() {
+export default function CBS() {
 	const location = useLocation();
 	const queryParams = new URLSearchParams(location.search);
 	const pageName = queryParams.get('page') ?? 'default'; // query string에서 'page' 파라미터 값을 가져옴
@@ -20,7 +20,7 @@ export default function Additional() {
 		default: CBSSubPage,
 	};
 
-	const CBSElement = CBSElements[pageName];
+	const CBSElement = CBSElements[pageName] ?? (() => <h1>{pageName}이라는 CBS의 기능은 없습니다</h1>);
 
 	return <CBSElement />;
 }
@@ -49,8 +49,8 @@ function Icon() {
 			<path
 				d='M37.2016 4H111.312L154 65.5484M37.2016 4L75.7391 65.5484M37.2016 4L4 65.5484L41.3518 130M154 65.5484H75.7391M154 65.5484L116.648 130H41.3518M75.7391 65.5484L41.3518 130'
 				stroke='#31AAF6'
-				stroke-width='8'
-				stroke-linejoin='round'
+				strokeWidth='8'
+				strokeLinejoin='round'
 			/>
 		</svg>
 	);

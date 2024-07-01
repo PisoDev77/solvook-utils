@@ -14,7 +14,6 @@ const routes = [
   { path: "openJson", elementName: "OpenJSON", caption: "JSON 파일 까보기" },
   { path: "cbs", elementName: "CBS", caption: "CBS" },
   { path: "timer", elementName: "Timer", caption: "Google Time Timer" },
-  { path: "qslayer", elementName: "QSlayer", caption: "QSlayer" },
   { path: "additional", elementName: "Additional", caption: "Additional" },
 ];
 

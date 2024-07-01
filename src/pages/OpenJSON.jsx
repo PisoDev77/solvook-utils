@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Copy from '../lib/Copys';
 
 export default function OpenJSON() {
 	const [fileContent, setFileContent] = useState(null);
@@ -50,15 +51,21 @@ export default function OpenJSON() {
 		const depth2 = data.curriMetaMap[1];
 		const depth3 = data.curriMetaMap[2];
 
-		console.log(depth1);
-		console.log(depth2);
-		console.log(depth3);
+		console.log(data.list);
+		return data.list.map(({ saveName }) => `'${saveName}'`).join(',');
 	};
 
 	return (
 		<article>
 			<input type='file' onChange={handleFileUpload} />
-			<div>{renderDepth(parseJSONContent())}</div>
+			<div
+				className='copycopy'
+				onClick={(e) => {
+					new Copy(e.target.textContent, e.target.className).copyText();
+				}}
+			>
+				{renderDepth(parseJSONContent())}
+			</div>
 			<div>
 				<h2>Content from Uploaded JSON:</h2>
 				{renderJSONContent(parseJSONContent())}

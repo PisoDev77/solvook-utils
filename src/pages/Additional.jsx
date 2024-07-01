@@ -1,14 +1,31 @@
-import SubPages from '../components/SubPages';
+import { useLocation } from 'react-router-dom';
 import '../styles/page.css';
-import Timer from './Timer';
+
+import SubPages from '../components/SubPages';
+import QSlayer from '../components/QSlayer';
 
 export default function Additional() {
+	const location = useLocation();
+	const queryParams = new URLSearchParams(location.search);
+	const pageName = queryParams.get('page') ?? 'default'; // query string에서 'page' 파라미터 값을 가져옴
+
+	const AdditionalElements = {
+		qslayer: QSlayer,
+		default: AdditionalSubPage,
+	};
+
+	const AdditionalElement =
+		AdditionalElements[pageName] ?? (() => <h1>{pageName}이라는 Additional의 기능은 없습니다</h1>);
+
+	return <AdditionalElement />;
+}
+
+function AdditionalSubPage() {
 	return (
 		<SubPages
-			pageName={''}
 			subpages={[
-				{ name: 'Timer', path: '/timer' },
-				{ name: 'QSlayer', path: '/qslayer' },
+				{ name: 'Timer', path: '/additional?page=timer' },
+				{ name: 'QSlayer', path: '/additional?page=qslayer' },
 			]}
 			PageIcon={Icon}
 		/>
