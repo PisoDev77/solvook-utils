@@ -1,6 +1,5 @@
 import SubPages from '../components/SubPages';
 import '../styles/page.css';
-import Timer from './Timer';
 
 export default function Json() {
 	return <SubPages pageName={''} subpages={[{ name: 'JSON 열어보기', path: '/openJSON' }]} PageIcon={Icon} />;

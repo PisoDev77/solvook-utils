@@ -1,60 +1,40 @@
-import { InputCalendar, formatDate } from '../Inputs';
+export default function List({ qs, updateQ, deleteQ }) {
+	const handleChange = (e, qId) => {
+		const content = e.target.value;
+		if (content.trim() === '') return;
 
-export default function List({ updateSlayer, deleteSlayer, slayers }) {
-	const handleUpdateSlayer = (e, cid) => {
-		updateSlayer({ cid, slayer: e.target.value }, slayers);
+		const _q = qs.find((q) => q.qId === qId);
+		updateQ({ ..._q, content: e.target.value });
 	};
 
-	const handleUpdateAnswer = (e, cid) => {
-		updateSlayer({ cid, answer: e.target.value }, slayers);
+	const handleDelete = (qId) => {
+		deleteQ(qId);
 	};
 
-	const renderList = () => {
-		return slayers.map((_slayer) => {
-			const { slayer, cid, reg_date, update_date, answer } = _slayer;
-
-			return (
-				<section className='qslayer-slayer'>
-					<section className='slayer'>
-						<Slayer slayer={slayer} onChange={(e) => handleUpdateSlayer(e, cid)} />
-						<Delete onClick={() => deleteSlayer(cid)} />
-						<div>
-							📅
-							<InputCalendar attrProps={{ value: reg_date, name: 'reg_date', disabled: true }} />
-							🛠️
-							<InputCalendar attrProps={{ value: update_date, name: 'update_date', disabled: true }} />
-						</div>
-					</section>
-					<Answer answer={answer} onChange={(e) => handleUpdateAnswer(e, cid)} />
-				</section>
-			);
-		});
-	};
-
-	return <section className='qslayer-contents'>{renderList()}</section>;
-}
-
-function Slayer({ slayer, onChange }) {
-	return <input type='text' value={slayer} onChange={onChange} />;
-}
-
-function Delete({ onClick }) {
 	return (
-		<button className='delete-slayer' onClick={onClick}>
-			🗑️
-		</button>
+		<ul>
+			{qs.length > 0
+				? qs.map((q) => (
+						<li key={'content-' + q.qId}>
+							{<QSlayer {...q} handleChange={handleChange} handleDelete={handleDelete} />}
+						</li>
+				  ))
+				: ''}
+		</ul>
 	);
 }
 
-function Answer({ answer, onChange }) {
+function QSlayer({ qId, content, reg_date, mod_date, handleChange, handleDelete }) {
 	return (
-		<textarea
-			placer="Let's Slays Question"
-			rows={10}
-			name='answer'
-			className='answer'
-			value={answer}
-			onChange={onChange}
-		></textarea>
+		<section className='qslayer-content'>
+			<h2>
+				<input type='text' name='content' id='content' value={content} onChange={(e) => handleChange(e, qId)} />
+			</h2>
+			<div className='dates'>
+				<span>{reg_date}</span>
+				<span>{mod_date ?? '-'}</span>
+			</div>
+			<button onClick={() => handleDelete(qId)}>DELETE</button>
+		</section>
 	);
 }

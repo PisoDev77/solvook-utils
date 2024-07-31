@@ -10,7 +10,7 @@ export default function SubPages({ subpages, PageIcon }) {
 			<nav>
 				<ul>
 					{subpages.map(({ name, path }) => (
-						<li>
+						<li key={path + '_link'}>
 							<Link to={path}>{name}</Link>
 						</li>
 					))}

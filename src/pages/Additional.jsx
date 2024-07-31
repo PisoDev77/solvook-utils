@@ -3,14 +3,19 @@ import '../styles/page.css';
 
 import SubPages from '../components/SubPages';
 import QSlayer from '../components/QSlayer';
+import Timer from '../components/Timer';
+import DailyChecker from '../components/DailyChecker';
 
 export default function Additional() {
 	const location = useLocation();
 	const queryParams = new URLSearchParams(location.search);
 	const pageName = queryParams.get('page') ?? 'default'; // query string에서 'page' 파라미터 값을 가져옴
 
+	console.log(pageName);
 	const AdditionalElements = {
+		timer: Timer,
 		qslayer: QSlayer,
+		dailychecker: DailyChecker,
 		default: AdditionalSubPage,
 	};
 
@@ -26,6 +31,7 @@ function AdditionalSubPage() {
 			subpages={[
 				{ name: 'Timer', path: '/additional?page=timer' },
 				{ name: 'QSlayer', path: '/additional?page=qslayer' },
+				{ name: 'DailyChecker', path: '/additional?page=dailychecker' },
 			]}
 			PageIcon={Icon}
 		/>

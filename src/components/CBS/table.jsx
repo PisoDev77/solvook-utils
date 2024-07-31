@@ -33,7 +33,7 @@ export default function TableCBS() {
 						data-editable='true'
 						aria-placeholder='제목입력'
 						data-placeholder='제목입력'
-						style={{ textAlign: 'center' }}
+						style={{ textAlign: 'left' }}
 					></figcaption>
 					<table
 						data-editable='true'

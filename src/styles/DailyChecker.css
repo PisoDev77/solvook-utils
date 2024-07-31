@@ -1,0 +1,36 @@
+.additional-dailychecker {
+	padding: 1rem;
+}
+
+.additional-dailychecker .daliychecker-add {
+	display: flex;
+	flex-direction: row;
+	padding: 1rem;
+	gap: 1rem;
+}
+.additional-dailychecker .daliychecker-add > input {
+	flex-grow: 1;
+	border-bottom: 0.1rem solid var(--main-color);
+}
+
+.additional-dailychecker ul {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 1rem;
+}
+.additional-dailychecker li.item {
+	display: flex;
+	flex-direction: row;
+	gap: 0.2rem;
+}
+
+.additional-dailychecker li.item > p {
+	flex-grow: 1;
+	border: 0.1rem solid var(--main-color);
+	padding: 0.5rem 1rem;
+	border-radius: 0.5rem;
+}
+.additional-dailychecker li.item > p.done {
+	text-decoration: line-through;
+}
