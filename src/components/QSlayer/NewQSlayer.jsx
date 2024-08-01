@@ -1,4 +1,4 @@
-import { formatDate } from '../../lib/Format';
+import { formatDate } from '../../lib/format';
 
 export default function NewQSlayer({ getNewQid, addQ }) {
 	const handleSubmit = (e) => {
