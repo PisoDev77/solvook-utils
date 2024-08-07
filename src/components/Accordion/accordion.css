@@ -32,3 +32,14 @@
 	white-space: nowrap;
 	border-width: 0;
 }
+
+/* 3번째 예시 */
+.accordion .container .accordion-item.anime1 p {
+	border-bottom-width: 0;
+	max-height: 0;
+	transition: ease 0.3s;
+}
+.accordion .container .accordion-item.anime1.open p {
+	border-bottom-width: 1px;
+	max-height: 300px;
+}
