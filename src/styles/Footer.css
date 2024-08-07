@@ -1,19 +1,27 @@
-footer {
-	height: 6rem;
+footer .wrapper {
+	height: 80px;
 }
+
 .footer-nav {
 	position: fixed;
 	bottom: 0;
+
+	padding: 1rem;
+	border-radius: 2rem;
+	height: 6rem;
 	width: 100%;
+
+	display: flex;
+	justify-content: center;
+}
+.footer-nav.close {
+	justify-content: end;
 }
 
 .footer-nav ul {
 	background-color: var(--sub-color);
 	border-radius: 2rem;
-	margin: 0.5rem;
 	list-style: none;
-	padding: 1rem;
 	display: flex;
-	justify-content: center;
 	gap: 1rem;
 }
