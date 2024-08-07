@@ -17,10 +17,18 @@
 	content: '- ';
 }
 
-.accordion .container p {
-	text-indent: 1rem;
-	display: hidden;
-}
-.accordion .container p.open {
+.accordion .container .accordion-item.css.open p {
 	display: block;
+}
+.accordion .container .accordion-item.css.close p {
+	/* sr-only */
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
 }
