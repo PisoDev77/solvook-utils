@@ -14,6 +14,7 @@ const routes = [
   { path: "openJson", elementName: "OpenJSON", caption: "JSON 파일 까보기" },
   { path: "cbs", elementName: "CBS", caption: "CBS" },
   { path: "additional", elementName: "Additional", caption: "Additional" },
+  { path: "uicomponents", elementName: "UiComponents", caption: "Ui Components" },
 ];
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
 					return <Route path={path} element={<$Page />} key={'route-' + idx} />;
 				})}
 				<Route path='*' element={<Page404 />} />
-				<Route path='apii' element={<Pages.PlayWright />} />
+				{/* <Route path='apii' element={<Pages.PlayWright />} /> */}
 			</Routes>
 			<Footer />
 			<ToastContainer autoClose={1500} />
