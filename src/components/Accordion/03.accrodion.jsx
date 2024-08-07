@@ -10,7 +10,7 @@ export default function Accrodion03({ data }) {
 
 	return (
 		<>
-			<h3>1.3. React - css animaiton transition</h3>
+			<h3>3. React - css animaiton transition</h3>
 			<p>Animaition - transition 써보기</p>
 			<ul className='container'>
 				{data.map((d, idx) => (

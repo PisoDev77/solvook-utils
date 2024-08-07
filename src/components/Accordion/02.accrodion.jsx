@@ -10,7 +10,7 @@ export default function Accrodion02({ data }) {
 
 	return (
 		<>
-			<h3>1.2. React - css로 관리해보자</h3>
+			<h3>2. React - css로 관리해보자</h3>
 			<p>앞선 예제에서는 내용이 아예없어서 SEO나 접근성 측면에서 안 좋을 수 있다. css로 관리를 해보자</p>
 			<ul className='container'>
 				{data.map((d, idx) => (
