@@ -11,7 +11,6 @@ export default function Additional() {
 	const queryParams = new URLSearchParams(location.search);
 	const pageName = queryParams.get('page') ?? 'default'; // query string에서 'page' 파라미터 값을 가져옴
 
-	console.log(pageName);
 	const AdditionalElements = {
 		timer: Timer,
 		qslayer: QSlayer,
