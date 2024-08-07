@@ -3,6 +3,7 @@ import '../../styles/Footer.css';
 import JSON from './JSONIcon';
 import CBS from './CBSIcon';
 import Additional from './AdditionalIcon';
+import UiComponents from './UiComponentsIcon';
 
 export default function Footer({ routes }) {
 	const navigate = useNavigate();
@@ -19,6 +20,9 @@ export default function Footer({ routes }) {
 					</li>
 					<li onClick={() => navigate('/additional')}>
 						<Additional />
+					</li>
+					<li onClick={() => navigate('/uicomponents')}>
+						<UiComponents />
 					</li>
 				</ul>
 			</nav>
