@@ -1,0 +1,26 @@
+.accordion {
+	padding: 1rem;
+}
+
+.accordion .container .accordion-item {
+	border: solid var(--main-color) 0.1rem;
+	padding: 0.5rem;
+}
+
+.accordion .container .accordion-item.open {
+	background-color: var(--sub-color);
+}
+.accordion .container .accordion-item.close h4::before {
+	content: '+ ';
+}
+.accordion .container .accordion-item.open h4::before {
+	content: '- ';
+}
+
+.accordion .container p {
+	text-indent: 1rem;
+	display: hidden;
+}
+.accordion .container p.open {
+	display: block;
+}
