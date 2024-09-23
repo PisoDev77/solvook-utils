@@ -21,6 +21,14 @@ export default function QSlayer() {
 				))}
 			</ul>
 			<List qs={qs} updateQ={updateQ} deleteQ={deleteQ} />
+			<form action='https://www.google.com/search' method='get'>
+				<input type='text' name='q' placeholder='구글에서 검색' />
+				<button type='submit'>검색</button>
+			</form>
+			<form action='https://search.naver.com/search.naver' method='get'>
+				<input type='text' name='query' placeholder='네이버에서 검색' />
+				<button type='submit'>검색</button>
+			</form>
 		</>
 	);
 }
