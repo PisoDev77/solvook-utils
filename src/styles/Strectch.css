@@ -1,0 +1,15 @@
+.stertchtime {
+	padding: 1rem;
+}
+.stertchtime > nav ul {
+	display: flex;
+	justify-content: space-around;
+}
+.stertchtime > nav ul > li[aria-selected='true'] {
+	background-color: red;
+}
+
+/* Timer */
+.stertchtime .timer {
+	font-size: 20rem;
+}

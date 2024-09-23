@@ -5,6 +5,7 @@ import SubPages from '../components/SubPages';
 import QSlayer from '../components/QSlayer';
 import Timer from '../components/Timer';
 import DailyChecker from '../components/DailyChecker';
+import StretchTime from '../components/StretchTime';
 
 export default function Additional() {
 	const location = useLocation();
@@ -15,6 +16,7 @@ export default function Additional() {
 		timer: Timer,
 		qslayer: QSlayer,
 		dailychecker: DailyChecker,
+		stretchtime: StretchTime,
 		default: AdditionalSubPage,
 	};
 
@@ -31,6 +33,7 @@ function AdditionalSubPage() {
 				{ name: 'Timer', path: '/additional?page=timer' },
 				{ name: 'QSlayer', path: '/additional?page=qslayer' },
 				{ name: 'DailyChecker', path: '/additional?page=dailychecker' },
+				{ name: 'StretchTime', path: '/additional?page=stretchtime' },
 			]}
 			PageIcon={Icon}
 		/>
