@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개발 역량 발표 - 승승학</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            width: 90%;
+            max-width: 1200px;
+            height: 80vh;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide h1 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #FFD700;
+        }
+
+        .slide h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #87CEEB;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            height: 100%;
+        }
+
+        .content-single {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .intro-section {
+            text-align: center;
+        }
+
+        .intro-section h2 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro-section p {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .highlight-box {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #FFD700;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem 0;
+        }
+
+        .metric {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            font-size: 1.3rem;
+        }
+
+        .metric-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin-right: 1rem;
+            min-width: 120px;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem 0;
+        }
+
+        .project-card h4 {
+            color: #FFD700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 215, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1.2rem;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin: 1rem 0;
+            font-size: 1.2rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #FFD700;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            height: 100%;
+            align-items: start;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: 제목 -->
+        <div class="slide active">
+            <div class="content-single intro-section">
+                <h2>개발 역량 발표</h2>
+                <p>승승학</p>
+                <p>프론트엔드 개발자</p>
+                <div class="highlight-box">
+                    <p style="font-size: 1.8rem;">업무 자동화와 효율성 개선 전문</p>
+                    <p style="font-size: 1.3rem;">2년간의 실무 경험</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: 비즈니스 임팩트 개요 -->
+        <div class="slide">
+            <div class="content-single">
+                <h2>Part 1: 비즈니스 임팩트</h2>
+                <div class="highlight-box">
+                    <h3>핵심 성과 요약</h3>
+                    <div class="metric">
+                        <span class="metric-number">10배</span>
+                        <span>컨텐츠 처리 시간 단축</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-number">80%</span>
+                        <span>레거시 파일 감소 (1000→200개)</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-number">3→1명</span>
+                        <span>인력 효율화 달성</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Playwright 자동화 -->
+        <div class="slide">
+            <div class="content-grid">
+                <div>
+                    <h3>Playwright 업무 자동화</h3>
+                    <div class="project-card">
+                        <h4>문제상황</h4>
+                        <p>마우스 수작업으로 컨텐츠 업로드<br>
+                        10개 컨텐츠 → 5분 소요</p>
+                    </div>
+                    <div class="project-card">
+                        <h4>해결방안</h4>
+                        <p>Playwright 자동화 도구 개발<br>
+                        브라우저 자동화 구현</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="highlight-box">
+                        <h4>개선 결과</h4>
+                        <div class="metric">
+                            <span class="metric-number">100개</span>
+                            <span>5분 미만 처리</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-number">10배</span>
+                            <span>생산성 향상</span>
+                        </div>
+                        <p style="margin-top: 2rem; font-size: 1.1rem;">
+                        ✓ 비상교육 및 쏠북 프로젝트 적용<br>
+                        ✓ 휴먼 에러 제거<br>
+                        ✓ 반복 작업 완전 자동화
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: 레거시 시스템 개선 -->
+        <div class="slide">
+            <div class="content-grid">
+                <div>
+                    <h3>레거시 시스템 리팩토링</h3>
+                    <div class="project-card">
+                        <h4>수학 AIDT 프로젝트</h4>
+                        <p>• 1000개 이상 HTML 파일 분산 구조<br>
+                        • 유지보수 어려움<br>
+                        • 공통 요소 중복</p>
+                    </div>
+                    <div class="project-card">
+                        <h4>개선 과정</h4>
+                        <p>• 공통 요소 모듈화<br>
+                        • 재사용 가능한 컴포넌트 설계<br>
+                        • 구조적 최적화</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="highlight-box">
+                        <h4>최종 결과</h4>
+                        <div class="metric">
+                            <span class="metric-number">200개</span>
+                            <span>최종 파일 수</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-number">80%</span>
+                            <span>파일 감소율</span>
+                        </div>
+                        <p style="margin-top: 2rem;">
+                        ✓ 유지보수성 대폭 개선<br>
+                        ✓ 개발 효율성 향상<br>
+                        ✓ 코드 일관성 확보
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: 사용자 친화적 도구 개발 -->
+        <div class="slide">
+            <div class="content-single">
+                <h3>사용자 친화적 도구 개발</h3>
+                <div class="two-column">
+                    <div>
+                        <div class="project-card">
+                            <h4>Excel VBA 자동 정렬 시스템</h4>
+                            <p>• 비전공자 배려한 직관적 설계<br>
+                            • 함수명: <code>학교이름가져오기()</code><br>
+                            • 영어교육과 동료도 쉽게 사용</p>
+                        </div>
+                        <div class="project-card">
+                            <h4>Solvook Parsing Helper</h4>
+                            <p>• React + Vite 개발<br>
+                            • ClipboardJS 활용<br>
+                            • 반복 작업 자동화</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="highlight-box">
+                            <h4>팀 생산성 혁신</h4>
+                            <div class="metric">
+                                <span class="metric-number">2배</span>
+                                <span>작업 효율 향상</span>
+                            </div>
+                            <p>8시간 250개 → 6시간 550개 (2명 기준)</p>
+                            <div class="metric">
+                                <span class="metric-number">3→1명</span>
+                                <span>필요 인력 감소</span>
+                            </div>
+                        </div>
+                        <p style="margin-top: 2rem; font-size: 1.1rem;">
+                        <strong>핵심 철학:</strong><br>
+                        "복잡한 기술을 직관적이고 쉽게"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: 기술 스택 -->
+        <div class="slide">
+            <div class="content-single">
+                <h2>Part 2: 개발 역량</h2>
+                <h3>기술 스택 & 프로젝트</h3>
+                <div class="tech-stack">
+                    <div class="tech-item">React</div>
+                    <div class="tech-item">Next.js</div>
+                    <div class="tech-item">TypeScript</div>
+                    <div class="tech-item">Node.js</div>
+                    <div class="tech-item">Express</div>
+                    <div class="tech-item">MongoDB</div>
+                    <div class="tech-item">JavaScript</div>
+                    <div class="tech-item">HTML/CSS</div>
+                    <div class="tech-item">Vercel</div>
+                </div>
+                <div class="project-card">
+                    <h4>Checklist 프로젝트 (개인 풀스택)</h4>
+                    <p>• Frontend: Next.js 15 + React 19<br>
+                    • Backend: Express + MongoDB + Mongoose<br>
+                    • 배포: Vercel + PWA 구현<br>
+                    • 모노레포 구조 설계 및 관리</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: 실무 개발 역량 -->
+        <div class="slide">
+            <div class="content-single">
+                <h3>실무 개발 역량</h3>
+                <div class="two-column">
+                    <div>
+                        <div class="project-card">
+                            <h4>모노브레인 퍼블리셔 가이드</h4>
+                            <p>• 동료 작업자를 위한 트러블슈팅 페이지<br>
+                            • Vanilla JS로 iOS/WebComponent API 문서<br>
+                            • UI 컴포넌트 일관성 확보 도구</p>
+                        </div>
+                        <div class="project-card">
+                            <h4>Custom Components v22</h4>
+                            <p>• 퍼블리셔들이 빠르게 컴포넌트 확인<br>
+                            • 양산 작업 일관성 유도<br>
+                            • 협업 효율성 개선</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="highlight-box">
+                            <h4>핵심 역량</h4>
+                            <ul>
+                                <li>시스템 아키텍처 설계</li>
+                                <li>개발 문서화 및 가이드 작성</li>
+                                <li>팀 협업 도구 개발</li>
+                                <li>업무 프로세스 개선</li>
+                                <li>사용자 경험 최적화</li>
+                            </ul>
+                        </div>
+                        <p style="margin-top: 2rem; font-size: 1.1rem; color: #87CEEB;">
+                        <strong>특징:</strong> 개발뿐만 아니라 팀 전체의 생산성 향상에 기여
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: 학습 능력 -->
+        <div class="slide">
+            <div class="content-single">
+                <h3>학습 능력 및 적응력</h3>
+                <div class="two-column">
+                    <div>
+                        <div class="project-card">
+                            <h4>빠른 기술 습득</h4>
+                            <p><strong>Playwright 사례:</strong><br>
+                            • JavaScript 기반이어서 문법 진입장벽 낮음<br>
+                            • 브라우저 자동화 새로운 개념 학습<br>
+                            • 실무 중심으로 필요 기능 우선 습득<br>
+                            • 즉시 업무에 적용하여 10배 효율 달성</p>
+                        </div>
+                        <div class="project-card">
+                            <h4>문제 해결 중심 사고</h4>
+                            <p>• 기존 3명 업무 → 1명 자동화 시스템<br>
+                            • 근본적 문제점 분석 후 해결책 도출<br>
+                            • 기술을 위한 기술이 아닌 실용적 접근</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="highlight-box">
+                            <h4>학습 방법론</h4>
+                            <ul>
+                                <li>기존 지식 기반 빠른 확장</li>
+                                <li>실무 필요 기능 우선 학습</li>
+                                <li>점진적 개선 및 확장</li>
+                                <li>사용자 피드백 기반 지속 개선</li>
+                            </ul>
+                        </div>
+                        <div class="project-card">
+                            <h4>지속적 개선</h4>
+                            <p>• 사용자 피드백 수집<br>
+                            • 도구 기능 지속 개선<br>
+                            • 동료들과 지식 공유<br>
+                            • 문제 발생 시 적극적 해결</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: 마무리 -->
+        <div class="slide">
+            <div class="content-single intro-section">
+                <h2>감사합니다</h2>
+                <div class="highlight-box">
+                    <h3>핵심 메시지</h3>
+                    <p style="font-size: 1.5rem; margin-bottom: 2rem;">
+                    "기술로 실질적인 문제를 해결하고<br>
+                    팀과 조직의 효율성을 향상시키는 개발자"
+                    </p>
+                    <div class="metric">
+                        <span class="metric-number">10배</span>
+                        <span>업무 효율 개선 경험</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-number">2년</span>
+                        <span>실무 자동화 전문성</span>
+                    </div>
+                    <p style="font-size: 1.2rem; margin-top: 2rem; color: #87CEEB;">
+                    한국전력정보에서 에너지 IT 분야의<br>
+                    새로운 도전을 함께하고 싶습니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">9</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">이전</button>
+        <button class="nav-btn" onclick="nextSlide()">다음</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // 키보드 네비게이션
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        // 클릭으로 다음 슬라이드
+        document.addEventListener('click', function(e) {
+            if (!e.target.classList.contains('nav-btn')) {
+                nextSlide();
+            }
+        });
+    </script>
+</body>
+</html>
